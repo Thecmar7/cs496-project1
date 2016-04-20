@@ -3,7 +3,7 @@
 //  Cronos
 //
 //  Created by Samuel Lichlyter on 4/20/16.
-//  Copyright © 2016 Samuel Lichlyter. All rights reserved.
+//  Copyright © 2016 Samuel Lichlyter and Cramer Smith and Tanner Fry. All rights reserved.
 //
 
 import UIKit

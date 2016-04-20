@@ -9,7 +9,6 @@
         <!--Cronos-->
         <scene sceneID="qvg-EO-5IQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KC8-y1-DUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="iQY-Xh-yUG" customClass="TaskTableViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PLW-UE-4g5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -20,13 +19,13 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eak-NP-sOm" id="egP-EC-Urr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Din-rE-y57">
                                             <rect key="frame" x="8" y="11" width="78" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeActual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmK-fE-Zdb">
@@ -72,6 +71,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Cronos" id="OOe-7r-at4"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KC8-y1-DUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="940" y="373"/>
         </scene>
@@ -90,7 +90,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-xr-lti">
                                 <rect key="frame" x="201" y="72" width="199" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZH-cv-EbV">
@@ -99,25 +99,53 @@
                                     <!--2016-04-20 19:01:00 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-gc-iEV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-gc-iEV">
                                 <rect key="frame" x="269" y="339" width="63" height="30"/>
                                 <state key="normal" title="Get Time"/>
                                 <connections>
                                     <action selector="getTimeButtonSelected:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="2zm-Nm-X5f"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-fy-kpO">
+                                <rect key="frame" x="260" y="425" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
+                                <rect key="frame" x="365" y="511" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
+                                <rect key="frame" x="201" y="511" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="ofs-bV-l21"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="91j-O2-dmy"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="JCo-Qr-HwL"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="dZH-cv-EbV" secondAttribute="centerX" id="Jan-8w-SCK"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="SdP-0E-usn"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="Ujd-Ov-Phq"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="leading" id="6FH-Rv-4Ev"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="9wp-Nq-uUp"/>
+                            <constraint firstAttribute="trailing" secondItem="CDP-CF-qbl" secondAttribute="trailing" constant="196" id="FcR-hD-hFN"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="Lqm-OO-PqD"/>
+                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="M1g-8c-Siv"/>
+                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="SOQ-KU-A7e"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="V1o-SR-sq5"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="dZH-cv-EbV" secondAttribute="centerX" id="akQ-u0-Yj4"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="jDg-nh-eAT"/>
+                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="59" id="kBD-TS-QaG"/>
+                            <constraint firstItem="aCw-fy-kpO" firstAttribute="top" secondItem="0Za-gc-iEV" secondAttribute="bottom" constant="56" id="lUm-us-Ust"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="centerX" secondItem="aCw-fy-kpO" secondAttribute="centerX" id="oJ9-bR-7Vg"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="ukM-jF-ACE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="estimateTime" destination="dZH-cv-EbV" id="jVa-GW-xSy"/>
+                        <outlet property="reset" destination="CDP-CF-qbl" id="hKT-Dg-H43"/>
+                        <outlet property="startAndStop" destination="AhJ-Oe-xfI" id="Db8-Pq-cEd"/>
+                        <outlet property="timeCount" destination="aCw-fy-kpO" id="ARW-mp-y6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBC-JR-LNF" userLabel="First Responder" sceneMemberID="firstResponder"/>

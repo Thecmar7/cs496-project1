@@ -26,5 +26,7 @@ class TimerTableViewCell: UITableViewCell {
 
     @IBAction func startButton(sender: UIButton) {
         print("Start Selected")
+		
+		
     }
 }
