@@ -112,10 +112,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
-                                <rect key="frame" x="365" y="511" width="39" height="30"/>
-                                <state key="normal" title="Reset"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
                                 <rect key="frame" x="201" y="511" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
@@ -123,22 +119,26 @@
                                     <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="ofs-bV-l21"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
+                                <rect key="frame" x="361" y="511" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="leading" id="6FH-Rv-4Ev"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="9wp-Nq-uUp"/>
-                            <constraint firstAttribute="trailing" secondItem="CDP-CF-qbl" secondAttribute="trailing" constant="196" id="FcR-hD-hFN"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="Lqm-OO-PqD"/>
-                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="M1g-8c-Siv"/>
-                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="SOQ-KU-A7e"/>
-                            <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="V1o-SR-sq5"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="dZH-cv-EbV" secondAttribute="centerX" id="akQ-u0-Yj4"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="jDg-nh-eAT"/>
-                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="59" id="kBD-TS-QaG"/>
-                            <constraint firstItem="aCw-fy-kpO" firstAttribute="top" secondItem="0Za-gc-iEV" secondAttribute="bottom" constant="56" id="lUm-us-Ust"/>
-                            <constraint firstItem="0Za-gc-iEV" firstAttribute="centerX" secondItem="aCw-fy-kpO" secondAttribute="centerX" id="oJ9-bR-7Vg"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="ukM-jF-ACE"/>
+                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="DRM-fe-lhi"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="JTq-q6-op8"/>
+                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="M6J-l1-82S"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="leading" id="NX9-iY-NUq"/>
+                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="59" id="PAB-kV-EXh"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="PNd-sU-ygO"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="trailing" secondItem="CDP-CF-qbl" secondAttribute="trailing" id="Qry-Ba-hhF"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="W1P-KD-e77"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="centerX" secondItem="aCw-fy-kpO" secondAttribute="centerX" id="YnH-tU-DK2"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="caR-28-4az"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="iTn-7D-Tmh"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="dZH-cv-EbV" secondAttribute="centerX" id="ldL-0c-U0h"/>
+                            <constraint firstItem="aCw-fy-kpO" firstAttribute="top" secondItem="0Za-gc-iEV" secondAttribute="bottom" constant="56" id="ua1-TB-x3P"/>
                         </constraints>
                     </view>
                     <connections>
