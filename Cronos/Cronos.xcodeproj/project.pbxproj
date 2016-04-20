@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		436E01181CC8104100D44117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01171CC8104100D44117 /* AppDelegate.swift */; };
+		436E011A1CC8104100D44117 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01191CC8104100D44117 /* ViewController.swift */; };
+		436E011D1CC8104100D44117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E011B1CC8104100D44117 /* Main.storyboard */; };
+		436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */; };
+		436E01221CC8104100D44117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E01211CC8104100D44117 /* Assets.xcassets */; };
+		436E01251CC8104100D44117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E01231CC8104100D44117 /* LaunchScreen.storyboard */; };
+		436E01301CC8104100D44117 /* CronosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E012F1CC8104100D44117 /* CronosTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		436E012C1CC8104100D44117 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436E010C1CC8104100D44117 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 436E01131CC8104100D44117;
+			remoteInfo = Cronos;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		436E01141CC8104100D44117 /* Cronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		436E01171CC8104100D44117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		436E01191CC8104100D44117 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		436E011C1CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		436E011F1CC8104100D44117 /* Cronos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cronos.xcdatamodel; sourceTree = "<group>"; };
+		436E01211CC8104100D44117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		436E01241CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		436E01261CC8104100D44117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		436E012B1CC8104100D44117 /* CronosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CronosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		436E012F1CC8104100D44117 /* CronosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CronosTests.swift; sourceTree = "<group>"; };
+		436E01311CC8104100D44117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		436E01111CC8104100D44117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436E01281CC8104100D44117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		436E010B1CC8104100D44117 = {
+			isa = PBXGroup;
+			children = (
+				436E01161CC8104100D44117 /* Cronos */,
+				436E012E1CC8104100D44117 /* CronosTests */,
+				436E01151CC8104100D44117 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		436E01151CC8104100D44117 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				436E01141CC8104100D44117 /* Cronos.app */,
+				436E012B1CC8104100D44117 /* CronosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		436E01161CC8104100D44117 /* Cronos */ = {
+			isa = PBXGroup;
+			children = (
+				436E01171CC8104100D44117 /* AppDelegate.swift */,
+				436E01191CC8104100D44117 /* ViewController.swift */,
+				436E011B1CC8104100D44117 /* Main.storyboard */,
+				436E01211CC8104100D44117 /* Assets.xcassets */,
+				436E01231CC8104100D44117 /* LaunchScreen.storyboard */,
+				436E01261CC8104100D44117 /* Info.plist */,
+				436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */,
+			);
+			path = Cronos;
+			sourceTree = "<group>";
+		};
+		436E012E1CC8104100D44117 /* CronosTests */ = {
+			isa = PBXGroup;
+			children = (
+				436E012F1CC8104100D44117 /* CronosTests.swift */,
+				436E01311CC8104100D44117 /* Info.plist */,
+			);
+			path = CronosTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		436E01131CC8104100D44117 /* Cronos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 436E01341CC8104100D44117 /* Build configuration list for PBXNativeTarget "Cronos" */;
+			buildPhases = (
+				436E01101CC8104100D44117 /* Sources */,
+				436E01111CC8104100D44117 /* Frameworks */,
+				436E01121CC8104100D44117 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cronos;
+			productName = Cronos;
+			productReference = 436E01141CC8104100D44117 /* Cronos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		436E012A1CC8104100D44117 /* CronosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 436E01371CC8104100D44117 /* Build configuration list for PBXNativeTarget "CronosTests" */;
+			buildPhases = (
+				436E01271CC8104100D44117 /* Sources */,
+				436E01281CC8104100D44117 /* Frameworks */,
+				436E01291CC8104100D44117 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				436E012D1CC8104100D44117 /* PBXTargetDependency */,
+			);
+			name = CronosTests;
+			productName = CronosTests;
+			productReference = 436E012B1CC8104100D44117 /* CronosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		436E010C1CC8104100D44117 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Samuel Lichlyter";
+				TargetAttributes = {
+					436E01131CC8104100D44117 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					436E012A1CC8104100D44117 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 436E01131CC8104100D44117;
+					};
+				};
+			};
+			buildConfigurationList = 436E010F1CC8104100D44117 /* Build configuration list for PBXProject "Cronos" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 436E010B1CC8104100D44117;
+			productRefGroup = 436E01151CC8104100D44117 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				436E01131CC8104100D44117 /* Cronos */,
+				436E012A1CC8104100D44117 /* CronosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		436E01121CC8104100D44117 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436E01251CC8104100D44117 /* LaunchScreen.storyboard in Resources */,
+				436E01221CC8104100D44117 /* Assets.xcassets in Resources */,
+				436E011D1CC8104100D44117 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436E01291CC8104100D44117 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		436E01101CC8104100D44117 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */,
+				436E011A1CC8104100D44117 /* ViewController.swift in Sources */,
+				436E01181CC8104100D44117 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		436E01271CC8104100D44117 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436E01301CC8104100D44117 /* CronosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		436E012D1CC8104100D44117 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 436E01131CC8104100D44117 /* Cronos */;
+			targetProxy = 436E012C1CC8104100D44117 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		436E011B1CC8104100D44117 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				436E011C1CC8104100D44117 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		436E01231CC8104100D44117 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				436E01241CC8104100D44117 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		436E01321CC8104100D44117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		436E01331CC8104100D44117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		436E01351CC8104100D44117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cronos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuellichlyter.Cronos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		436E01361CC8104100D44117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cronos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuellichlyter.Cronos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		436E01381CC8104100D44117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CronosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuellichlyter.CronosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cronos.app/Cronos";
+			};
+			name = Debug;
+		};
+		436E01391CC8104100D44117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CronosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuellichlyter.CronosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cronos.app/Cronos";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		436E010F1CC8104100D44117 /* Build configuration list for PBXProject "Cronos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436E01321CC8104100D44117 /* Debug */,
+				436E01331CC8104100D44117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		436E01341CC8104100D44117 /* Build configuration list for PBXNativeTarget "Cronos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436E01351CC8104100D44117 /* Debug */,
+				436E01361CC8104100D44117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		436E01371CC8104100D44117 /* Build configuration list for PBXNativeTarget "CronosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436E01381CC8104100D44117 /* Debug */,
+				436E01391CC8104100D44117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				436E011F1CC8104100D44117 /* Cronos.xcdatamodel */,
+			);
+			currentVersion = 436E011F1CC8104100D44117 /* Cronos.xcdatamodel */;
+			path = Cronos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 436E010C1CC8104100D44117 /* Project object */;
+}
