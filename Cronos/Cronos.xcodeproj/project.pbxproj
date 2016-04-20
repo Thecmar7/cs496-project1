@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		436E01181CC8104100D44117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01171CC8104100D44117 /* AppDelegate.swift */; };
-		436E011A1CC8104100D44117 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01191CC8104100D44117 /* ViewController.swift */; };
 		436E011D1CC8104100D44117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E011B1CC8104100D44117 /* Main.storyboard */; };
 		436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */; };
 		436E01221CC8104100D44117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E01211CC8104100D44117 /* Assets.xcassets */; };
-		436E01251CC8104100D44117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E01231CC8104100D44117 /* LaunchScreen.storyboard */; };
 		436E01301CC8104100D44117 /* CronosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E012F1CC8104100D44117 /* CronosTests.swift */; };
+		436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E013A1CC814C800D44117 /* TimerTableViewCell.swift */; };
+		436E013E1CC8173F00D44117 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E013C1CC8173F00D44117 /* Launch Screen.storyboard */; };
+		436E01401CC818BB00D44117 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E013F1CC818BB00D44117 /* TaskTableViewController.swift */; };
+		436E01421CC81DE800D44117 /* EstimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01411CC81DE800D44117 /* EstimateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,15 +31,17 @@
 /* Begin PBXFileReference section */
 		436E01141CC8104100D44117 /* Cronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E01171CC8104100D44117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		436E01191CC8104100D44117 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		436E011C1CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		436E011F1CC8104100D44117 /* Cronos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cronos.xcdatamodel; sourceTree = "<group>"; };
 		436E01211CC8104100D44117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		436E01241CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		436E01261CC8104100D44117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		436E012B1CC8104100D44117 /* CronosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CronosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E012F1CC8104100D44117 /* CronosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CronosTests.swift; sourceTree = "<group>"; };
 		436E01311CC8104100D44117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		436E013A1CC814C800D44117 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
+		436E013D1CC8173F00D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Cronos/Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		436E013F1CC818BB00D44117 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		436E01411CC81DE800D44117 /* EstimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,10 +84,12 @@
 			isa = PBXGroup;
 			children = (
 				436E01171CC8104100D44117 /* AppDelegate.swift */,
-				436E01191CC8104100D44117 /* ViewController.swift */,
+				436E013F1CC818BB00D44117 /* TaskTableViewController.swift */,
+				436E013A1CC814C800D44117 /* TimerTableViewCell.swift */,
+				436E01411CC81DE800D44117 /* EstimateViewController.swift */,
 				436E011B1CC8104100D44117 /* Main.storyboard */,
+				436E013C1CC8173F00D44117 /* Launch Screen.storyboard */,
 				436E01211CC8104100D44117 /* Assets.xcassets */,
-				436E01231CC8104100D44117 /* LaunchScreen.storyboard */,
 				436E01261CC8104100D44117 /* Info.plist */,
 				436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */,
 			);
@@ -180,7 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				436E01251CC8104100D44117 /* LaunchScreen.storyboard in Resources */,
+				436E013E1CC8173F00D44117 /* Launch Screen.storyboard in Resources */,
 				436E01221CC8104100D44117 /* Assets.xcassets in Resources */,
 				436E011D1CC8104100D44117 /* Main.storyboard in Resources */,
 			);
@@ -201,8 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */,
-				436E011A1CC8104100D44117 /* ViewController.swift in Sources */,
+				436E01421CC81DE800D44117 /* EstimateViewController.swift in Sources */,
 				436E01181CC8104100D44117 /* AppDelegate.swift in Sources */,
+				436E01401CC818BB00D44117 /* TaskTableViewController.swift in Sources */,
+				436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,12 +241,13 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		436E01231CC8104100D44117 /* LaunchScreen.storyboard */ = {
+		436E013C1CC8173F00D44117 /* Launch Screen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				436E01241CC8104100D44117 /* Base */,
+				436E013D1CC8173F00D44117 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = "Launch Screen.storyboard";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
