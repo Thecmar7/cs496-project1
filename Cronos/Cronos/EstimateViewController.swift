@@ -104,13 +104,19 @@ class EstimateViewController: UIViewController {
 	}
 	
 	// changes the seconds to hour, minute, seconds
-	func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-		return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+	func secondsToHoursMinutesSeconds (mSeconds : Int) -> (Int, Int, Int) {
+		//return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+        let totalSeconds = mSeconds / 10
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds % 3600) / 60
+        let seconds = (totalSeconds % 3600) % 60
+        
+        return (hours, minutes, seconds)
 	}
 	
 	func formatTime(time: Int) -> String {
-		let (h, m, s) = secondsToHoursMinutesSeconds(time)
-		return String(format: "%02d:%02d:%02d", h, m, s)
+		let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(time)
+		return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 	}
 
     /*
