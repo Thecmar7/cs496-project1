@@ -11,13 +11,10 @@ import Foundation
 
 class EstimateViewController: UIViewController {
 
+	var estimate:NSTimeInterval = 0.0
+	
 	var counter = 0
 	var timer = NSTimer()
-	
-	enum state {
-		case go
-		case stop
-	}
 	
     @IBOutlet var estimateTime: UIDatePicker!
 	@IBOutlet weak var timeCount: UILabel!
@@ -30,25 +27,32 @@ class EstimateViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		timeCount.text = formatTime(counter)
+		estimate = estimateTime.countDownDuration
     }
 
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 	
+	// MARK: Actions
 	
-	
+	//  This is a test function for the selector wheel
     @IBAction func getTimeButtonSelected(sender: UIButton) {
         print(estimateTime.countDownDuration)
     }
 	
+	// This starts and stops the timer
 	@IBAction func startTimer(sender: UIButton) {
         
         print("timer started")
 		if (sender.titleLabel?.text == "Start") {
 			print("The Label is start")
-			timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
+			                                               selector: #selector(timerAction),
+			                                               userInfo: nil, repeats: true)
 			// starts timer
 			startAndStop.setTitle("Stop", forState: .Normal)
 			timerAction()
@@ -57,27 +61,56 @@ class EstimateViewController: UIViewController {
 		} else if (sender.titleLabel?.text == "Stop") {
 			// stops timer
 			startAndStop.setTitle("Start", forState: .Normal)
-			timer.invalidate()
+			stopTimer()
 		}
 	}
-
 	
+	@IBAction func resetTimerAction(sender: UIButton) {
+		resetTimer()
+		timeCount.text = formatTime(counter)
+		timeCount.textColor = UIColor(red: 128/255.0, green: 128/255.0, blue: 128/255.0, alpha: 1.0)
+		startAndStop.setTitle("Start", forState: .Normal)
+	
+		stopTimer()
+	}
+
+	func stopTimer() {
+		timer.invalidate()
+	}
+	
+	func resetTimer() {
+		counter = 0;
+		timeCount.text = formatTime(counter)
+	}
+	
+	
+	// MARK: Functions
+	// Increments the timer and changes the label of the timer
 	func timerAction() {
 		counter += 1
-		let (h, m, s) = secondsToHoursMinutesSeconds(counter)
-		timeCount.text = String(format: "%02d:%02d:%02d", h, m, s)
+		timeCount.text = formatTime(counter)
+		//timeCount.textColor=UIColor(red: 100/255.0, green: 255 - (255 / CGFloat(counter))/255.0, blue: 255 - (255 / CGFloat(counter))/255.0, alpha: 1.0)
 		
+		timeCount.textColor=UIColor(red: (128 + (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, green: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, blue: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, alpha: 1.0)
 		
-		if (Double(counter) == estimateTime.countDownDuration) {
+		if (Double(counter) == estimate) {
 			print("SHIT!")
+			// TODO: Change color of timer
+			timeCount.textColor = UIColor.redColor()
 			
 		}
 	}
 	
+	// changes the seconds to hour, minute, seconds
 	func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
 		return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
 	}
 	
+	func formatTime(time: Int) -> String {
+		let (h, m, s) = secondsToHoursMinutesSeconds(time)
+		return String(format: "%02d:%02d:%02d", h, m, s)
+	}
+
     /*
     // MARK: - Navigation
 
