@@ -18,6 +18,7 @@ class EstimateViewController: UIViewController {
 	
     @IBOutlet var estimateTime: UIDatePicker!
 	@IBOutlet weak var timeCount: UILabel!
+    @IBOutlet var estimateLabel: UILabel!
     
 	//@IBOutlet weak var startAndStop: UIButton!
 	@IBOutlet weak var reset: UIButton!
@@ -27,10 +28,10 @@ class EstimateViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        estimateLabel.hidden = true
 		timeCount.text = formatTime(counter)
 		estimate = estimateTime.countDownDuration
     }
-
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,6 +44,12 @@ class EstimateViewController: UIViewController {
     @IBAction func getTimeButtonSelected(sender: UIButton) {
 		
 		estimate = estimateTime.countDownDuration
+        print("Double: \(estimate)")
+        let estimateInt = Int(Double(estimate))
+        print("Int: \(estimateInt)")
+        estimateLabel.text = formatTime(Int(Double(estimate)))
+        estimateTime.hidden = true
+        estimateLabel.hidden = false
 		
     }
 	
@@ -51,8 +58,8 @@ class EstimateViewController: UIViewController {
 		// TODO: Make this happen in a thread
 		
 		if (sender.titleLabel?.text == "Start") {
-			print("The Label is start")
-			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
+			estimate = estimateTime.countDownDuration
+			timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self,
 			                                               selector: #selector(timerAction),
 			                                               userInfo: nil, repeats: true)
 			// starts timer
@@ -104,12 +111,11 @@ class EstimateViewController: UIViewController {
 	}
 	
 	// changes the seconds to hour, minute, seconds
-	func secondsToHoursMinutesSeconds (mSeconds : Int) -> (Int, Int, Int) {
-		//return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-        let totalSeconds = mSeconds / 10
-        let hours = totalSeconds / 3600
-        let minutes = (totalSeconds % 3600) / 60
-        let seconds = (totalSeconds % 3600) % 60
+	func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+    
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
+        let seconds = (seconds % 3600) % 60
         
         return (hours, minutes, seconds)
 	}

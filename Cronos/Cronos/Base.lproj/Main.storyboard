@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eak-NP-sOm" id="egP-EC-Urr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Din-rE-y57">
@@ -28,13 +28,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeActual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmK-fE-Zdb">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="timeActual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmK-fE-Zdb">
                                             <rect key="frame" x="416" y="11" width="82" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-RJ-vxb">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-RJ-vxb">
                                             <rect key="frame" x="543" y="-3" width="49" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="49" id="6yW-qi-g3Z"/>
@@ -134,13 +134,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="estimate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-Hc-KKF">
+                                <rect key="frame" x="267" y="212" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="DRM-fe-lhi"/>
                             <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="JTq-q6-op8"/>
+                            <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerY" secondItem="dZH-cv-EbV" secondAttribute="centerY" id="Jvq-SQ-B1t"/>
                             <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="M6J-l1-82S"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="leading" id="NX9-iY-NUq"/>
+                            <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="O1o-IO-8q5"/>
                             <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="59" id="PAB-kV-EXh"/>
                             <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="PNd-sU-ygO"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="trailing" secondItem="CDP-CF-qbl" secondAttribute="trailing" id="Qry-Ba-hhF"/>
@@ -153,6 +161,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="estimateLabel" destination="2h7-Hc-KKF" id="Txr-xz-VZL"/>
                         <outlet property="estimateTime" destination="dZH-cv-EbV" id="jVa-GW-xSy"/>
                         <outlet property="reset" destination="CDP-CF-qbl" id="hKT-Dg-H43"/>
                         <outlet property="startAndStop" destination="AhJ-Oe-xfI" id="Db8-Pq-cEd"/>
