@@ -401,6 +401,7 @@
 				436E01361CC8104100D44117 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		436E01371CC8104100D44117 /* Build configuration list for PBXNativeTarget "CronosTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +410,7 @@
 				436E01391CC8104100D44117 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

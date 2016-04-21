@@ -23,6 +23,7 @@ class EstimateViewController: UIViewController {
 	//@IBOutlet weak var startAndStop: UIButton!
 	@IBOutlet weak var reset: UIButton!
 	@IBOutlet var startAndStop: UIButton!
+    @IBOutlet var getEstimateButton: UIButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +43,19 @@ class EstimateViewController: UIViewController {
 	
 	//  This is a test function for the selector wheel
     @IBAction func getTimeButtonSelected(sender: UIButton) {
-		
-		estimate = estimateTime.countDownDuration
-        print("Double: \(estimate)")
-        let estimateInt = Int(Double(estimate))
-        print("Int: \(estimateInt)")
-        estimateLabel.text = formatTime(Int(Double(estimate)))
-        estimateTime.hidden = true
-        estimateLabel.hidden = false
+        
+        if (sender.titleLabel?.text == "Set Estimate") {
+            // replace picker with label and change button
+            estimate = estimateTime.countDownDuration
+            estimateLabel.text = formatTime(Int(Double(estimate)))
+            estimateTime.hidden = true
+            estimateLabel.hidden = false
+            getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
+        } else {
+            estimateLabel.hidden = true
+            estimateTime.hidden = false
+            getEstimateButton.setTitle("Set Estimate", forState: .Normal)
+        }
 		
     }
 	

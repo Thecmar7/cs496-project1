@@ -115,54 +115,56 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
-                                <rect key="frame" x="361" y="511" width="39" height="30"/>
+                                <rect key="frame" x="361" y="520" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetTimerAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="y91-1Q-rzt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
-                                <rect key="frame" x="201" y="511" width="34" height="30"/>
+                                <rect key="frame" x="201" y="520" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="ofs-bV-l21"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="timeCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-fy-kpO">
-                                <rect key="frame" x="234" y="433" width="132" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="estimate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-Hc-KKF">
+                                <rect key="frame" x="210" y="194" width="181" height="58"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="estimate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-Hc-KKF">
-                                <rect key="frame" x="267" y="212" width="66" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-fy-kpO">
+                                <rect key="frame" x="155" y="406" width="291" height="77"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="50" id="8Xf-mL-g3K"/>
                             <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="DRM-fe-lhi"/>
                             <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="JTq-q6-op8"/>
                             <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerY" secondItem="dZH-cv-EbV" secondAttribute="centerY" id="Jvq-SQ-B1t"/>
                             <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="M6J-l1-82S"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="leading" id="NX9-iY-NUq"/>
-                            <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="O1o-IO-8q5"/>
-                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="AhJ-Oe-xfI" secondAttribute="bottom" constant="59" id="PAB-kV-EXh"/>
                             <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="PNd-sU-ygO"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="trailing" secondItem="CDP-CF-qbl" secondAttribute="trailing" id="Qry-Ba-hhF"/>
                             <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="W1P-KD-e77"/>
                             <constraint firstItem="0Za-gc-iEV" firstAttribute="centerX" secondItem="aCw-fy-kpO" secondAttribute="centerX" id="YnH-tU-DK2"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="caR-28-4az"/>
+                            <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerX" secondItem="Rjq-i9-vSC" secondAttribute="centerX" id="chH-1X-o7V"/>
                             <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="iTn-7D-Tmh"/>
+                            <constraint firstItem="aCw-fy-kpO" firstAttribute="top" secondItem="0Za-gc-iEV" secondAttribute="bottom" constant="37" id="jv0-GH-Lax"/>
+                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="aCw-fy-kpO" secondAttribute="bottom" constant="117" id="lYk-Cf-YrE"/>
                             <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="dZH-cv-EbV" secondAttribute="centerX" id="ldL-0c-U0h"/>
-                            <constraint firstItem="aCw-fy-kpO" firstAttribute="top" secondItem="0Za-gc-iEV" secondAttribute="bottom" constant="56" id="ua1-TB-x3P"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="estimateLabel" destination="2h7-Hc-KKF" id="Txr-xz-VZL"/>
                         <outlet property="estimateTime" destination="dZH-cv-EbV" id="jVa-GW-xSy"/>
+                        <outlet property="getEstimateButton" destination="0Za-gc-iEV" id="zOQ-VZ-lkr"/>
                         <outlet property="reset" destination="CDP-CF-qbl" id="hKT-Dg-H43"/>
                         <outlet property="startAndStop" destination="AhJ-Oe-xfI" id="Db8-Pq-cEd"/>
                         <outlet property="timeCount" destination="aCw-fy-kpO" id="ARW-mp-y6Y"/>
