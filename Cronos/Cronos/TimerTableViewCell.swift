@@ -25,8 +25,9 @@ class TimerTableViewCell: UITableViewCell {
     }
 
     @IBAction func startButton(sender: UIButton) {
+        //TODO: async estimateVC
+        let estimateVC = EstimateViewController()
+        estimateVC.startTimer(sender)
         print("Start Selected")
-		
-		
     }
 }

@@ -41,11 +41,11 @@ class EstimateViewController: UIViewController {
 	
     @IBAction func getTimeButtonSelected(sender: UIButton) {
         print(estimateTime.countDownDuration)
-		
     }
 	
 	@IBAction func startTimer(sender: UIButton) {
-		
+        
+        print("timer started")
 		if (sender.titleLabel?.text == "Start") {
 			print("The Label is start")
 			timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
@@ -59,7 +59,6 @@ class EstimateViewController: UIViewController {
 			startAndStop.setTitle("Start", forState: .Normal)
 			timer.invalidate()
 		}
-		
 	}
 
 	

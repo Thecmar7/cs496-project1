@@ -9,7 +9,11 @@
 import UIKit
 
 class TaskTableViewController: UITableViewController {
-
+    
+    var selectedTitle: String!
+    let titles = ["Running", "Homework", "Programming"]
+    let times = ["1:00:00", "1:23:45", "0:00:45"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +22,8 @@ class TaskTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,21 +34,19 @@ class TaskTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return titles.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         // Configure the cell...
-        cell.taskName.text = "Pooping"
-        cell.timeActual.text = "2:00:00"
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
+        cell.taskName.text = titles[indexPath.item]
+        cell.timeActual.text = times[indexPath.item]
 
         return cell
     }
@@ -83,14 +87,23 @@ class TaskTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
+        selectedTitle = cell.taskName.text
+        performSegueWithIdentifier("estimateSegue", sender: self)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "estimateSegue") {
+            let estimateVC = segue.destinationViewController as! EstimateViewController
+            estimateVC.title = selectedTitle
+        }
     }
-    */
 
 }
