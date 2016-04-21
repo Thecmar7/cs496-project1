@@ -41,13 +41,15 @@ class EstimateViewController: UIViewController {
 	
 	//  This is a test function for the selector wheel
     @IBAction func getTimeButtonSelected(sender: UIButton) {
-        print(estimateTime.countDownDuration)
+		
+		estimate = estimateTime.countDownDuration
+		
     }
 	
 	// This starts and stops the timer
 	@IBAction func startTimer(sender: UIButton) {
-        
-        print("timer started")
+		// TODO: Make this happen in a thread
+		
 		if (sender.titleLabel?.text == "Start") {
 			print("The Label is start")
 			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
