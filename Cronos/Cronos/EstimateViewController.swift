@@ -11,8 +11,10 @@ import Foundation
 
 class EstimateViewController: UIViewController {
 
-	var estimate:NSTimeInterval = 0.0
+	var tasks = [Tasks]()
 	
+	var estimate:NSTimeInterval = 0.0
+
 	var counter = 0
 	var timer = NSTimer()
 	
@@ -32,7 +34,34 @@ class EstimateViewController: UIViewController {
         estimateLabel.hidden = true
 		timeCount.text = formatTime(counter)
 		estimate = estimateTime.countDownDuration
+		
+		// Load estimate
+		if let loadedTasks = loadTasks() {
+			tasks = loadedTasks
+			print(tasks)
+		} else {
+			loadSampleTask()
+		}
+		
+		var task:Tasks = tasks[0]
+		
+		estimate = task.estimate
+		counter = task.current
+		
+		estimateTime.countDownDuration = estimate
+		print("This is \(task.task)")
+		
     }
+	
+	func loadSampleTask(){
+		let sampleCurrent = 120;
+		let sampleTask = "Cooking"
+		let sampleEsimate:NSTimeInterval = 360
+
+		let task1 = Tasks(task: sampleTask, current: sampleCurrent, estimate: sampleEsimate)!
+	
+		tasks += [task1];
+	}
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,6 +87,11 @@ class EstimateViewController: UIViewController {
         }
 		
     }
+	@IBAction func finishTaskAction(sender: UIButton) {
+		stopTimer()
+		startAndStop.setTitle("Start", forState: .Normal)
+		
+	}
 	
 	// This starts and stops the timer
 	@IBAction func startTimer(sender: UIButton) {
@@ -89,7 +123,11 @@ class EstimateViewController: UIViewController {
 		stopTimer()
 	}
 
+	// stops the timer and saves 
+	//
 	func stopTimer() {
+		
+		
 		timer.invalidate()
 	}
 	
@@ -140,5 +178,19 @@ class EstimateViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	
+	// MARK: NSCoding 
+	
+	func saveTasks() {
+		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Tasks.ArchiveURL.path!)
+		if !isSuccessfulSave {
+			print("Failed to save task(s)...")
+		}
+	}
+	
+	func loadTasks() -> [Tasks]? {
+		return NSKeyedUnarchiver.unarchiveObjectWithFile(Tasks.ArchiveURL.path!) as? [Tasks]
+	}
+	
 
 }
