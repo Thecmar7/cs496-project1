@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskTableViewController: UITableViewController {
     
     var selectedTitle: String!
     let titles = ["Running", "Homework", "Programming"]
-    let times = ["1:00:00", "1:23:45", "0:00:45"]
+    let times = [Double](arrayLiteral: (2*3600), (4*3600), (7*3600))
+    
+    let DEBUG = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +26,27 @@ class TaskTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
+        if (DEBUG) {
+            addTestTasks()
+        }
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        loadTasks()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Core Data
+    
+    func addTestTasks() {
+        
+        for i in 0..<titles.count {
+            addTask(titles[i], estimate: times[i])
+        }
     }
 
     // MARK: - Table view data source
@@ -45,8 +63,12 @@ class TaskTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Configure the cell...
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
-        cell.taskName.text = titles[indexPath.item]
-        cell.timeActual.text = times[indexPath.item]
+        let task = tasks[indexPath.row]
+        let nameString = task.valueForKey("name") as? String
+        let actualTimeInt = task.valueForKey("currentTime") as? Int
+        
+        cell.taskName.text = nameString
+        cell.timeActual.text = formatTime(actualTimeInt!)
 
         return cell
     }

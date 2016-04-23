@@ -43,7 +43,7 @@ class EstimateViewController: UIViewController {
 			loadSampleTask()
 		}
 		
-		var task:Tasks = tasks[0]
+		let task:Tasks = tasks[0]
 		
 		estimate = task.estimate
 		counter = task.current
@@ -124,10 +124,7 @@ class EstimateViewController: UIViewController {
 	}
 
 	// stops the timer and saves 
-	//
 	func stopTimer() {
-		
-		
 		timer.invalidate()
 	}
 	
@@ -152,21 +149,6 @@ class EstimateViewController: UIViewController {
 			timeCount.textColor = UIColor.redColor()
 			
 		}
-	}
-	
-	// changes the seconds to hour, minute, seconds
-	func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-    
-        let hours = seconds / 3600
-        let minutes = (seconds % 3600) / 60
-        let seconds = (seconds % 3600) % 60
-        
-        return (hours, minutes, seconds)
-	}
-	
-	func formatTime(time: Int) -> String {
-		let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(time)
-		return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 	}
 
     /*
