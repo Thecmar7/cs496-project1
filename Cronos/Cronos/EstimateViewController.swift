@@ -10,10 +10,10 @@ import UIKit
 import Foundation
 
 class EstimateViewController: UIViewController {
-
-	var tasks = [Tasks]()
 	
-	var estimate:NSTimeInterval = 0.0
+	var estimate: Int!
+    var current: Int!
+    var name: String!
 
 	var counter = 0
 	var timer = NSTimer()
@@ -31,37 +31,38 @@ class EstimateViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        estimateLabel.hidden = true
+        estimateTime.hidden = true
+        estimateLabel.text = formatTime(estimate)
 		timeCount.text = formatTime(counter)
-		estimate = estimateTime.countDownDuration
+        self.title = name
 		
 		// Load estimate
-		if let loadedTasks = loadTasks() {
-			tasks = loadedTasks
-			print(tasks)
-		} else {
-			loadSampleTask()
-		}
-		
-		let task:Tasks = tasks[0]
-		
-		estimate = task.estimate
-		counter = task.current
-		
-		estimateTime.countDownDuration = estimate
-		print("This is \(task.task)")
+//		if let loadedTasks = loadTasks() {
+//			tasks = loadedTasks
+//			print(tasks)
+//		} else {
+//			loadSampleTask()
+//		}
+//		
+//		let task:Tasks = tasks[0]
+//		
+//		estimate = task.estimate
+//		counter = task.current
+//		
+//		estimateTime.countDownDuration = estimate
+//		print("This is \(task.task)")
 		
     }
 	
-	func loadSampleTask(){
-		let sampleCurrent = 120;
-		let sampleTask = "Cooking"
-		let sampleEsimate:NSTimeInterval = 360
-
-		let task1 = Tasks(task: sampleTask, current: sampleCurrent, estimate: sampleEsimate)!
-	
-		tasks += [task1];
-	}
+//	func loadSampleTask(){
+//		let sampleCurrent = 120;
+//		let sampleTask = "Cooking"
+//		let sampleEsimate:NSTimeInterval = 360
+//
+//		let task1 = Tasks(task: sampleTask, current: sampleCurrent, estimate: sampleEsimate)!
+//	
+//		tasks += [task1];
+//	}
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -75,8 +76,8 @@ class EstimateViewController: UIViewController {
         
         if (sender.titleLabel?.text == "Set Estimate") {
             // replace picker with label and change button
-            estimate = estimateTime.countDownDuration
-            estimateLabel.text = formatTime(Int(Double(estimate)))
+            estimate = Int(estimateTime.countDownDuration)
+            estimateLabel.text = formatTime(estimate)
             estimateTime.hidden = true
             estimateLabel.hidden = false
             getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
@@ -90,7 +91,7 @@ class EstimateViewController: UIViewController {
 	@IBAction func finishTaskAction(sender: UIButton) {
 		stopTimer()
 		startAndStop.setTitle("Start", forState: .Normal)
-		
+        
 	}
 	
 	// This starts and stops the timer
@@ -98,7 +99,7 @@ class EstimateViewController: UIViewController {
 		// TODO: Make this happen in a thread
 		
 		if (sender.titleLabel?.text == "Start") {
-			estimate = estimateTime.countDownDuration
+			estimate = Int(estimateTime.countDownDuration)
 			timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self,
 			                                               selector: #selector(timerAction),
 			                                               userInfo: nil, repeats: true)
@@ -143,7 +144,7 @@ class EstimateViewController: UIViewController {
 		
 		timeCount.textColor=UIColor(red: (128 + (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, green: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, blue: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, alpha: 1.0)
 		
-		if (Double(counter) == estimate) {
+		if (Double(counter) == Double(estimate)) {
 			print("SHIT!")
 			// TODO: Change color of timer
 			timeCount.textColor = UIColor.redColor()

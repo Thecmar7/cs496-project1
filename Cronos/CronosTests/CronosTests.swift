@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Cronos
-import CoreData
 
 class CronosTests: XCTestCase {
     
@@ -22,34 +21,41 @@ class CronosTests: XCTestCase {
         super.tearDown()
     }
     
+    func testDeleteAll() {
+        deleteAllTasks()
+        assert(tasks.count == 0, "Did not delete all tasks")
+    }
+    
     func testAddTasks() {
-        var tasks = [NSManagedObject]()
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
         
         let taskNames = ["Design", "Coding", "Homework"]
-        let estimates = [Double](arrayLiteral: (3*3600), (5*3600), (7*3600))
+        let estimates = [Int](arrayLiteral: (3*3600), (5*3600), (7*3600))
+        
+        deleteAllTasks()
         
         for i in 0..<taskNames.count {
-            let task = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-            let newTaskName = taskNames[i]
-            let newTaskEstimate = estimates[i]
-            task.setValue(newTaskName, forKey: "name")
-            task.setValue(newTaskEstimate, forKey: "estimateTime")
-            
-            do {
-                try managedContext.save()
-                
-                tasks.append(task)
-            } catch let error as NSError {
-                print("Could not save \(error), \(error.userInfo)")
-            }
+            addTask(taskNames[i], estimate: estimates[i])
         }
         
-        assert(tasks.count == 3)
+        assert(tasks.count == 3, "Failed add count")
+        for i in 0..<taskNames.count {
+            assert(tasks[i].valueForKey("name") as? String == taskNames[i], "Failed name assertion")
+        }
+        
+    }
+    
+    func testModifyTask() {
+        loadTasks()
+        let task = tasks[0]
+        let oldName = task.valueForKey("name") as? String
+        let newName = "Gardening"
+        assert(oldName != newName)
+        updateTask(task, value: newName, key: "name")
+        loadTasks()
+        let updatedTask = tasks[0]
+        let updatedName = updatedTask.valueForKey("name") as? String
+        
+        assert(updatedName == newName)
         
     }
     

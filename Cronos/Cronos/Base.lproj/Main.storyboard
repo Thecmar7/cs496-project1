@@ -108,8 +108,8 @@
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-gc-iEV">
-                                <rect key="frame" x="257" y="339" width="87" height="30"/>
-                                <state key="normal" title="Set Estimate"/>
+                                <rect key="frame" x="256" y="339" width="90" height="30"/>
+                                <state key="normal" title="Edit Estimate"/>
                                 <connections>
                                     <action selector="getTimeButtonSelected:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="2zm-Nm-X5f"/>
                                 </connections>

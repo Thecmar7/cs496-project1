@@ -14,8 +14,8 @@ import CoreData
 
 extension Task {
 
-    @NSManaged var name: String?
-    @NSManaged var estimateTime: NSNumber?
-    @NSManaged var currentTime: NSNumber?
+    @NSManaged var name: String
+    @NSManaged var estimateTime: NSNumber
+    @NSManaged var currentTime: NSNumber
 
 }

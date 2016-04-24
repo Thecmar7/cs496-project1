@@ -12,6 +12,9 @@ import UIKit
 
 // MARK - Constants
 var tasks = [NSManagedObject]()
+let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+let managedContext = appDelegate.managedObjectContext
+let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
 
 // MARK - Time Functions
 
@@ -25,6 +28,7 @@ func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
     return (hours, minutes, seconds)
 }
 
+// formats an integer (number of seconds) into a timestamp string
 func formatTime(time: Int) -> String {
     let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(time)
     return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
@@ -32,9 +36,8 @@ func formatTime(time: Int) -> String {
 
 //MARK - CoreData Functions
 
+// Load all tasks
 func loadTasks() {
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    let managedContext = appDelegate.managedObjectContext
     
     let fetchRequest = NSFetchRequest(entityName: "Task")
     
@@ -46,21 +49,46 @@ func loadTasks() {
     }
 }
 
-func addTask(name: String, estimate: Double) {
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    let managedContext = appDelegate.managedObjectContext
+// Add a task
+func addTask(name: String, estimate: Int) {
+        
+    let newTask = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
-    let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
+    newTask.setValue(name, forKey: "name")
+    newTask.setValue(estimate, forKey: "estimateTime")
     
-    let task = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-    
-    task.setValue(name, forKey: "name")
-    task.setValue(estimate, forKey: "estimateTime")
-    
+    save()
+    loadTasks()
+}
+
+func updateTask(task: NSManagedObject, value: AnyObject, key: String) {
+    task.setValue(value, forKey: key)
+    save()
+}
+
+func save() {
     do {
         try managedContext.save()
-        tasks.append(task)
     } catch let error as NSError {
-        print("Could not save \(error), \(error.userInfo)")
+        print("Could not delete \(error), \(error.userInfo)")
+    }
+}
+
+func deleteTask(task: Task) {
+    managedContext.deleteObject(task)
+    save()
+}
+
+// delete a task at an index
+func deleteTask(atIndex: Int) {
+    managedContext.deleteObject(tasks[atIndex])
+    save()
+    loadTasks()
+}
+
+func deleteAllTasks() {
+    loadTasks()
+    while tasks.count > 0 {
+        deleteTask(0)
     }
 }

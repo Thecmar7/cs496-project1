@@ -12,9 +12,10 @@ import CoreData
 class TaskTableViewController: UITableViewController {
     
     var selectedTitle: String!
-    let titles = ["Running", "Homework", "Programming"]
-    let times = [Double](arrayLiteral: (2*3600), (4*3600), (7*3600))
+    var selectedEstimate: Int!
+    var selectedCurrent: Int!
     
+    // MARK - DEBUG
     let DEBUG = true
     
     override func viewDidLoad() {
@@ -26,13 +27,11 @@ class TaskTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        if (DEBUG) {
+        loadTasks()
+        
+        if (DEBUG && tasks.count == 0) {
             addTestTasks()
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        loadTasks()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,7 +42,8 @@ class TaskTableViewController: UITableViewController {
     // MARK: - Core Data
     
     func addTestTasks() {
-        
+        let titles = ["Running", "Homework", "Programming"]
+        let times = [Int](arrayLiteral: (2*3600), (4*3600), (7*3600))
         for i in 0..<titles.count {
             addTask(titles[i], estimate: times[i])
         }
@@ -56,7 +56,7 @@ class TaskTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return tasks.count
     }
 
     
@@ -82,17 +82,17 @@ class TaskTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            deleteTask(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -112,8 +112,11 @@ class TaskTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
-        selectedTitle = cell.taskName.text
+//        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
+        let task = tasks[indexPath.row]
+        selectedTitle = task.valueForKey("name") as? String
+        selectedEstimate = task.valueForKey("estimateTime") as? Int
+        selectedCurrent = task.valueForKey("currentTime") as? Int
         performSegueWithIdentifier("estimateSegue", sender: self)
     }
 
@@ -124,7 +127,9 @@ class TaskTableViewController: UITableViewController {
         
         if (segue.identifier == "estimateSegue") {
             let estimateVC = segue.destinationViewController as! EstimateViewController
-            estimateVC.title = selectedTitle
+            estimateVC.current = selectedCurrent
+            estimateVC.estimate = selectedEstimate
+            estimateVC.name = selectedTitle
         }
     }
 
