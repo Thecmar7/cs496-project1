@@ -11,7 +11,9 @@ import Foundation
 
 class EstimateViewController: UIViewController {
 	
-	var estimate: Int!
+    var task: Task!
+    
+    var estimate: Int!
     var current: Int!
     var name: String!
 
@@ -31,39 +33,13 @@ class EstimateViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        counter = current
         estimateTime.hidden = true
         estimateLabel.text = formatTime(estimate)
 		timeCount.text = formatTime(counter)
         self.title = name
-		
-		// Load estimate
-//		if let loadedTasks = loadTasks() {
-//			tasks = loadedTasks
-//			print(tasks)
-//		} else {
-//			loadSampleTask()
-//		}
-//		
-//		let task:Tasks = tasks[0]
-//		
-//		estimate = task.estimate
-//		counter = task.current
-//		
-//		estimateTime.countDownDuration = estimate
-//		print("This is \(task.task)")
-		
     }
-	
-//	func loadSampleTask(){
-//		let sampleCurrent = 120;
-//		let sampleTask = "Cooking"
-//		let sampleEsimate:NSTimeInterval = 360
-//
-//		let task1 = Tasks(task: sampleTask, current: sampleCurrent, estimate: sampleEsimate)!
-//	
-//		tasks += [task1];
-//	}
-	
+		
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,6 +58,7 @@ class EstimateViewController: UIViewController {
             estimateLabel.hidden = false
             getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
         } else {
+            estimateTime.countDownDuration = Double(estimate!)
             estimateLabel.hidden = true
             estimateTime.hidden = false
             getEstimateButton.setTitle("Set Estimate", forState: .Normal)
@@ -127,6 +104,7 @@ class EstimateViewController: UIViewController {
 	// stops the timer and saves 
 	func stopTimer() {
 		timer.invalidate()
+        updateTask(self.task, value: counter, key: "currentTime")
 	}
 	
 	func resetTimer() {
@@ -162,18 +140,18 @@ class EstimateViewController: UIViewController {
     }
     */
 	
-	// MARK: NSCoding 
-	
-	func saveTasks() {
-		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Tasks.ArchiveURL.path!)
-		if !isSuccessfulSave {
-			print("Failed to save task(s)...")
-		}
-	}
-	
-	func loadTasks() -> [Tasks]? {
-		return NSKeyedUnarchiver.unarchiveObjectWithFile(Tasks.ArchiveURL.path!) as? [Tasks]
-	}
+//	// MARK: NSCoding 
+//	
+//	func saveTasks() {
+//		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Tasks.ArchiveURL.path!)
+//		if !isSuccessfulSave {
+//			print("Failed to save task(s)...")
+//		}
+//	}
+//	
+//	func loadTasks() -> [Tasks]? {
+//		return NSKeyedUnarchiver.unarchiveObjectWithFile(Tasks.ArchiveURL.path!) as? [Tasks]
+//	}
 	
 
 }

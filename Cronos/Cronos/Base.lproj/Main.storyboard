@@ -28,16 +28,16 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="timeActual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmK-fE-Zdb">
-                                            <rect key="frame" x="416" y="11" width="82" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeActual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmK-fE-Zdb">
+                                            <rect key="frame" x="391" y="11" width="82" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-RJ-vxb">
-                                            <rect key="frame" x="543" y="-3" width="49" height="45"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-RJ-vxb">
+                                            <rect key="frame" x="518" y="-3" width="49" height="45"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="49" id="6yW-qi-g3Z"/>
+                                                <constraint firstAttribute="width" constant="49" id="vaC-d5-z9P"/>
                                             </constraints>
                                             <state key="normal" title="start">
                                                 <color key="titleColor" red="0.39159069419999998" green="0.77579288469999996" blue="0.0073885036640000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,14 +48,14 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Din-rE-y57" firstAttribute="leading" secondItem="egP-EC-Urr" secondAttribute="leadingMargin" id="46v-Oo-mEp"/>
-                                        <constraint firstItem="5dy-RJ-vxb" firstAttribute="leading" secondItem="hmK-fE-Zdb" secondAttribute="trailing" constant="45" id="EuB-3A-OwE"/>
-                                        <constraint firstAttribute="trailing" secondItem="5dy-RJ-vxb" secondAttribute="trailing" id="HTg-0e-EO9"/>
-                                        <constraint firstItem="5dy-RJ-vxb" firstAttribute="top" secondItem="egP-EC-Urr" secondAttribute="topMargin" constant="-11" id="Ofv-uy-29R"/>
-                                        <constraint firstItem="Din-rE-y57" firstAttribute="centerY" secondItem="egP-EC-Urr" secondAttribute="centerY" id="Sqb-7U-P8f"/>
+                                        <constraint firstItem="5dy-RJ-vxb" firstAttribute="top" secondItem="egP-EC-Urr" secondAttribute="topMargin" constant="-11" id="31c-23-zSe"/>
+                                        <constraint firstItem="Din-rE-y57" firstAttribute="leading" secondItem="egP-EC-Urr" secondAttribute="leadingMargin" id="3HP-pJ-9hW"/>
+                                        <constraint firstItem="Din-rE-y57" firstAttribute="baseline" secondItem="hmK-fE-Zdb" secondAttribute="baseline" id="7yq-sd-I2m"/>
+                                        <constraint firstItem="5dy-RJ-vxb" firstAttribute="leading" secondItem="hmK-fE-Zdb" secondAttribute="trailing" constant="45" id="MdD-4H-CeB"/>
                                         <constraint firstItem="5dy-RJ-vxb" firstAttribute="trailing" secondItem="egP-EC-Urr" secondAttribute="trailingMargin" id="TPb-Yg-qug"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="5dy-RJ-vxb" secondAttribute="bottom" constant="-6.5" id="lsk-XH-8gj"/>
-                                        <constraint firstItem="Din-rE-y57" firstAttribute="baseline" secondItem="hmK-fE-Zdb" secondAttribute="baseline" id="rga-Rh-IZk"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5dy-RJ-vxb" secondAttribute="bottom" constant="-6.5" id="dd1-Xn-del"/>
+                                        <constraint firstItem="Din-rE-y57" firstAttribute="centerY" secondItem="egP-EC-Urr" secondAttribute="centerY" id="ms8-ze-jd0"/>
+                                        <constraint firstAttribute="trailing" secondItem="5dy-RJ-vxb" secondAttribute="trailing" id="pih-2n-1Jt"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -74,7 +74,13 @@
                             <outlet property="delegate" destination="iQY-Xh-yUG" id="9NC-wb-r7U"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Cronos" id="OOe-7r-at4"/>
+                    <navigationItem key="navigationItem" title="Cronos" id="OOe-7r-at4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gIf-TD-zEn">
+                            <connections>
+                                <segue destination="smW-PL-DWh" kind="presentation" id="FT8-8S-ws5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Qoo-5m-0sn" kind="show" identifier="estimateSegue" id="Mr3-YI-gsN"/>
                     </connections>
@@ -82,6 +88,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KC8-y1-DUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="940" y="373"/>
+        </scene>
+        <!--Add Task-->
+        <scene sceneID="d8Z-ph-SCB">
+            <objects>
+                <viewController id="Vx2-4X-hs2" customClass="AddTaskViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eY-Gq-wzj"/>
+                        <viewControllerLayoutGuide type="bottom" id="wry-o2-5xq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xxw-aK-8fc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a name…" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W4c-CZ-CRg">
+                                <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-dN-vb6">
+                                <rect key="frame" x="0.0" y="110" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="482871660.47812802">
+                                    <!--2016-04-20 19:01:00 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pdn-dN-vb6" firstAttribute="top" secondItem="W4c-CZ-CRg" secondAttribute="bottom" constant="8" symbolic="YES" id="4tN-dQ-1PS"/>
+                            <constraint firstItem="W4c-CZ-CRg" firstAttribute="centerX" secondItem="pdn-dN-vb6" secondAttribute="centerX" id="Dpc-fY-sTP"/>
+                            <constraint firstItem="W4c-CZ-CRg" firstAttribute="leading" secondItem="xxw-aK-8fc" secondAttribute="leadingMargin" id="MiZ-Vx-YsV"/>
+                            <constraint firstAttribute="trailing" secondItem="pdn-dN-vb6" secondAttribute="trailing" id="Plt-H5-ckh"/>
+                            <constraint firstItem="W4c-CZ-CRg" firstAttribute="top" secondItem="7eY-Gq-wzj" secondAttribute="bottom" constant="8" symbolic="YES" id="hbq-iG-e32"/>
+                            <constraint firstItem="pdn-dN-vb6" firstAttribute="leading" secondItem="xxw-aK-8fc" secondAttribute="leading" id="kct-np-zSF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Task" id="pt8-EP-DUI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BvY-Ei-1y4">
+                            <connections>
+                                <action selector="cancelButtonAction:" destination="Vx2-4X-hs2" id="OBS-68-Va7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Nh1-m0-WJQ">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="Vx2-4X-hs2" id="2FR-Zd-PXG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="estimateDatePicker" destination="pdn-dN-vb6" id="tUP-NZ-Al9"/>
+                        <outlet property="nameTextField" destination="W4c-CZ-CRg" id="3mt-PZ-ynE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOq-df-uJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752" y="1074"/>
         </scene>
         <!--Estimate View Controller-->
         <scene sceneID="cac-Y6-9yF">
@@ -200,6 +261,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5r-wE-bU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="373"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TBD-Gb-ki9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="smW-PL-DWh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OPZ-R6-4my">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vx2-4X-hs2" kind="relationship" relationship="rootViewController" id="M97-FM-7Su"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TxF-rA-IOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="1074"/>
         </scene>
     </scenes>
 </document>

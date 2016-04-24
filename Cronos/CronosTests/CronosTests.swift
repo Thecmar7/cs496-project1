@@ -46,16 +46,19 @@ class CronosTests: XCTestCase {
     
     func testModifyTask() {
         loadTasks()
+        if (tasks.count == 0) {
+            addTask("Running", estimate: Int(0.5*3600))
+        }
         let task = tasks[0]
         let oldName = task.valueForKey("name") as? String
         let newName = "Gardening"
-        assert(oldName != newName)
+        assert(oldName != newName, "Already Gardening")
         updateTask(task, value: newName, key: "name")
         loadTasks()
         let updatedTask = tasks[0]
         let updatedName = updatedTask.valueForKey("name") as? String
         
-        assert(updatedName == newName)
+        assert(updatedName == newName, "Name not updated")
         
     }
     

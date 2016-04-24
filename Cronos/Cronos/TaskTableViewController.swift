@@ -11,9 +11,12 @@ import CoreData
 
 class TaskTableViewController: UITableViewController {
     
+    var selectedTask: Task!
     var selectedTitle: String!
     var selectedEstimate: Int!
     var selectedCurrent: Int!
+    
+    var rightBarButton: UIBarButtonItem!
     
     // MARK - DEBUG
     let DEBUG = true
@@ -25,7 +28,7 @@ class TaskTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         loadTasks()
         
@@ -34,9 +37,35 @@ class TaskTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        loadTasks()
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if (editing == true) {
+            rightBarButton = self.navigationItem.rightBarButtonItem
+            let deleteAction = #selector(self.deleteAllSelector)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete All", style: UIBarButtonItemStyle.Done, target: self, action: deleteAction)
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.redColor()
+        } else {
+            self.navigationItem.rightBarButtonItem = rightBarButton
+        }
+        
+    }
+    
+    func deleteAllSelector(sender: UIBarButtonItem!) {
+        print("Deleting all tasks")
+        deleteAllTasks()
+        loadTasks()
+        setEditing(false, animated: true)
+        self.tableView.reloadData()
     }
     
     // MARK: - Core Data
@@ -74,13 +103,13 @@ class TaskTableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+ 
 
     
     // Override to support editing the table view.
@@ -114,6 +143,7 @@ class TaskTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
+        selectedTask = task as? Task
         selectedTitle = task.valueForKey("name") as? String
         selectedEstimate = task.valueForKey("estimateTime") as? Int
         selectedCurrent = task.valueForKey("currentTime") as? Int
@@ -127,6 +157,7 @@ class TaskTableViewController: UITableViewController {
         
         if (segue.identifier == "estimateSegue") {
             let estimateVC = segue.destinationViewController as! EstimateViewController
+            estimateVC.task = selectedTask
             estimateVC.current = selectedCurrent
             estimateVC.estimate = selectedEstimate
             estimateVC.name = selectedTitle

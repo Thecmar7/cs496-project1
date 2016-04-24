@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 import UIKit
 
-// MARK - Constants
+// MARK: - Constants
 var tasks = [NSManagedObject]()
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 let managedContext = appDelegate.managedObjectContext
 let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
 
-// MARK - Time Functions
+// MARK: - Time Functions
 
 // changes the seconds to hour, minute, seconds
 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
@@ -34,7 +34,7 @@ func formatTime(time: Int) -> String {
     return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 }
 
-//MARK - CoreData Functions
+//MARK: - CoreData Functions
 
 // Load all tasks
 func loadTasks() {
