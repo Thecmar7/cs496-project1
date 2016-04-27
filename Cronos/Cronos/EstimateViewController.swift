@@ -96,6 +96,8 @@ class EstimateViewController: UIViewController {
 			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
 			                                               selector: #selector(timerAction),
 			                                               userInfo: nil, repeats: true)
+            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+            
 			// starts timer
 			startAndStop.setTitle("Stop", forState: .Normal)
             
