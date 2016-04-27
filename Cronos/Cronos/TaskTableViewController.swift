@@ -72,7 +72,7 @@ class TaskTableViewController: UITableViewController {
     
     func addTestTasks() {
         let titles = ["Running", "Homework", "Programming"]
-        let times = [Int](arrayLiteral: (2*3600), (4*3600), (7*3600))
+        let times = [Int](arrayLiteral: (1*60), (4*60), (7*60))
         for i in 0..<titles.count {
             addTask(titles[i], estimate: times[i])
         }

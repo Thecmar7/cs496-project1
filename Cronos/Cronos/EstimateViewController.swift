@@ -67,8 +67,8 @@ class EstimateViewController: UIViewController {
     }
 	@IBAction func finishTaskAction(sender: UIButton) {
 		stopTimer()
-		startAndStop.setTitle("Start", forState: .Normal)
-        
+        //TODO: Archive Task
+        print("Archive Task")
 	}
 	
 	// This starts and stops the timer
@@ -76,18 +76,34 @@ class EstimateViewController: UIViewController {
 		// TODO: Make this happen in a thread
 		
 		if (sender.titleLabel?.text == "Start") {
-			estimate = Int(estimateTime.countDownDuration)
-			timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self,
+            
+            if (counter >= estimate) {
+                let alert = UIAlertController(title: "Uh Oh!", message: "Please set a new goal!", preferredStyle: .Alert)
+                let okayAction = UIAlertAction(title: "I'm on it!", style: .Default, handler: { (alert: UIAlertAction) in
+                    self.estimateTime.hidden = false
+                    self.estimateLabel.hidden = true
+                    self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
+                })
+                alert.addAction(okayAction)
+                presentViewController(alert, animated: true, completion: nil)
+                return
+            }
+            
+            estimateTime.hidden = true
+            estimateLabel.hidden = false
+            getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
+            
+			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
 			                                               selector: #selector(timerAction),
 			                                               userInfo: nil, repeats: true)
 			// starts timer
 			startAndStop.setTitle("Stop", forState: .Normal)
+            
 			timerAction()
 			
 			// change the reset button to function like a button
 		} else if (sender.titleLabel?.text == "Stop") {
 			// stops timer
-			startAndStop.setTitle("Start", forState: .Normal)
 			stopTimer()
 		}
 	}
@@ -95,8 +111,7 @@ class EstimateViewController: UIViewController {
 	@IBAction func resetTimerAction(sender: UIButton) {
 		resetTimer()
 		timeCount.text = formatTime(counter)
-		timeCount.textColor = UIColor(red: 128/255.0, green: 128/255.0, blue: 128/255.0, alpha: 1.0)
-		startAndStop.setTitle("Start", forState: .Normal)
+		timeCount.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
 	
 		stopTimer()
 	}
@@ -104,6 +119,7 @@ class EstimateViewController: UIViewController {
 	// stops the timer and saves 
 	func stopTimer() {
 		timer.invalidate()
+        startAndStop.setTitle("Start", forState: .Normal)
         updateTask(self.task, value: counter, key: "currentTime")
 	}
 	
@@ -120,13 +136,24 @@ class EstimateViewController: UIViewController {
 		timeCount.text = formatTime(counter)
 		//timeCount.textColor=UIColor(red: 100/255.0, green: 255 - (255 / CGFloat(counter))/255.0, blue: 255 - (255 / CGFloat(counter))/255.0, alpha: 1.0)
 		
-		timeCount.textColor=UIColor(red: (128 + (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, green: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, blue: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, alpha: 1.0)
+		timeCount.textColor = UIColor(red: (128 + (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, green: (240 - (240 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, blue: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, alpha: 1.0)
 		
 		if (Double(counter) == Double(estimate)) {
-			print("SHIT!")
 			// TODO: Change color of timer
 			timeCount.textColor = UIColor.redColor()
-			
+            stopTimer()
+			let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
+            let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: {(alert: UIAlertAction!) in
+                self.estimateTime.hidden = false
+                self.estimateLabel.hidden = true
+                self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
+            })
+            let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: {(alert: UIAlertAction!) in
+                self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+            })
+            reachedGoalAlertController.addAction(addTimeAction)
+            reachedGoalAlertController.addAction(stopAction)
+            presentViewController(reachedGoalAlertController, animated: true, completion: nil)
 		}
 	}
 
@@ -139,19 +166,5 @@ class EstimateViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-	
-//	// MARK: NSCoding 
-//	
-//	func saveTasks() {
-//		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Tasks.ArchiveURL.path!)
-//		if !isSuccessfulSave {
-//			print("Failed to save task(s)...")
-//		}
-//	}
-//	
-//	func loadTasks() -> [Tasks]? {
-//		return NSKeyedUnarchiver.unarchiveObjectWithFile(Tasks.ArchiveURL.path!) as? [Tasks]
-//	}
-	
 
 }
