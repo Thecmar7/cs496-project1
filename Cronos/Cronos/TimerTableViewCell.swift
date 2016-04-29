@@ -12,6 +12,9 @@ class TimerTableViewCell: UITableViewCell {
     
     @IBOutlet var taskName: UILabel!
     @IBOutlet var timeActual: UILabel!
+    @IBOutlet var startButton: UIButton!
+    
+    var task: Task!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +28,14 @@ class TimerTableViewCell: UITableViewCell {
     }
 
     @IBAction func startButton(sender: UIButton) {
-        //TODO: async estimateVC
-        let estimateVC = EstimateViewController()
-        estimateVC.startTimer(sender)
-        print("Start Selected")
+        //TODO: async
+        
+        if (task.isRunning == false) {
+            task.startTimer()
+            startButton.setTitle("stop", forState: .Normal)
+        } else {
+            task.stopTimer()
+            startButton.setTitle("start", forState: .Normal)
+        }
     }
 }

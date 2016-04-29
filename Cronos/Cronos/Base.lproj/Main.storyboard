@@ -64,6 +64,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="startButton" destination="5dy-RJ-vxb" id="F3X-fR-riK"/>
                                     <outlet property="taskName" destination="Din-rE-y57" id="VFv-8J-OiX"/>
                                     <outlet property="timeActual" destination="hmK-fE-Zdb" id="FAF-Xm-KJr"/>
                                 </connections>

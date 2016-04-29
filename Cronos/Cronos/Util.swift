@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 // MARK: - Constants
-var tasks = [NSManagedObject]()
+var tasks = [Task]()
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 let managedContext = appDelegate.managedObjectContext
 let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
@@ -43,7 +43,7 @@ func loadTasks() {
     
     do {
         let results = try managedContext.executeFetchRequest(fetchRequest)
-        tasks = results as! [NSManagedObject]
+        tasks = results as! [Task]
     } catch let error as NSError {
         print("Could not fetch \(error), \(error.userInfo)")
     }

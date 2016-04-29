@@ -96,6 +96,7 @@ class TaskTableViewController: UITableViewController {
         let nameString = task.valueForKey("name") as? String
         let actualTimeInt = task.valueForKey("currentTime") as? Int
         
+        cell.task = task
         cell.taskName.text = nameString
         cell.timeActual.text = formatTime(actualTimeInt!)
 
@@ -143,7 +144,7 @@ class TaskTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
-        selectedTask = task as? Task
+        selectedTask = task
         selectedTitle = task.valueForKey("name") as? String
         selectedEstimate = task.valueForKey("estimateTime") as? Int
         selectedCurrent = task.valueForKey("currentTime") as? Int

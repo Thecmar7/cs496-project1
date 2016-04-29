@@ -53,6 +53,7 @@ class EstimateViewController: UIViewController {
         if (sender.titleLabel?.text == "Set Estimate") {
             // replace picker with label and change button
             estimate = Int(estimateTime.countDownDuration)
+            updateTask(task, value: estimate, key: "estimateTime")
             estimateLabel.text = formatTime(estimate)
             estimateTime.hidden = true
             estimateLabel.hidden = false
@@ -93,16 +94,11 @@ class EstimateViewController: UIViewController {
             estimateLabel.hidden = false
             getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
             
-			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
-			                                               selector: #selector(timerAction),
-			                                               userInfo: nil, repeats: true)
-            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
-            
-			// starts timer
+            // starts timer
+//			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            task.startTimer()
 			startAndStop.setTitle("Stop", forState: .Normal)
             
-			timerAction()
-			
 			// change the reset button to function like a button
 		} else if (sender.titleLabel?.text == "Stop") {
 			// stops timer
@@ -120,9 +116,9 @@ class EstimateViewController: UIViewController {
 
 	// stops the timer and saves 
 	func stopTimer() {
-		timer.invalidate()
+		task.stopTimer()
         startAndStop.setTitle("Start", forState: .Normal)
-        updateTask(self.task, value: counter, key: "currentTime")
+        //updateTask(self.task, value: counter, key: "currentTime")
 	}
 	
 	func resetTimer() {
@@ -134,13 +130,12 @@ class EstimateViewController: UIViewController {
 	// MARK: Functions
 	// Increments the timer and changes the label of the timer
 	func timerAction() {
-		counter += 1
 		timeCount.text = formatTime(counter)
 		//timeCount.textColor=UIColor(red: 100/255.0, green: 255 - (255 / CGFloat(counter))/255.0, blue: 255 - (255 / CGFloat(counter))/255.0, alpha: 1.0)
 		
 		timeCount.textColor = UIColor(red: (128 + (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, green: (240 - (240 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, blue: (128 - (128 / (CGFloat(estimate))) * CGFloat(counter)) / 255.0, alpha: 1.0)
 		
-		if (Double(counter) == Double(estimate)) {
+		if (Double(counter) >= Double(estimate)) {
 			// TODO: Change color of timer
 			timeCount.textColor = UIColor.redColor()
             stopTimer()
