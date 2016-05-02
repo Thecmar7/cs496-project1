@@ -12,11 +12,9 @@ import CoreData
 class TaskTableViewController: UITableViewController {
     
     var selectedTask: Task!
-    var selectedTitle: String!
-    var selectedEstimate: Int!
-    var selectedCurrent: Int!
-    
     var rightBarButton: UIBarButtonItem!
+    
+    var UITimer = NSTimer()
     
     // MARK - DEBUG
     let DEBUG = true
@@ -35,6 +33,13 @@ class TaskTableViewController: UITableViewController {
         if (DEBUG && tasks.count == 0) {
             addTestTasks()
         }
+        
+        UITimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+    }
+    
+    func updateUI() {
+        loadTasks()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,12 +98,12 @@ class TaskTableViewController: UITableViewController {
         // Configure the cell...
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
-        let nameString = task.valueForKey("name") as? String
-        let actualTimeInt = task.valueForKey("currentTime") as? Int
+        let nameString = task.name
+        let actualTimeInt = Int(task.currentTime)
         
         cell.task = task
         cell.taskName.text = nameString
-        cell.timeActual.text = formatTime(actualTimeInt!)
+        cell.timeActual.text = formatTime(actualTimeInt)
 
         return cell
     }
@@ -145,9 +150,6 @@ class TaskTableViewController: UITableViewController {
 //        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
         selectedTask = task
-        selectedTitle = task.valueForKey("name") as? String
-        selectedEstimate = task.valueForKey("estimateTime") as? Int
-        selectedCurrent = task.valueForKey("currentTime") as? Int
         performSegueWithIdentifier("estimateSegue", sender: self)
     }
 
@@ -159,9 +161,6 @@ class TaskTableViewController: UITableViewController {
         if (segue.identifier == "estimateSegue") {
             let estimateVC = segue.destinationViewController as! EstimateViewController
             estimateVC.task = selectedTask
-            estimateVC.current = selectedCurrent
-            estimateVC.estimate = selectedEstimate
-            estimateVC.name = selectedTitle
         }
     }
 

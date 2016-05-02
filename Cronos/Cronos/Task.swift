@@ -22,6 +22,7 @@ class Task: NSManagedObject {
         counter = Int(currentTime)
         isRunning = true
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(self.incrementCounter), userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
     }
     
     func stopTimer() {
