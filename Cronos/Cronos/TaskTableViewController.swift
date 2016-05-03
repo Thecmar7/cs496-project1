@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: UITableViewController {
+class TaskTableViewController: UITableViewController, TaskDelegate {
     
     var selectedTask: Task!
     var rightBarButton: UIBarButtonItem!
@@ -42,8 +42,25 @@ class TaskTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func goalReached(sender: Task) {
+        print("TableVC")
+        sender.stopTimer()
+        let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
+        let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: nil)
+        let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: nil)
+        reachedGoalAlertController.addAction(addTimeAction)
+        reachedGoalAlertController.addAction(stopAction)
+        presentViewController(reachedGoalAlertController, animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        
         loadTasks()
+        
+        for i in 0..<tasks.count {
+            tasks[i].delegate = self
+        }
+        
         self.tableView.reloadData()
     }
     

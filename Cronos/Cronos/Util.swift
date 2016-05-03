@@ -18,6 +18,10 @@ let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: m
 
 // MARK: - Time Functions
 
+protocol TaskDelegate: class {
+    func goalReached(sender: Task)
+}
+
 // changes the seconds to hour, minute, seconds
 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
     
@@ -40,6 +44,7 @@ func formatTime(time: Int) -> String {
 func loadTasks() {
     
     let fetchRequest = NSFetchRequest(entityName: "Task")
+    fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
     
     do {
         let results = try managedContext.executeFetchRequest(fetchRequest)

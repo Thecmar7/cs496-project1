@@ -17,6 +17,8 @@ class Task: NSManagedObject {
     var timer = NSTimer()
     var counter = 0
     var isRunning = false
+    var delegate: TaskDelegate?
+    
     
     func startTimer() {
         counter = Int(currentTime)
@@ -34,6 +36,7 @@ class Task: NSManagedObject {
     func incrementCounter() {
         counter += 1
         currentTime = NSNumber(double: Double(counter))
+        if (currentTime == estimateTime) { delegate?.goalReached(self) }
     }
 
 }

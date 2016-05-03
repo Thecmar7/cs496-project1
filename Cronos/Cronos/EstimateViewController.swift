@@ -9,10 +9,9 @@
 import UIKit
 import Foundation
 
-class EstimateViewController: UIViewController {
+class EstimateViewController: UIViewController, TaskDelegate {
 	
     var task: Task!
-    
 	var UItimer = NSTimer()
 	
     @IBOutlet var estimateTime: UIDatePicker!
@@ -32,6 +31,7 @@ class EstimateViewController: UIViewController {
             startAndStop.setTitle("Stop", forState: .Normal)
         }
         
+        task.delegate = self
         estimateTime.hidden = true
         estimateLabel.text = formatTime(Int(task.estimateTime))
 		timeCount.text = formatTime(Int(task.currentTime))
@@ -133,10 +133,27 @@ class EstimateViewController: UIViewController {
 	
     func timerSelector() {
         updateUI()
-        //if (task.isRunning) {
-            checkGoal()
-        //}
-        
+    }
+    
+    func goalReached(sender: Task) {
+        print("EstimateVC")
+        timeCount.textColor = UIColor.redColor()
+        sender.stopTimer()
+        let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
+        let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: {(alert: UIAlertAction!) in
+            self.estimateTime.hidden = false
+            self.estimateLabel.hidden = true
+            self.estimateLabel.text = formatTime(Int(sender.estimateTime))
+            //updateTask(self.task, value: self.task.estimateTime, key: "estimateTime")
+            self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
+        })
+        let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: {(alert: UIAlertAction!) in
+            //TODO: dismiss estimateVC
+            self.estimateLabel.text = formatTime(Int(sender.estimateTime))
+        })
+        reachedGoalAlertController.addAction(addTimeAction)
+        reachedGoalAlertController.addAction(stopAction)
+        presentViewController(reachedGoalAlertController, animated: true, completion: nil)
     }
     
     // Increments the timer and changes the label of the timer
@@ -147,29 +164,6 @@ class EstimateViewController: UIViewController {
 		timeCount.textColor = UIColor(red: (128 + (128 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, green: (240 - (240 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, blue: (128 - (128 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, alpha: 1.0)
         
 	}
-    
-    func checkGoal() {
-        if (Double(task.counter) >= Double(task.estimateTime)) {
-            timeCount.textColor = UIColor.redColor()
-            stopTimer()
-            let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
-            let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: {(alert: UIAlertAction!) in
-                self.estimateTime.hidden = false
-                self.estimateLabel.hidden = true
-                self.estimateLabel.text = formatTime(Int(self.task.estimateTime))
-                //updateTask(self.task, value: self.task.estimateTime, key: "estimateTime")
-                self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
-            })
-            let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: {(alert: UIAlertAction!) in
-                //TODO: dismiss estimateVC
-                self.estimateLabel.text = formatTime(Int(self.task.estimateTime))
-            })
-            reachedGoalAlertController.addAction(addTimeAction)
-            reachedGoalAlertController.addAction(stopAction)
-            presentViewController(reachedGoalAlertController, animated: true, completion: nil)
-        }
-    }
-    
 
     /*
     // MARK: - Navigation
