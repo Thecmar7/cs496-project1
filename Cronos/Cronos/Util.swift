@@ -18,8 +18,24 @@ let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: m
 
 // MARK: - Time Functions
 
+// Define TaskDelegate, this declares an event listener
 protocol TaskDelegate: class {
     func goalReached(sender: Task)
+}
+
+// Make all UIViewControllers conform to TaskDelegate meaning they all have a goalReached() that executes as follows
+extension UIViewController: TaskDelegate {
+    
+    // when sender's goal is reached alert the user
+    func goalReached(sender: Task) {
+        sender.stopTimer()
+        let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
+        let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: nil)
+        let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: nil)
+        reachedGoalAlertController.addAction(addTimeAction)
+        reachedGoalAlertController.addAction(stopAction)
+        presentViewController(reachedGoalAlertController, animated: true, completion: nil)
+    }
 }
 
 // changes the seconds to hour, minute, seconds

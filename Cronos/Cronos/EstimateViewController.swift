@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Foundation
 
-class EstimateViewController: UIViewController, TaskDelegate {
+class EstimateViewController: UIViewController {
 	
     var task: Task!
 	var UItimer = NSTimer()
@@ -31,6 +30,7 @@ class EstimateViewController: UIViewController, TaskDelegate {
             startAndStop.setTitle("Stop", forState: .Normal)
         }
         
+        // set the delegate to self so the goalReached() alert shows up on this view controller
         task.delegate = self
         estimateTime.hidden = true
         estimateLabel.text = formatTime(Int(task.estimateTime))
@@ -88,7 +88,9 @@ class EstimateViewController: UIViewController, TaskDelegate {
                     self.estimateLabel.hidden = true
                     self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
                 })
+                let stopAction = UIAlertAction(title: "I'm done for the day", style: .Cancel, handler: nil)
                 alert.addAction(okayAction)
+                alert.addAction(stopAction)
                 presentViewController(alert, animated: true, completion: nil)
                 return
             }
@@ -110,35 +112,33 @@ class EstimateViewController: UIViewController, TaskDelegate {
 	
 	@IBAction func resetTimerAction(sender: UIButton) {
 		resetTimer()
-		timeCount.text = formatTime(Int(task.currentTime))
-		timeCount.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
-	
-		stopTimer()
-	}
+    }
 
     // MARK: Functions
+    
+    // Resets tasks currentTime and displays the changes
     func resetTimer() {
+        task.stopTimer()
 		task.currentTime = 0
 		timeCount.text = formatTime(Int(task.currentTime))
+        timeCount.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
 	}
 
-	// stops the timer and saves 
+	// stops the UITimer and the tasks timer which in turn saves the time, also sets the stop button to stop
 	func stopTimer() {
         UItimer.invalidate()
-        
 		task.stopTimer()
         startAndStop.setTitle("Start", forState: .Normal)
-        //updateTask(self.task, value: counter, key: "currentTime")
 	}
 	
     func timerSelector() {
         updateUI()
     }
     
-    func goalReached(sender: Task) {
+    override func goalReached(sender: Task) {
         print("EstimateVC")
         timeCount.textColor = UIColor.redColor()
-        sender.stopTimer()
+        stopTimer()
         let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
         let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: {(alert: UIAlertAction!) in
             self.estimateTime.hidden = false

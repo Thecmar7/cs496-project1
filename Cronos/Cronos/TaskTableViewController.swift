@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import CoreData
 
-class TaskTableViewController: UITableViewController, TaskDelegate {
+class TaskTableViewController: UITableViewController {
     
     var selectedTask: Task!
     var rightBarButton: UIBarButtonItem!
@@ -42,21 +41,11 @@ class TaskTableViewController: UITableViewController, TaskDelegate {
         tableView.reloadData()
     }
     
-    func goalReached(sender: Task) {
-        print("TableVC")
-        sender.stopTimer()
-        let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
-        let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: nil)
-        let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: nil)
-        reachedGoalAlertController.addAction(addTimeAction)
-        reachedGoalAlertController.addAction(stopAction)
-        presentViewController(reachedGoalAlertController, animated: true, completion: nil)
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         loadTasks()
         
+        // When the view loads, set each tasks delegate to self so the alert shows up on this view controller
         for i in 0..<tasks.count {
             tasks[i].delegate = self
         }
@@ -73,21 +62,32 @@ class TaskTableViewController: UITableViewController, TaskDelegate {
         super.setEditing(editing, animated: animated)
         if (editing == true) {
             rightBarButton = self.navigationItem.rightBarButtonItem
-            let deleteAction = #selector(self.deleteAllSelector)
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete All", style: UIBarButtonItemStyle.Done, target: self, action: deleteAction)
+            let deleteAction = #selector(self.checkDeleteSelector)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete All", style: .Done, target: self, action: deleteAction)
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.redColor()
         } else {
             self.navigationItem.rightBarButtonItem = rightBarButton
         }
-        
     }
     
-    func deleteAllSelector(sender: UIBarButtonItem!) {
+    func deleteAllSelector() {
         print("Deleting all tasks")
         deleteAllTasks()
         loadTasks()
         setEditing(false, animated: true)
         self.tableView.reloadData()
+    }
+    
+    func checkDeleteSelector(sender: UIBarButtonItem) {
+        print("checking delete")
+        let checkDelete = UIAlertController(title: "Really?", message: "Are you sure you want to delete all your tasks?", preferredStyle: .ActionSheet)
+        let yesAction = UIAlertAction(title: "I'm 100% sure!", style: .Destructive, handler: {(alert: UIAlertAction) in
+            self.deleteAllSelector()
+        })
+        let noAction = UIAlertAction(title: "Hell no!", style: .Default, handler: nil)
+        checkDelete.addAction(yesAction)
+        checkDelete.addAction(noAction)
+        presentViewController(checkDelete, animated: true, completion: nil)
     }
     
     // MARK: - Core Data

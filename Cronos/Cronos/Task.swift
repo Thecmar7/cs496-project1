@@ -36,6 +36,8 @@ class Task: NSManagedObject {
     func incrementCounter() {
         counter += 1
         currentTime = NSNumber(double: Double(counter))
+        
+        // This is the call to the event listener
         if (currentTime == estimateTime) { delegate?.goalReached(self) }
     }
 
