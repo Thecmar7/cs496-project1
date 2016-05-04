@@ -22,6 +22,7 @@ class EstimateViewController: UIViewController {
 	@IBOutlet var startAndStop: UIButton!
     @IBOutlet var getEstimateButton: UIButton!
 	
+	// Loading the view first function called
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +44,8 @@ class EstimateViewController: UIViewController {
         // set title to task name
         self.title = task.name
     }
-		
+	
+	// Don't touch this... cause reasons
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
