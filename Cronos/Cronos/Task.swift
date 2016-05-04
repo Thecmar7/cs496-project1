@@ -38,7 +38,7 @@ class Task: NSManagedObject {
         currentTime = NSNumber(double: Double(counter))
         
         // This is the call to the event listener
-        if (currentTime == estimateTime) { delegate?.goalReached(self) }
+        if (Double(currentTime) >= Double(estimateTime)) { delegate?.goalReached(self) }
     }
 
 }
