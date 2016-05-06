@@ -119,6 +119,7 @@ class TaskTableViewController: UITableViewController {
         let actualTimeInt = Int(task.currentTime)
         
         cell.task = task
+        if (cell.task.isRunning) { cell.startButton.setTitle("stop", forState: .Normal) }
         cell.taskName.text = nameString
         cell.timeActual.text = formatTime(actualTimeInt)
 

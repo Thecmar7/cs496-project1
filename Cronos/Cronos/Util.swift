@@ -23,7 +23,7 @@ protocol TaskDelegate: class {
     func goalReached(sender: Task)
 }
 
-// Make all UIViewControllers conform to TaskDelegate meaning they all have a goalReached() that executes as follows
+// Make all UIViewControllers conform to TaskDelegate meaning they all have a goalReached() that executes as follows if not overriden
 extension UIViewController: TaskDelegate {
     
     // when sender's goal is reached alert the user
@@ -71,12 +71,12 @@ func loadTasks() {
 }
 
 // Add a task
-func addTask(name: String, estimate: Int) {
+func addTask(name: String, goalDate: Int) {
         
     let newTask = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     newTask.setValue(name, forKey: "name")
-    newTask.setValue(estimate, forKey: "estimateTime")
+    newTask.setValue(goalDate, forKey: "goalDate")
     
     save()
     loadTasks()
