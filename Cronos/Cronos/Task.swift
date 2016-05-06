@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-
 class Task: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
@@ -18,7 +17,11 @@ class Task: NSManagedObject {
     var delegate: TaskDelegate?
     var notification = UILocalNotification()
     
-    
+	
+	/*************************************************************************
+	 *	startTimer
+	 *		starts the timer setting and creates a push notification
+	 *************************************************************************/
     func startTimer() {
         
         isRunning = true
@@ -28,7 +31,11 @@ class Task: NSManagedObject {
         // set a push notification
         setPushNotificationAlert()
     }
-    
+	
+	/*************************************************************************
+	 *	stopTimer
+	 *		stops the timer and unsets the push notifications
+	 *************************************************************************/
     func stopTimer() {
         isRunning = false
         remainingTime = goalDate.timeIntervalSinceNow
@@ -38,8 +45,24 @@ class Task: NSManagedObject {
         UIApplication.sharedApplication().cancelLocalNotification(notification)
     }
 	
+	/*************************************************************************
+	 *	resetTimer
+	 *		stops the timer and makes the time remaining the total time
+	 *************************************************************************/
+	func resetTimer() {
+		isRunning = false
+		remainingTime = Double(remainingTime) + Double(elapsedTime)
+		elapsedTime = 0.0
+		
+		// cancel local notification
+		UIApplication.sharedApplication().cancelLocalNotification(notification)
+	}
 	
-	// Will push notification
+	
+	/*************************************************************************
+	 *	setPushNotificationAlert
+	 *		creates a push notification to be called at the final day
+	 *************************************************************************/
 	func setPushNotificationAlert() {
 		notification.alertBody = "You reached your \(name) goal!" // text that will be displayed in the notification
 		notification.alertAction = "View task" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"

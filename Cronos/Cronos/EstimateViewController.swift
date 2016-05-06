@@ -9,25 +9,32 @@
 import UIKit
 
 class EstimateViewController: UIViewController {
-	
+	// The task
     var task: Task!
+	
+	// the timer to update the UI
 	var UItimer = NSTimer()
 	
-    @IBOutlet var goalDateDatePicker: UIDatePicker!
-	@IBOutlet weak var timeCountLabel: UILabel!
-    @IBOutlet var goalLabel: UILabel!
-    
-	//@IBOutlet weak var startAndStop: UIButton!
+	/***** MARK: UIInteractables **********************************************/
 	@IBOutlet weak var reset: UIButton!
 	@IBOutlet var startAndStop: UIButton!
     @IBOutlet var getEstimateButton: UIButton!
+	@IBOutlet var goalDateDatePicker: UIDatePicker!
 	
-	// Loading the view first function called
-    override func viewDidLoad() {
+	/***** MARK: UILabels *****************************************************/
+	@IBOutlet weak var timeCountLabel: UILabel!
+    @IBOutlet var goalLabel: UILabel!
+	
+	
+	
+	/***** MARK: viewDidLoad **************************************************
+	 *	initial set up of the view
+	 **************************************************************************/
+	override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if (task.isRunning) {
+        if (task.isRunning == 1.0) {	// This is compared to 1.0 cause Objective-C can't do booleans
             startAndStop.setTitle("Stop", forState: .Normal)
             startUITimer()
         }
@@ -37,15 +44,18 @@ class EstimateViewController: UIViewController {
         
         // hide the date picker and show the label, update labels
         goalDateDatePicker.hidden = true
-        goalLabel.text = formatTime(Int(task.estimateTime))
-		timeCountLabel.text = formatTime(Int(task.currentTime))
-        goalDateDatePicker.countDownDuration = NSTimeInterval(task.estimateTime)
-        
+        goalLabel.text = formatTime(Int(task.elapsedTime))
+		timeCountLabel.text = formatTime(Int(task.elapsedTime))
+		
+		goalDateDatePicker.countDownDuration = NSTimeInterval(task.elapsedTime)
+		
         // set title to task name
         self.title = task.name
     }
 	
-	// Don't touch this... cause reasons
+	/***** MARK: didReceiveMemoryWarning **************************************
+	*	Don't touch this cause reasons
+	***************************************************************************/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,38 +63,40 @@ class EstimateViewController: UIViewController {
 	
 	// MARK: Actions
 	
-	//  This is a test function for the selector wheel
+	/***** MARK: getTimeButtonSelected ****************************************
+	*	This is a test function for the selector wheel
+	***************************************************************************/
     @IBAction func getTimeButtonSelected(sender: UIButton) {
-        
         if (sender.titleLabel?.text == "Set Estimate") {
-            
             // replace picker with label, change button, update labels
-            task.estimateTime = Int(estimateTime.countDownDuration)
-            goalLabel.text = formatTime(Int(task.estimateTime))
+            goalLabel.text = formatTime(Int(task.elapsedTime) +
+										Int(task.remainingTime))
             goalDateDatePicker.hidden = true
             goalLabel.hidden = false
             getEstimateButton.setTitle("Edit Estimate", forState: .Normal)
         } else {
-            
             // replace label with picker, change button
-            goalDateDatePicker.countDownDuration = Double(Int(task.estimateTime))
+            goalDateDatePicker.countDownDuration = Double(task.remainingTime) +
+												   Double(task.elapsedTime)
             goalLabel.hidden = true
             goalDateDatePicker.hidden = false
             getEstimateButton.setTitle("Set Estimate", forState: .Normal)
         }
 		
     }
-    
-    // On finish task stop timer if running
+	
+	/***** MARK: finishTaskAction *********************************************
+	 *	On finish task stop timer if running
+	 **************************************************************************/
 	@IBAction func finishTaskAction(sender: UIButton) {
 		stopTimer()
 	}
 	
-	// This starts and stops the timer
+	/***** MARK: startTimer **************************************************
+	 *	This starts and stops the timer
+	 *************************************************************************/
 	@IBAction func startTimer(sender: UIButton) {
-		
 		if (sender.titleLabel?.text == "Start") {
-            
             // hide date picker and show label, update estimate button
             goalDateDatePicker.hidden = true
             goalLabel.hidden = false
@@ -121,9 +133,8 @@ class EstimateViewController: UIViewController {
     
     // Resets tasks currentTime and displays the changes
     func resetTimer() {
-        task.stopTimer()
-		task.currentTime = 0
-		timeCountLabel.text = formatTime(Int(task.currentTime))
+        task.resetTimer()
+		timeCountLabel.text = formatTime(Int(task.elapsedTime))
         timeCountLabel.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
 	}
 
@@ -148,12 +159,12 @@ class EstimateViewController: UIViewController {
         let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: {(alert: UIAlertAction!) in
             self.goalDateDatePicker.hidden = false
             self.goalLabel.hidden = true
-            self.goalLabel.text = formatTime(Int(sender.estimateTime))
+            self.goalLabel.text = formatTime(Int(sender.elapsedTime) + Int(sender.remainingTime))
             self.getEstimateButton.setTitle("Set Estimate", forState: .Normal)
         })
         let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: {(alert: UIAlertAction!) in
             //TODO: dismiss estimateVC
-            self.goalLabel.text = formatTime(Int(sender.estimateTime))
+            self.goalLabel.text = formatTime(Int(sender.elapsedTime) + Int(sender.remainingTime))
         })
         reachedGoalAlertController.addAction(addTimeAction)
         reachedGoalAlertController.addAction(stopAction)
@@ -162,8 +173,9 @@ class EstimateViewController: UIViewController {
     
     // Changes the label of the timer
 	func updateUI() {
-        timeCountLabel.text = formatTime(Int(task.currentTime))
-		timeCountLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, green: (240 - (240 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, blue: (128 - (128 / (CGFloat(task.estimateTime))) * CGFloat(task.currentTime)) / 255.0, alpha: 1.0)
+        timeCountLabel.text = formatTime(Int(task.elapsedTime))
+		let total = Int(task.elapsedTime) + Int(task.remainingTime)
+		timeCountLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, alpha: 1.0)
 	}
 
     /*
