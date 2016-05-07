@@ -31,7 +31,7 @@ class AddTaskViewController: UIViewController {
     
     @IBAction func doneButtonAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true) { 
-            addTask(self.nameTextField.text!, goalTime: Int(self.estimateDatePicker.countDownDuration))
+            addTask(self.nameTextField.text!, goalTime: self.estimateDatePicker.countDownDuration)
         }
     }
     

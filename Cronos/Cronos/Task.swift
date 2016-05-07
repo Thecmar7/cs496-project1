@@ -28,6 +28,9 @@ class Task: NSManagedObject {
         goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
         print("Goal Date: \(goalDate)")
         startDate = NSDate()
+        print("Start Date: \(startDate)")
+        print("isRunning: \(isRunning.boolValue)")
+        save()
             
         // set a push notification
         setPushNotificationAlert()
@@ -41,8 +44,10 @@ class Task: NSManagedObject {
         isRunning = false
         remainingTime = abs(goalDate.timeIntervalSinceNow)
         print("remainingTime: \(remainingTime)")
-        elapsedTime = NSNumber(double: Double(elapsedTime) + Double(startDate.timeIntervalSinceNow))
+        elapsedTime = NSNumber(double: abs(Double(elapsedTime)) + abs(Double(startDate.timeIntervalSinceNow)))
         print("elapsedTime: \(elapsedTime)")
+        print("isRunning: \(isRunning.boolValue)")
+        save()
     }
 	
 	/*************************************************************************
@@ -53,6 +58,7 @@ class Task: NSManagedObject {
 		isRunning = false
 		remainingTime = Double(remainingTime) + Double(elapsedTime)
 		elapsedTime = 0.0
+        save()
 		
 		// cancel local notification
 		self.cancelNotification()
@@ -70,9 +76,14 @@ class Task: NSManagedObject {
         
         if (self.isRunning.boolValue) {
             self.cancelNotification()
-            self.goalDate = NSDate(timeIntervalSinceNow: newTime)
-            self.setPushNotificationAlert()
         }
+        
+        self.goalDate = NSDate(timeIntervalSinceNow: newTime)
+        self.setPushNotificationAlert()
+        
+        save()
+        
+        print("New Goal Date: \(goalDate)")
     }
     
     

@@ -51,12 +51,14 @@ func loadTasks() {
 }
 
 // Add a task
-func addTask(name: String, goalTime: Int) {
+func addTask(name: String, goalTime: Double) {
         
     let newTask = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     newTask.setValue(name, forKey: "name")
     newTask.setValue(goalTime, forKey: "goalTime")
+    newTask.setValue(goalTime, forKey: "remainingTime")
+    newTask.setValue(NSDate(timeIntervalSinceNow: 3600*12), forKey: "goalDate")
     
     save()
     loadTasks()

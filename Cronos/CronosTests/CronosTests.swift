@@ -27,39 +27,27 @@ class CronosTests: XCTestCase {
     }
     
     func testAddTasks() {
-        
-        let taskNames = ["Design", "Coding", "Homework"]
-        let estimates = [Int](arrayLiteral: (3*3600), (5*3600), (7*3600))
-        
         deleteAllTasks()
+        let mintes: Double = 60
+        let names = [String](arrayLiteral: "Gardening", "Fishing", "Cleaning")
+        let times = [Double](arrayLiteral: 2*mintes, 1*mintes, 3*mintes)
         
-        for i in 0..<taskNames.count {
-            addTask(taskNames[i], estimate: estimates[i])
+        for i in 0..<names.count {
+            addTask(names[i], goalTime: times[i])
         }
-        
-        assert(tasks.count == 3, "Failed add count")
-        for i in 0..<taskNames.count {
-            assert(tasks[i].valueForKey("name") as? String == taskNames[i], "Failed name assertion")
-        }
-        
+        loadTasks()
+        assert(tasks.count == 3, "Task size not correct")
+        print(tasks)
     }
     
-    func testModifyTask() {
+    func testNotification() {
+        deleteAllTasks()
+        addTask("Test", goalTime: 5.0)
         loadTasks()
-        if (tasks.count == 0) {
-            addTask("Running", estimate: Int(0.5*3600))
-        }
         let task = tasks[0]
-        let oldName = task.valueForKey("name") as? String
-        let newName = "Gardening"
-        assert(oldName != newName, "Already Gardening")
-        updateTask(task, value: newName, key: "name")
-        loadTasks()
-        let updatedTask = tasks[0]
-        let updatedName = updatedTask.valueForKey("name") as? String
-        
-        assert(updatedName == newName, "Name not updated")
-        
+        let time = Double(task.remainingTime) + 1.0
+        sleep(UInt32(time))
+        assert(task.notification.fireDate?.timeIntervalSinceNow < 0, "Past fire date")
     }
     
 }

@@ -15,6 +15,8 @@ class TimerTableViewCell: UITableViewCell {
     @IBOutlet var startButton: UIButton!
     
     var task: Task!
+    var timer = NSTimer()
+    var counter = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,9 +33,19 @@ class TimerTableViewCell: UITableViewCell {
         if (task.isRunning.boolValue) {
             task.stopTimer()
             startButton.setTitle("start", forState: .Normal)
+            startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
+            timer.invalidate()
         } else {
             task.startTimer()
+            counter = Int(task.elapsedTime)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
             startButton.setTitle("stop", forState: .Normal)
+            startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
+    }
+    
+    func updateUI() {
+        counter += 1
+        timeActual.text = formatTime(counter)
     }
 }

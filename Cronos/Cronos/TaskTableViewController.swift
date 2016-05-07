@@ -20,25 +20,20 @@ class TaskTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+        // Shows edit button
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        // load tasks
         loadTasks()
-        for task in tasks {
-            if (task.isRunning.boolValue) {
-                UITimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
-            }
-        }
         
+        // if we're testing and there are no tasks, load default tasks
         if (DEBUG && tasks.count == 0) {
             addTestTasks()
         }
     }
     
+    // when view appears load tasks and reload table data
     override func viewWillAppear(animated: Bool) {
         loadTasks()
         self.tableView.reloadData()
@@ -61,11 +56,7 @@ class TaskTableViewController: UITableViewController {
         }
     }
     
-    func updateUI() {
-        loadTasks()
-        tableView.reloadData()
-    }
-    
+    // Delete's all tasks, probably just for testing purposes
     func deleteAllSelector() {
         print("Deleting all tasks")
         deleteAllTasks()
@@ -74,6 +65,7 @@ class TaskTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    // check if the user really wants to delete all their tasks
     func checkDeleteSelector(sender: UIBarButtonItem) {
         print("checking delete")
         let checkDelete = UIAlertController(title: "Really?", message: "Are you sure you want to delete all your tasks?", preferredStyle: .ActionSheet)
@@ -90,7 +82,7 @@ class TaskTableViewController: UITableViewController {
     
     func addTestTasks() {
         let titles = ["Running", "Homework", "Programming"]
-        let times = [Int](arrayLiteral: (1*60), (4*60), (7*60))
+        let times = [Double](arrayLiteral: (1*60), (4*60), (7*60))
         for i in 0..<titles.count {
             addTask(titles[i], goalTime: times[i])
         }
@@ -115,7 +107,7 @@ class TaskTableViewController: UITableViewController {
         cell.task = task
         if (task.isRunning.boolValue) { cell.startButton.setTitle("stop", forState: .Normal); cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal) }
         cell.taskName.text = task.name
-        cell.timeActual.text = formatTime(Int(task.remainingTime))
+        cell.timeActual.text = formatTime(Int(task.elapsedTime))
 
         return cell
     }

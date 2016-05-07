@@ -44,6 +44,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let title = notification.alertTitle
+        let body = notification.alertBody
+        let action = notification.alertAction
+        let alert = UIAlertController(title: title, message: body, preferredStyle: .Alert)
+        let actionAction = UIAlertAction(title: action, style: .Default, handler: nil)
+        alert.addAction(actionAction)
+        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
 
     // MARK: - Core Data stack
 

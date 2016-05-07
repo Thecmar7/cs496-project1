@@ -48,13 +48,17 @@ class GoalDetailViewController: UIViewController {
         
         // hide the date picker and show the label, update labels
         goalDateDatePicker.hidden = true
-        goalLabel.text = formatTime(Int(task.remainingTime))
+        goalLabel.text = formatTime(Int(task.goalTime))
         elapsedTimeLabel.text = formatTime(UIcounter)
         
         goalDateDatePicker.countDownDuration = NSTimeInterval(task.elapsedTime)
         
         // set title to task name
         self.title = task.name
+        
+        // set appropriate color for elapsed time
+        let total = Double(task.remainingTime)
+        elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, alpha: 1.0)
     }
 	
 	/***** MARK: didReceiveMemoryWarning **************************************
@@ -154,7 +158,7 @@ class GoalDetailViewController: UIViewController {
 	func updateUI() {
         UIcounter! += 1
         elapsedTimeLabel.text = formatTime(UIcounter)
-		let total = UIcounter
+		let total = Double(task.remainingTime)
 		elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, alpha: 1.0)
 	}
 
