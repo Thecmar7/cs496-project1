@@ -4,12 +4,13 @@
         <attribute name="createdDate" attributeType="Date" defaultDateTimeInterval="484185600" syncable="YES"/>
         <attribute name="elapsedTime" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="goalDate" attributeType="Date" defaultDateTimeInterval="484098540" syncable="YES"/>
+        <attribute name="goalTime" attributeType="Double" defaultValueString="3600" syncable="YES"/>
         <attribute name="isRunning" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="task" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="remainingTime" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

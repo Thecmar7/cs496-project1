@@ -27,15 +27,13 @@ class TimerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func startButton(sender: UIButton) {
-        //TODO: async
-        
-        if (task.isRunning == false) {
-            task.startTimer()
-            startButton.setTitle("stop", forState: .Normal)
-        } else {
+    @IBAction func startButton(sender: UIButton) {        
+        if (task.isRunning.boolValue) {
             task.stopTimer()
             startButton.setTitle("start", forState: .Normal)
+        } else {
+            task.startTimer()
+            startButton.setTitle("stop", forState: .Normal)
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iQ4-8p-WbG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iQ4-8p-WbG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eak-NP-sOm" id="egP-EC-Urr">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Din-rE-y57">
@@ -83,7 +83,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Qoo-5m-0sn" kind="show" identifier="estimateSegue" id="Mr3-YI-gsN"/>
+                        <segue destination="Qoo-5m-0sn" kind="show" identifier="goalDetailSegue" id="v9U-2Y-fyL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KC8-y1-DUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="1744" y="1074"/>
         </scene>
-        <!--Estimate View Controller-->
+        <!--Goal Detail View Controller-->
         <scene sceneID="cac-Y6-9yF">
             <objects>
-                <viewController id="Qoo-5m-0sn" customClass="EstimateViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qoo-5m-0sn" customClass="GoalDetailViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yXB-RF-vsc"/>
                         <viewControllerLayoutGuide type="bottom" id="NqK-us-nxW"/>
@@ -157,8 +157,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-xr-lti">
-                                <rect key="frame" x="201" y="72" width="199" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-xr-lti">
+                                <rect key="frame" x="234" y="72" width="132" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -170,28 +170,28 @@
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-gc-iEV">
-                                <rect key="frame" x="256" y="339" width="90" height="30"/>
-                                <state key="normal" title="Edit Estimate"/>
+                                <rect key="frame" x="269" y="339" width="62" height="30"/>
+                                <state key="normal" title="Edit Goal"/>
                                 <connections>
-                                    <action selector="getTimeButtonSelected:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="2zm-Nm-X5f"/>
+                                    <action selector="editGoalAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="0eL-WO-n4T"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
                                 <rect key="frame" x="407" y="532" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
-                                    <action selector="resetTimerAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="y91-1Q-rzt"/>
+                                    <action selector="resetTimerAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="Vfd-13-RQ6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
                                 <rect key="frame" x="155" y="532" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="ofs-bV-l21"/>
+                                    <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="zgN-Ac-9Yo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="estimate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-Hc-KKF">
-                                <rect key="frame" x="210" y="194" width="181" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-Hc-KKF">
+                                <rect key="frame" x="255" y="194" width="90" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -201,11 +201,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Finished"/>
                                 <connections>
-                                    <action selector="finishTaskAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="eaP-sg-Nfc"/>
+                                    <action selector="finishTaskAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="p5r-A9-7si"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-fy-kpO">
-                                <rect key="frame" x="155" y="414" width="291" height="77"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeElapsed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-fy-kpO">
+                                <rect key="frame" x="0.0" y="414" width="600" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="JiB-wV-det"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -213,33 +216,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jgw-KX-PS8" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="trailing" constant="66" id="03h-WC-C5Y"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="1TM-If-QIa"/>
-                            <constraint firstItem="CDP-CF-qbl" firstAttribute="top" secondItem="aCw-fy-kpO" secondAttribute="bottom" constant="41" id="1qQ-Ma-1L8"/>
-                            <constraint firstItem="aCw-fy-kpO" firstAttribute="centerX" secondItem="jgw-KX-PS8" secondAttribute="centerX" id="1rP-A6-Zll"/>
-                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="top" secondItem="aCw-fy-kpO" secondAttribute="bottom" constant="41" id="8Cj-Do-eiv"/>
-                            <constraint firstItem="CDP-CF-qbl" firstAttribute="leading" secondItem="jgw-KX-PS8" secondAttribute="trailing" constant="62" id="9Y8-N9-gOG"/>
-                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="jgw-KX-PS8" secondAttribute="bottom" constant="33" id="AdK-4u-ifb"/>
-                            <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="FEZ-7E-RLz"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="GzP-yo-ktv"/>
-                            <constraint firstItem="2h7-Hc-KKF" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="OBl-JG-RK4"/>
-                            <constraint firstItem="jgw-KX-PS8" firstAttribute="top" secondItem="aCw-fy-kpO" secondAttribute="bottom" constant="35" id="U1V-ix-biq"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerY" secondItem="2h7-Hc-KKF" secondAttribute="centerY" id="a1k-Yh-XRR"/>
-                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="2h7-Hc-KKF" secondAttribute="centerX" id="cpv-cN-yTo"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="2h7-Hc-KKF" secondAttribute="centerX" id="f0z-ez-eEN"/>
-                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="kOw-3P-1Aa"/>
-                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="leD-8V-7Nb"/>
-                            <constraint firstItem="aCw-fy-kpO" firstAttribute="centerX" secondItem="0Za-gc-iEV" secondAttribute="centerX" id="s0N-5r-T6i"/>
-                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="tJx-nc-HNG"/>
+                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="centerY" secondItem="jgw-KX-PS8" secondAttribute="centerY" id="3Mc-bi-bFE"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="centerX" secondItem="2h7-Hc-KKF" secondAttribute="centerX" id="AbP-Ye-Cxc"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="top" secondItem="bL5-xr-lti" secondAttribute="bottom" constant="8" symbolic="YES" id="Dal-bD-hn7"/>
+                            <constraint firstItem="bL5-xr-lti" firstAttribute="top" secondItem="yXB-RF-vsc" secondAttribute="bottom" constant="8" symbolic="YES" id="FSQ-he-B8M"/>
+                            <constraint firstItem="aCw-fy-kpO" firstAttribute="centerX" secondItem="Rjq-i9-vSC" secondAttribute="centerX" id="HA6-zW-g2w"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="leading" secondItem="Rjq-i9-vSC" secondAttribute="leading" id="NSQ-ER-mwB"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="centerX" secondItem="aCw-fy-kpO" secondAttribute="centerX" id="Nv1-Gt-6UB"/>
+                            <constraint firstAttribute="trailing" secondItem="dZH-cv-EbV" secondAttribute="trailing" id="R7o-Ua-Bz5"/>
+                            <constraint firstItem="jgw-KX-PS8" firstAttribute="top" secondItem="aCw-fy-kpO" secondAttribute="bottom" constant="35" id="aX6-BM-9pZ"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerY" secondItem="2h7-Hc-KKF" secondAttribute="centerY" id="ajv-i6-yeA"/>
+                            <constraint firstItem="dZH-cv-EbV" firstAttribute="centerX" secondItem="2h7-Hc-KKF" secondAttribute="centerX" id="b7W-w5-8rn"/>
+                            <constraint firstItem="NqK-us-nxW" firstAttribute="top" secondItem="jgw-KX-PS8" secondAttribute="bottom" constant="33" id="eg6-l0-Q29"/>
+                            <constraint firstItem="CDP-CF-qbl" firstAttribute="leading" secondItem="jgw-KX-PS8" secondAttribute="trailing" constant="62" id="pYk-bC-L6p"/>
+                            <constraint firstItem="jgw-KX-PS8" firstAttribute="leading" secondItem="AhJ-Oe-xfI" secondAttribute="trailing" constant="66" id="pfb-7f-rOf"/>
+                            <constraint firstItem="0Za-gc-iEV" firstAttribute="top" secondItem="dZH-cv-EbV" secondAttribute="bottom" constant="8" symbolic="YES" id="t1A-ar-WPf"/>
+                            <constraint firstItem="AhJ-Oe-xfI" firstAttribute="baseline" secondItem="CDP-CF-qbl" secondAttribute="baseline" id="tBz-Uj-weU"/>
+                            <constraint firstItem="jgw-KX-PS8" firstAttribute="centerX" secondItem="Rjq-i9-vSC" secondAttribute="centerX" id="zkW-OA-dZd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="estimateLabel" destination="2h7-Hc-KKF" id="Txr-xz-VZL"/>
-                        <outlet property="estimateTime" destination="dZH-cv-EbV" id="jVa-GW-xSy"/>
-                        <outlet property="getEstimateButton" destination="0Za-gc-iEV" id="zOQ-VZ-lkr"/>
-                        <outlet property="reset" destination="CDP-CF-qbl" id="hKT-Dg-H43"/>
-                        <outlet property="startAndStop" destination="AhJ-Oe-xfI" id="Db8-Pq-cEd"/>
-                        <outlet property="timeCount" destination="aCw-fy-kpO" id="ARW-mp-y6Y"/>
+                        <outlet property="elapsedTimeLabel" destination="aCw-fy-kpO" id="vWN-Ak-u8i"/>
+                        <outlet property="getGoalButton" destination="0Za-gc-iEV" id="TAw-sX-TXQ"/>
+                        <outlet property="goalDateDatePicker" destination="dZH-cv-EbV" id="18p-sG-rlb"/>
+                        <outlet property="goalLabel" destination="2h7-Hc-KKF" id="GDd-rN-4kr"/>
+                        <outlet property="resetButton" destination="CDP-CF-qbl" id="f3l-H0-0bO"/>
+                        <outlet property="startAndStopButton" destination="AhJ-Oe-xfI" id="2La-CV-V4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBC-JR-LNF" userLabel="First Responder" sceneMemberID="firstResponder"/>

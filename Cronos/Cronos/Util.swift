@@ -18,26 +18,6 @@ let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: m
 
 // MARK: - Time Functions
 
-// Define TaskDelegate, this declares an event listener
-protocol TaskDelegate: class {
-    func goalReached(sender: Task)
-}
-
-// Make all UIViewControllers conform to TaskDelegate meaning they all have a goalReached() that executes as follows if not overriden
-extension UIViewController: TaskDelegate {
-    
-    // when sender's goal is reached alert the user
-    func goalReached(sender: Task) {
-        sender.stopTimer()
-        let reachedGoalAlertController = UIAlertController(title: "You did it!", message: "You reached your \(sender.name) goal! Do you want to keep going or would you like to stop?", preferredStyle: .Alert)
-        let addTimeAction = UIAlertAction(title: "Set new goal and keep going!", style: .Default, handler: nil)
-        let stopAction = UIAlertAction(title: "Stop working", style: .Destructive, handler: nil)
-        reachedGoalAlertController.addAction(addTimeAction)
-        reachedGoalAlertController.addAction(stopAction)
-        presentViewController(reachedGoalAlertController, animated: true, completion: nil)
-    }
-}
-
 // changes the seconds to hour, minute, seconds
 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
     
@@ -71,12 +51,12 @@ func loadTasks() {
 }
 
 // Add a task
-func addTask(name: String, goalDate: Int) {
+func addTask(name: String, goalTime: Int) {
         
     let newTask = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     newTask.setValue(name, forKey: "name")
-    newTask.setValue(goalDate, forKey: "goalDate")
+    newTask.setValue(goalTime, forKey: "goalTime")
     
     save()
     loadTasks()
@@ -101,8 +81,8 @@ func deleteTask(task: Task) {
 }
 
 // delete a task at an index
-func deleteTask(atIndex: Int) {
-    managedContext.deleteObject(tasks[atIndex])
+func deleteTask(atIndex index: Int) {
+    managedContext.deleteObject(tasks[index])
     save()
     loadTasks()
 }
@@ -110,6 +90,6 @@ func deleteTask(atIndex: Int) {
 func deleteAllTasks() {
     loadTasks()
     while tasks.count > 0 {
-        deleteTask(0)
+        deleteTask(atIndex: 0)
     }
 }

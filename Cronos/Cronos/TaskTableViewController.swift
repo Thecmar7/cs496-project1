@@ -28,28 +28,19 @@ class TaskTableViewController: UITableViewController {
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         loadTasks()
+        for task in tasks {
+            if (task.isRunning.boolValue) {
+                UITimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+            }
+        }
         
         if (DEBUG && tasks.count == 0) {
             addTestTasks()
         }
-        
-        UITimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
-    }
-    
-    func updateUI() {
-        loadTasks()
-        tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         loadTasks()
-        
-        // When the view loads, set each tasks delegate to self so the alert shows up on this view controller
-        for i in 0..<tasks.count {
-            tasks[i].delegate = self
-        }
-        
         self.tableView.reloadData()
     }
     
@@ -68,6 +59,11 @@ class TaskTableViewController: UITableViewController {
         } else {
             self.navigationItem.rightBarButtonItem = rightBarButton
         }
+    }
+    
+    func updateUI() {
+        loadTasks()
+        tableView.reloadData()
     }
     
     func deleteAllSelector() {
@@ -96,7 +92,7 @@ class TaskTableViewController: UITableViewController {
         let titles = ["Running", "Homework", "Programming"]
         let times = [Int](arrayLiteral: (1*60), (4*60), (7*60))
         for i in 0..<titles.count {
-            addTask(titles[i], estimate: times[i])
+            addTask(titles[i], goalTime: times[i])
         }
     }
 
@@ -115,18 +111,14 @@ class TaskTableViewController: UITableViewController {
         // Configure the cell...
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
-        let nameString = task.name
-        let actualTimeInt = Int(task.currentTime)
         
         cell.task = task
-        if (cell.task.isRunning) { cell.startButton.setTitle("stop", forState: .Normal) }
-        cell.taskName.text = nameString
-        cell.timeActual.text = formatTime(actualTimeInt)
+        if (task.isRunning.boolValue) { cell.startButton.setTitle("stop", forState: .Normal); cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal) }
+        cell.taskName.text = task.name
+        cell.timeActual.text = formatTime(Int(task.remainingTime))
 
         return cell
     }
-    
-
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -134,13 +126,11 @@ class TaskTableViewController: UITableViewController {
         return true
     }
  
-
-    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            deleteTask(indexPath.row)
+            deleteTask(atIndex: indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -165,20 +155,16 @@ class TaskTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
         selectedTask = task
-        performSegueWithIdentifier("estimateSegue", sender: self)
+        performSegueWithIdentifier("goalDetailSegue", sender: self)
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        if (segue.identifier == "estimateSegue") {
-            let estimateVC = segue.destinationViewController as! EstimateViewController
-            estimateVC.task = selectedTask
+        if (segue.identifier == "goalDetailSegue") {
+            let goalVC = segue.destinationViewController as! GoalDetailViewController
+            goalVC.task = selectedTask
         }
     }
 
