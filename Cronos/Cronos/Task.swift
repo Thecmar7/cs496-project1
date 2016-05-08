@@ -24,16 +24,18 @@ class Task: NSManagedObject {
 	 *		starts the timer setting and creates a push notification
 	 *************************************************************************/
     func startTimer() {
-        
+		self.cancelNotification()
+		
         isRunning = true
-        goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
         startDate = NSDate()
+		goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
         save()
             
         // set a push notification
         setPushNotificationAlert()
         
         // print values
+		print("START")
         print(self)
     }
 	
@@ -44,18 +46,21 @@ class Task: NSManagedObject {
     func stopTimer() {
         
         isRunning = false
-        cancelNotification()
+        self.cancelNotification()
         var currentTimeLeft = goalDate.timeIntervalSinceNow
-        if (currentTimeLeft < 0) {
+		print(currentTimeLeft)
+		
+		
+        if (currentTimeLeft > 0) {
             remainingTime = abs(goalDate.timeIntervalSinceNow)
         } else {
             currentTimeLeft = 0.0
         }
         remainingTime = currentTimeLeft
         elapsedTime = NSNumber(double: abs(Double(elapsedTime)) + abs(Double(startDate.timeIntervalSinceNow)))
-
         save()
-        
+		
+		print("STOP")
         print(self)
     }
 	
@@ -71,7 +76,8 @@ class Task: NSManagedObject {
 		
 		// cancel local notification
 		self.cancelNotification()
-        
+		
+		print("RESET")
         print(self)
 	}
 	
@@ -105,11 +111,11 @@ class Task: NSManagedObject {
 	 *		creates a push notification to be called at the final day
 	 *************************************************************************/
 	func setPushNotificationAlert() {
-		notification.alertBody = "You reached your \(self.name) goal!" // text that will be displayed in the notification
-		notification.alertAction = "View task" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-		notification.fireDate = self.goalDate // todo item due date (when notification will be fired)
-		notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-		notification.userInfo = ["title": self.name!] // assign a unique identifier to the notification so that we can retrieve it later
+		notification.alertBody = "You reached your \(self.name) goal!"	// text that will be displayed in the notification
+		notification.alertAction = "View task"				// text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+		notification.fireDate = self.goalDate				// todo item due date (when notification will be fired)
+		notification.soundName = UILocalNotificationDefaultSoundName	// play default sound
+		notification.userInfo = ["title": self.name!]		// assign a unique identifier to the notification so that we can retrieve it later
 		
 		UIApplication.sharedApplication().scheduleLocalNotification(notification)
 	}
