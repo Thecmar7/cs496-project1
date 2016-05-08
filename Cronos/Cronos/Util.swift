@@ -34,7 +34,7 @@ func formatTime(time: Int) -> String {
     return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 }
 
-//MARK: - Timer functions
+//MARK: - Delegate Functions
 
 protocol TaskDelegate: class {
     func stopUITimer()

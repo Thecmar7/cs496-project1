@@ -141,12 +141,13 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
     }
     
     func stopUITimer() {
-        UItimer.invalidate()
+        stopTimer()
     }
     
     // Resets tasks currentTime and displays the changes
     func resetTimer() {
         task.resetTimer()
+        if (task.isRunning.boolValue) { stopTimer() }
         UIcounter = 0
 		elapsedTimeLabel.text = formatTime(Int(task.elapsedTime))
         elapsedTimeLabel.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
@@ -154,7 +155,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 
 	// stops the UITimer and the tasks timer which in turn saves the time, also sets the stop button to stop
 	func stopTimer() {
-        stopUITimer()
+        UItimer.invalidate()
 		task.stopTimer()
         startAndStopButton.setTitle("Start", forState: .Normal)
         startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)

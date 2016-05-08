@@ -50,4 +50,20 @@ class CronosTests: XCTestCase {
         assert(task.notification.fireDate?.timeIntervalSinceNow < 0, "Past fire date")
     }
     
+    func testChange() {
+        deleteAllTasks()
+        addTask("New Task", goalTime: 5.0)
+        loadTasks()
+        let task = tasks[0]
+        assert(task.isRunning.boolValue == false)
+        task.startTimer()
+        print(task.isRunning.boolValue)
+        assert(task.isRunning.boolValue == true)
+        sleep(6)
+        print(task.isRunning.boolValue)
+        print(task.goalDate)
+        print(NSDate())
+        assert(task.isRunning.boolValue == false)
+    }
+    
 }

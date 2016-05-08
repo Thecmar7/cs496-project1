@@ -77,7 +77,7 @@ class TaskTableViewController: UITableViewController {
         presentViewController(checkDelete, animated: true, completion: nil)
     }
     
-    // MARK: - Core Data
+    // MARK: - Testing
     
     func addTestTasks() {
         let titles = ["Running", "Homework", "Programming", "ATesting"]
