@@ -26,14 +26,14 @@ class Task: NSManagedObject {
         
         isRunning = true
         goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
-        print("Goal Date: \(goalDate)")
         startDate = NSDate()
-        print("Start Date: \(startDate)")
-        print("isRunning: \(isRunning.boolValue)")
         save()
             
         // set a push notification
         setPushNotificationAlert()
+        
+        // print values
+        print(self)
     }
 	
 	/*************************************************************************
@@ -41,13 +41,21 @@ class Task: NSManagedObject {
 	 *		stops the timer and unsets the push notifications
 	 *************************************************************************/
     func stopTimer() {
+        
         isRunning = false
-        remainingTime = abs(goalDate.timeIntervalSinceNow)
-        print("remainingTime: \(remainingTime)")
+        cancelNotification()
+        var currentTimeLeft = goalDate.timeIntervalSinceNow
+        if (currentTimeLeft < 0) {
+            remainingTime = abs(goalDate.timeIntervalSinceNow)
+        } else {
+            currentTimeLeft = 0.0
+        }
+        remainingTime = currentTimeLeft
         elapsedTime = NSNumber(double: abs(Double(elapsedTime)) + abs(Double(startDate.timeIntervalSinceNow)))
-        print("elapsedTime: \(elapsedTime)")
-        print("isRunning: \(isRunning.boolValue)")
+
         save()
+        
+        print(self)
     }
 	
 	/*************************************************************************
@@ -56,12 +64,14 @@ class Task: NSManagedObject {
 	 *************************************************************************/
 	func resetTimer() {
 		isRunning = false
-		remainingTime = Double(remainingTime) + Double(elapsedTime)
+		remainingTime = goalTime
 		elapsedTime = 0.0
         save()
 		
 		// cancel local notification
 		self.cancelNotification()
+        
+        print(self)
 	}
 	
     
@@ -83,7 +93,7 @@ class Task: NSManagedObject {
         
         save()
         
-        print("New Goal Date: \(goalDate)")
+        print(self)
     }
     
     

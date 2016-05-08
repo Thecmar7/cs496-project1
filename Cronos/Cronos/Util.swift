@@ -92,6 +92,8 @@ func deleteTask(atIndex index: Int) {
 func deleteAllTasks() {
     loadTasks()
     while tasks.count > 0 {
+        let task = tasks[0]
+        if (task.isRunning.boolValue) { task.cancelNotification() }
         deleteTask(atIndex: 0)
     }
 }

@@ -81,8 +81,8 @@ class TaskTableViewController: UITableViewController {
     // MARK: - Core Data
     
     func addTestTasks() {
-        let titles = ["Running", "Homework", "Programming"]
-        let times = [Double](arrayLiteral: (1*60), (4*60), (7*60))
+        let titles = ["Running", "Homework", "Programming", "ATesting"]
+        let times = [Double](arrayLiteral: (1*60), (4*60), (7*60), 5)
         for i in 0..<titles.count {
             addTask(titles[i], goalTime: times[i])
         }

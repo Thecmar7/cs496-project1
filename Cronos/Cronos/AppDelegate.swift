@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
+        
 		return true
 	}
 
@@ -46,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+        // Show alert
         let title = notification.alertTitle
         let body = notification.alertBody
         let action = notification.alertAction
@@ -53,6 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let actionAction = UIAlertAction(title: action, style: .Default, handler: nil)
         alert.addAction(actionAction)
         window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        
+        // Stop timer
+        let taskName = notification.userInfo!["title"] as? String
+        for task in tasks {
+            if (task.name == taskName) {
+                task.stopTimer()
+            }
+        }
     }
 
     // MARK: - Core Data stack

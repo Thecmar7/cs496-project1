@@ -142,6 +142,7 @@ class GoalDetailViewController: UIViewController {
     // Resets tasks currentTime and displays the changes
     func resetTimer() {
         task.resetTimer()
+        UIcounter = 0
 		elapsedTimeLabel.text = formatTime(Int(task.elapsedTime))
         elapsedTimeLabel.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
 	}
