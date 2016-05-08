@@ -8,14 +8,14 @@
 
 import UIKit
 
-class TimerTableViewCell: UITableViewCell {
+class TimerTableViewCell: UITableViewCell, TaskDelegate {
     
     @IBOutlet var taskName: UILabel!
     @IBOutlet var timeActual: UILabel!
     @IBOutlet var startButton: UIButton!
     
     var task: Task!
-    var timer = NSTimer()
+    var UItimer = NSTimer()
     var counter = 0
 
     override func awakeFromNib() {
@@ -34,11 +34,11 @@ class TimerTableViewCell: UITableViewCell {
             task.stopTimer()
             startButton.setTitle("start", forState: .Normal)
             startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
-            timer.invalidate()
+            stopUITimer()
         } else {
             task.startTimer()
             counter = Int(task.elapsedTime)
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+            UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
             startButton.setTitle("stop", forState: .Normal)
             startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
@@ -47,5 +47,9 @@ class TimerTableViewCell: UITableViewCell {
     func updateUI() {
         counter += 1
         timeActual.text = formatTime(counter)
+    }
+    
+    func stopUITimer() {
+        UItimer.invalidate()
     }
 }

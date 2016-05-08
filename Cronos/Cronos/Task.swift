@@ -15,6 +15,7 @@ class Task: NSManagedObject {
 // Insert code here to add functionality to your managed object subclass
     
     var notification = UILocalNotification()
+    var delegate: TaskDelegate?
     
     //MARK: Timer Functions
 	

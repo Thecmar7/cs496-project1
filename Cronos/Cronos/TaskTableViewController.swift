@@ -13,8 +13,6 @@ class TaskTableViewController: UITableViewController {
     var selectedTask: Task!
     var rightBarButton: UIBarButtonItem!
     
-    var UITimer = NSTimer()
-    
     // MARK - DEBUG
     let DEBUG = true
     
@@ -36,6 +34,7 @@ class TaskTableViewController: UITableViewController {
     // when view appears load tasks and reload table data
     override func viewWillAppear(animated: Bool) {
         loadTasks()
+        
         self.tableView.reloadData()
     }
     
@@ -97,7 +96,6 @@ class TaskTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Configure the cell...
@@ -108,6 +106,7 @@ class TaskTableViewController: UITableViewController {
         if (task.isRunning.boolValue) { cell.startButton.setTitle("stop", forState: .Normal); cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal) }
         cell.taskName.text = task.name
         cell.timeActual.text = formatTime(Int(task.elapsedTime))
+        cell.task.delegate = cell
 
         return cell
     }

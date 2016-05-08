@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
@@ -62,8 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for task in tasks {
             if (task.name == taskName) {
                 task.stopTimer()
+                task.delegate?.stopUITimer()
             }
-        }
+        }        
     }
 
     // MARK: - Core Data stack

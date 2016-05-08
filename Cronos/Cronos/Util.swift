@@ -34,6 +34,12 @@ func formatTime(time: Int) -> String {
     return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 }
 
+//MARK: - Timer functions
+
+protocol TaskDelegate: class {
+    func stopUITimer()
+}
+
 //MARK: - CoreData Functions
 
 // Load all tasks

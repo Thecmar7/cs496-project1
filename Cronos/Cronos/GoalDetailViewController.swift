@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoalDetailViewController: UIViewController {
+class GoalDetailViewController: UIViewController, TaskDelegate {
 	// The task
     var task: Task!
 	
@@ -33,6 +33,7 @@ class GoalDetailViewController: UIViewController {
 	 **************************************************************************/
 	override func viewDidLoad() {
         super.viewDidLoad()
+        task.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -139,6 +140,10 @@ class GoalDetailViewController: UIViewController {
         NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
     }
     
+    func stopUITimer() {
+        UItimer.invalidate()
+    }
+    
     // Resets tasks currentTime and displays the changes
     func resetTimer() {
         task.resetTimer()
@@ -149,7 +154,7 @@ class GoalDetailViewController: UIViewController {
 
 	// stops the UITimer and the tasks timer which in turn saves the time, also sets the stop button to stop
 	func stopTimer() {
-        UItimer.invalidate()
+        stopUITimer()
 		task.stopTimer()
         startAndStopButton.setTitle("Start", forState: .Normal)
         startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
