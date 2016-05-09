@@ -46,6 +46,7 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
     
     func startUITimer() {
         counter = Int(task.elapsedTime)
+        UItimer.invalidate()
         UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
     }

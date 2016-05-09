@@ -102,14 +102,11 @@ class Task: NSManagedObject {
      *		sets a new goal time and updates relative values
      *************************************************************************/
     func setNewGoalTime(newTime: Double) {
-        self.remainingTime = Double(goalTime) - Double(elapsedTime)
         self.goalTime = newTime
-        
-        if (self.isRunning.boolValue) {
-            self.cancelNotification()
-            self.goalDate = NSDate(timeIntervalSinceNow: newTime)
-            self.setPushNotificationAlert()
-        }
+        self.remainingTime = Double(goalTime) - Double(elapsedTime)
+        self.goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
+        self.cancelNotification()
+        self.setPushNotificationAlert()
         
         save()
         
