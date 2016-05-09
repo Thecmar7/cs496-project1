@@ -54,10 +54,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		super.viewDidLoad()
     }
 	
-	/**************************************************************************
-	*	viewWillAppear
-	*		initial set up of the view
-	**************************************************************************/
+	/***************************************************************************
+	 *	viewWillAppear
+	 *		initial set up of the view
+	 **************************************************************************/
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -171,9 +171,9 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	}
 	
 	/***************************************************************************
-	*	resetTimerAction
-	*		This sets the timer back to 
-	**************************************************************************/
+ 	 *	resetTimerAction
+	 *		This sets the timer back to
+	 **************************************************************************/
 	@IBAction func resetTimerAction(sender: UIButton) {
 		resetTimer()
     }

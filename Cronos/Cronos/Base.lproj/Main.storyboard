@@ -198,6 +198,9 @@
                                     <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="61"/>
                                         <color key="backgroundColor" red="0.07060913882" green="1" blue="0.12697658110000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="G5K-Ro-PiJ"/>
+                                        </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
