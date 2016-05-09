@@ -17,6 +17,9 @@ class Task: NSManagedObject {
     var notification = UILocalNotification()
     var delegate: TaskDelegate?
     
+    var timer = NSTimer()
+    var counter = 0
+    
     //MARK: Timer Functions
 	
 	/*************************************************************************
@@ -24,11 +27,14 @@ class Task: NSManagedObject {
 	 *		starts the timer setting and creates a push notification
 	 *************************************************************************/
     func startTimer() {
-		self.cancelNotification()
 		
+        self.cancelNotification()
         isRunning = true
         startDate = NSDate()
+        remainingTime = Double(goalTime) - Double(elapsedTime)
 		goalDate = NSDate(timeIntervalSinceNow: Double(remainingTime))
+        counter = Int(elapsedTime)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(incrementCounter), userInfo: nil, repeats: true)
         save()
             
         // set a push notification
@@ -47,17 +53,17 @@ class Task: NSManagedObject {
         
         isRunning = false
         self.cancelNotification()
+        self.timer.invalidate()
         var currentTimeLeft = goalDate.timeIntervalSinceNow
 		print(currentTimeLeft)
-		
-		
         if (currentTimeLeft > 0) {
-            remainingTime = abs(goalDate.timeIntervalSinceNow)
+            currentTimeLeft = abs(goalDate.timeIntervalSinceNow)
         } else {
             currentTimeLeft = 0.0
         }
         remainingTime = currentTimeLeft
-        elapsedTime = NSNumber(double: abs(Double(elapsedTime)) + abs(Double(startDate.timeIntervalSinceNow)))
+        delegate?.stopUITimer()
+//        elapsedTime = NSNumber(double: abs(Double(elapsedTime)) + abs(Double(startDate.timeIntervalSinceNow)))
         save()
 		
 		print("STOP")
@@ -69,9 +75,10 @@ class Task: NSManagedObject {
 	 *		stops the timer and makes the time remaining the total time
 	 *************************************************************************/
 	func resetTimer() {
-		isRunning = false
+        self.timer.invalidate()
 		remainingTime = goalTime
 		elapsedTime = 0.0
+        counter = 0;
         save()
 		
 		// cancel local notification
@@ -80,6 +87,12 @@ class Task: NSManagedObject {
 		print("RESET")
         print(self)
 	}
+    
+    func incrementCounter() {
+        counter += 1
+        remainingTime = Int(remainingTime) - 1
+        elapsedTime = counter
+    }
 	
     
     //MARK: Data Functions
@@ -89,14 +102,14 @@ class Task: NSManagedObject {
      *		sets a new goal time and updates relative values
      *************************************************************************/
     func setNewGoalTime(newTime: Double) {
+        self.remainingTime = Double(goalTime) - Double(elapsedTime)
         self.goalTime = newTime
         
         if (self.isRunning.boolValue) {
             self.cancelNotification()
+            self.goalDate = NSDate(timeIntervalSinceNow: newTime)
+            self.setPushNotificationAlert()
         }
-        
-        self.goalDate = NSDate(timeIntervalSinceNow: newTime)
-        self.setPushNotificationAlert()
         
         save()
         

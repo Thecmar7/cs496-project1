@@ -34,7 +34,7 @@ func formatTime(time: Int) -> String {
     return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 }
 
-//MARK: - Timer functions
+//MARK: - Delegate Functions
 
 protocol TaskDelegate: class {
     func stopUITimer()
@@ -62,6 +62,7 @@ func addTask(name: String, goalTime: Double) {
     let newTask = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     newTask.setValue(name, forKey: "name")
+    newTask.setValue(NSDate(), forKey: "createdDate")
     newTask.setValue(goalTime, forKey: "goalTime")
     newTask.setValue(goalTime, forKey: "remainingTime")
     newTask.setValue(NSDate(timeIntervalSinceNow: 3600*12), forKey: "goalDate")
@@ -84,12 +85,14 @@ func save() {
 }
 
 func deleteTask(task: Task) {
+    task.stopTimer()
     managedContext.deleteObject(task)
     save()
 }
 
 // delete a task at an index
 func deleteTask(atIndex index: Int) {
+    tasks[index].stopTimer()
     managedContext.deleteObject(tasks[index])
     save()
     loadTasks()
@@ -99,7 +102,9 @@ func deleteAllTasks() {
     loadTasks()
     while tasks.count > 0 {
         let task = tasks[0]
-        if (task.isRunning.boolValue) { task.cancelNotification() }
+        if (task.isRunning.boolValue) {
+            task.stopTimer()
+        }
         deleteTask(atIndex: 0)
     }
 }

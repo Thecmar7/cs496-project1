@@ -38,10 +38,16 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
         } else {
             task.startTimer()
             counter = Int(task.elapsedTime)
-            UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+            startUITimer()
             startButton.setTitle("stop", forState: .Normal)
             startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
+    }
+    
+    func startUITimer() {
+        counter = Int(task.elapsedTime)
+        UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
     }
     
     func updateUI() {
@@ -51,5 +57,7 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
     
     func stopUITimer() {
         UItimer.invalidate()
+        startButton.setTitle("start", forState: .Normal)
+        startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
     }
 }
