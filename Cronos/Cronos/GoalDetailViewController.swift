@@ -33,7 +33,20 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	 *		initial set up of the view
 	 **************************************************************************/
 	override func viewDidLoad() {
-        super.viewDidLoad()
+        // style the buttons
+		resetButton.layer.cornerRadius = resetButton.frame.size.height / 4
+		resetButton.layer.borderWidth = 2
+		resetButton.layer.borderColor = UIColor.blueColor().CGColor
+		
+		startAndStopButton.layer.cornerRadius = startAndStopButton.frame.size.height / 4
+		startAndStopButton.layer.borderWidth = 2
+		if (task.isRunning.boolValue) {
+			startAndStopButton.layer.borderColor = UIColor.redColor().CGColor
+		} else {
+			startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
+		}
+		
+		super.viewDidLoad()
     }
 	
 	/**************************************************************************
@@ -64,16 +77,17 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         self.title = task.name
         
         // set appropriate color for elapsed time
-        let total = Double(task.remainingTime)
-        elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
-                                             green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
-                                             blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
-                                             alpha: 1.0)
+		elapsedTimeLabel.textColor = UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
+											 green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
+											 blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0, alpha: 1.0)
+		
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if (task.isRunning.boolValue) { UItimer.invalidate() }
+        if (task.isRunning.boolValue) {
+			UItimer.invalidate()
+		}
     }
 	
 	/***************************************************************************
@@ -130,13 +144,16 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
             
             //start updating the UI as often as the timer updates
             startUITimer()
-            
-            // starts timer
-            task.startTimer()
-            
+			
             // change label
 			startAndStopButton.setTitle("Stop", forState: .Normal)
             startAndStopButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+			startAndStopButton.layer.borderColor = UIColor.redColor().CGColor
+			
+            // starts timer
+            task.startTimer()
+            
+            
             
         // if label is stop, stop the timer
 		} else if (sender.titleLabel?.text == "Stop") {
@@ -192,6 +209,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
                                              green: 0/255.0,
                                              blue: 0/255.0,
                                              alpha: 1.0)
+		startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
 	}
 	/***************************************************************************
 	 *	stopTimer
@@ -202,6 +220,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         UItimer.invalidate()
         startAndStopButton.setTitle("Start", forState: .Normal)
         startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
+		startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
 	}
 	
 	/**************************************************************************
@@ -213,7 +232,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         elapsedTimeLabel.text = formatTime(UIcounter)
 		elapsedTimeLabel.textColor=UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
 		                                   green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
-		                                   blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0, alpha: 1.0)
+		                                   blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
+		                                   alpha: 1.0)
 		
 	}
 
