@@ -35,7 +35,11 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+	
+	/**************************************************************************
+	*	viewWillAppear
+	*		initial set up of the view
+	**************************************************************************/
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIcounter = Int(task.elapsedTime)
@@ -60,13 +64,16 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         
         // set appropriate color for elapsed time
         let total = Double(task.remainingTime)
-        elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0, alpha: 1.0)
+        elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
+                                             green: (240 - (240 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
+                                             blue: (128 - (128 / (CGFloat(total))) * CGFloat(task.elapsedTime)) / 255.0,
+                                             alpha: 1.0)
     }
 	
 	/***************************************************************************
-	*	didReceiveMemoryWarning
-	*		Don't touch this cause reasons
-	***************************************************************************/
+	 *	didReceiveMemoryWarning
+	 *		Don't touch this cause reasons
+	 **************************************************************************/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -74,10 +81,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	
 	// MARK: Actions
 	
-	/**************************************************************************
-	*	getTimeButtonSelected
-	*		This is a test function for the selector wheel
-	***************************************************************************/
+	/***************************************************************************
+	 *	getTimeButtonSelected
+	 *		This is a test function for the selector wheel
+	 **************************************************************************/
     @IBAction func editGoalAction(sender: UIButton) {
         if (sender.titleLabel?.text == "Set Goal") {
             // replace picker with label, change button, update labels
@@ -96,7 +103,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		
     }
 	
-	/***** MARK: finishTaskAction *********************************************
+	/***************************************************************************
 	 *	finishTaskAction
 	 *		On finish task stop timer if running
 	 **************************************************************************/
@@ -141,39 +148,61 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
     }
 
     // MARK: Functions
-    
-    // update the UI every time the task updates
+
+	/***************************************************************************
+	 *	startUITimer
+	 *		update the UI every time the task updates
+	 **************************************************************************/
     func startUITimer() {
-        UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+        UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0,
+                                                         target: self,
+                                                         selector: #selector(updateUI),
+                                                         userInfo: nil,
+                                                         repeats: true)
         NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
     }
     
     func stopUITimer() {
         UItimer.invalidate()
     }
-    
-    // Resets tasks currentTime and displays the changes
+	
+	/***************************************************************************
+	 *	resetTimer
+	 *		Resets tasks currentTime and displays the changes
+	 **************************************************************************/
     func resetTimer() {
         task.resetTimer()
         UIcounter = 0
 		elapsedTimeLabel.text = formatTime(Int(task.elapsedTime))
-        elapsedTimeLabel.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+        elapsedTimeLabel.textColor = UIColor(red: 0/255.0,
+                                             green: 0/255.0,
+                                             blue: 0/255.0,
+                                             alpha: 1.0)
 	}
-
-	// stops the UITimer and the tasks timer which in turn saves the time, also sets the stop button to stop
+	/***************************************************************************
+	 *	stopTimer
+	 *		stops the UITimer and the tasks timer which in turn saves the time,
+	 *		also sets the stop button to stop
+	 **************************************************************************/
 	func stopTimer() {
         stopUITimer()
 		task.stopTimer()
         startAndStopButton.setTitle("Start", forState: .Normal)
         startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
 	}
-    
-    // Changes the label of the timer
+	
+	/**************************************************************************
+	 *	updateUI
+	 *		Changes the label of the timer
+	 **************************************************************************/
 	func updateUI() {
         UIcounter! += 1
         elapsedTimeLabel.text = formatTime(UIcounter)
-		let total = Double(task.remainingTime)
-		elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime) + UIcounter)) / 255.0, green: (240 - (240 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime) + UIcounter)) / 255.0, blue: (128 - (128 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime) + UIcounter)) / 255.0, alpha: 1.0)
+		let total = Double(task.remainingTime) + Double(UIcounter)
+		elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime))) / 255.0,
+		                                     green: (240 - (240 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime))) / 255.0,
+		                                     blue: (128 - (128 / (CGFloat(total))) * CGFloat(Int(task.elapsedTime))) / 255.0,
+		                                     alpha: 1.0)
 	}
 
 }
