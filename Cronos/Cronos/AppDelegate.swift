@@ -51,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let title = notification.alertTitle
         let body = notification.alertBody
         let action = notification.alertAction
-        let alert = UIAlertController(title: title, message: body, preferredStyle: .Alert)
-        let actionAction = UIAlertAction(title: action, style: .Default, handler: nil)
-        alert.addAction(actionAction)
-        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
+        let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
+        alertController.addAction(actionAction)
+        window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
         
         // Stop timer
         let taskName = notification.userInfo!["title"] as? String

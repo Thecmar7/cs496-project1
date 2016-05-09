@@ -102,8 +102,6 @@ class TaskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
         
-        print(task)
-        
         cell.task = task
         cell.taskName.text = task.name
         cell.timeActual.text = formatTime(Int(task.elapsedTime))

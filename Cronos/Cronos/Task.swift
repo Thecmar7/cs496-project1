@@ -122,7 +122,7 @@ class Task: NSManagedObject {
 	 *************************************************************************/
 	func setPushNotificationAlert() {
 		notification.alertBody = "You reached your \(self.name) goal!"	// text that will be displayed in the notification
-		notification.alertAction = "View task"				// text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+		notification.alertAction = "Okay"				// text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
 		notification.fireDate = self.goalDate				// todo item due date (when notification will be fired)
 		notification.soundName = UILocalNotificationDefaultSoundName	// play default sound
 		notification.userInfo = ["title": self.name!]		// assign a unique identifier to the notification so that we can retrieve it later
