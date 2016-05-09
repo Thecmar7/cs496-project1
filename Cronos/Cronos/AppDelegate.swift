@@ -37,6 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        for task in tasks {
+            if (task.isRunning.boolValue && task.goalDate.timeIntervalSinceNow >= 0) {
+                task.isRunning = false
+                task.elapsedTime = task.goalTime
+                task.counter = Int(task.elapsedTime)
+            } else if (task.isRunning.boolValue && task.goalDate.timeIntervalSinceNow < 0) {
+                task.remainingTime = abs(task.goalDate.timeIntervalSinceNow)
+                task.elapsedTime = Double(task.goalTime) - Double(task.remainingTime)
+                task.counter = Int(task.elapsedTime)
+            }
+        }
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -51,19 +64,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let title = notification.alertTitle
         let body = notification.alertBody
         let action = notification.alertAction
-        let alert = UIAlertController(title: title, message: body, preferredStyle: .Alert)
-        let actionAction = UIAlertAction(title: action, style: .Default, handler: nil)
-        alert.addAction(actionAction)
-        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
-        
-        // Stop timer
-        let taskName = notification.userInfo!["title"] as? String
-        for task in tasks {
-            if (task.name == taskName) {
-                task.stopTimer()
-                task.delegate?.stopUITimer()
-            }
-        }        
+        let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
+        let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
+        alertController.addAction(actionAction)
+        window?.rootViewController?.presentViewController(alertController, animated: true, completion: {
+            // Stop timer
+            let taskName = notification.userInfo!["title"] as? String
+            for task in tasks {
+                if (task.name == taskName) {
+                    task.elapsedTime = Int(task.goalTime)
+                    task.remainingTime = Int(0)
+                    task.stopTimer()
+                    task.delegate?.stopUITimer()
+                    task.delegate?.goalReached()
+                }
+            } 
+        })
     }
 
     // MARK: - Core Data stack

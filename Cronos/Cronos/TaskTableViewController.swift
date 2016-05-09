@@ -34,7 +34,6 @@ class TaskTableViewController: UITableViewController {
     // when view appears load tasks and reload table data
     override func viewWillAppear(animated: Bool) {
         loadTasks()
-        
         self.tableView.reloadData()
     }
     
@@ -102,8 +101,6 @@ class TaskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
         
-        print(task)
-        
         cell.task = task
         cell.taskName.text = task.name
         cell.timeActual.text = formatTime(Int(task.elapsedTime))
@@ -112,6 +109,10 @@ class TaskTableViewController: UITableViewController {
             cell.startUITimer()
             cell.startButton.setTitle("stop", forState: .Normal)
             cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        } else {
+            cell.startButton.setTitle("start", forState: .Normal)
+            cell.startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
+            cell.stopUITimer()
         }
 
         return cell

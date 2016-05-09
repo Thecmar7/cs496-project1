@@ -166,7 +166,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		} else if (sender.titleLabel?.text == "Stop") {
 			// stops timer
 			stopTimer()
-
+            task.stopTimer()
 		}
 	}
 	
@@ -200,6 +200,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
             task.stopTimer()
         }
     }
+    
+    func goalReached() {
+        elapsedTimeLabel.text = formatTime(Int(task.goalTime))
+    }
 	
 	/***************************************************************************
 	 *	resetTimer
@@ -207,7 +211,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	 **************************************************************************/
     func resetTimer() {
         if (task.isRunning.boolValue) {
-            stopTimer()
+            stopUITimer()
         }
         task.resetTimer()
         UIcounter = 0

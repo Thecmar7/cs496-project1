@@ -38,6 +38,7 @@ func formatTime(time: Int) -> String {
 
 protocol TaskDelegate: class {
     func stopUITimer()
+    func goalReached()
 }
 
 //MARK: - CoreData Functions
