@@ -34,16 +34,21 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	 **************************************************************************/
 	override func viewDidLoad() {
         // style the buttons
+		// reset button
 		resetButton.layer.cornerRadius = resetButton.frame.size.height / 4
 		resetButton.layer.borderWidth = 2
-		resetButton.layer.borderColor = UIColor.blueColor().CGColor
+		resetButton.layer.borderColor = self.view.tintColor.CGColor
+		resetButton.backgroundColor = self.view.tintColor
 		
+		// start and stop button
 		startAndStopButton.layer.cornerRadius = startAndStopButton.frame.size.height / 4
 		startAndStopButton.layer.borderWidth = 2
 		if (task.isRunning.boolValue) {
 			startAndStopButton.layer.borderColor = UIColor.redColor().CGColor
+			startAndStopButton.backgroundColor = UIColor.redColor()
 		} else {
-			startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
+			startAndStopButton.layer.borderColor = UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0).CGColor
+			startAndStopButton.backgroundColor = UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0)
 		}
 		
 		super.viewDidLoad()
@@ -62,7 +67,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         // Do any additional setup after loading the view.
         if (task.isRunning.boolValue) {
             startAndStopButton.setTitle("Stop", forState: .Normal)
-            startAndStopButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+            //startAndStopButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+			startAndStopButton.backgroundColor = UIColor.redColor()
             startUITimer()
         }
         
@@ -147,7 +153,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 			
             // change label
 			startAndStopButton.setTitle("Stop", forState: .Normal)
-            startAndStopButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+            //startAndStopButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+			startAndStopButton.backgroundColor = UIColor.redColor()
 			startAndStopButton.layer.borderColor = UIColor.redColor().CGColor
 			
             // starts timer
@@ -209,7 +216,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
                                              green: 0/255.0,
                                              blue: 0/255.0,
                                              alpha: 1.0)
-		startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
+		startAndStopButton.layer.borderColor = UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0).CGColor
 	}
 	/***************************************************************************
 	 *	stopTimer
@@ -219,8 +226,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	func stopTimer() {
         UItimer.invalidate()
         startAndStopButton.setTitle("Start", forState: .Normal)
-        startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
-		startAndStopButton.layer.borderColor = UIColor.greenColor().CGColor
+        //startAndStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
+		
+		startAndStopButton.layer.borderColor = UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0).CGColor
+		startAndStopButton.backgroundColor = UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0)
 	}
 	
 	/**************************************************************************

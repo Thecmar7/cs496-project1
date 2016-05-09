@@ -197,15 +197,21 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhJ-Oe-xfI">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="61"/>
+                                        <color key="backgroundColor" red="0.07060913882" green="1" blue="0.12697658110000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                        <state key="normal" title="Start"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="startTimer:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="zgN-Ac-9Yo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="center" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDP-CF-qbl">
                                         <rect key="frame" x="280" y="0.0" width="280" height="61"/>
-                                        <state key="normal" title="Reset"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="resetTimerAction:" destination="Qoo-5m-0sn" eventType="touchUpInside" id="Vfd-13-RQ6"/>
                                         </connections>
