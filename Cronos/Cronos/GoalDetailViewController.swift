@@ -211,11 +211,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	func updateUI() {
         UIcounter! += 1
         elapsedTimeLabel.text = formatTime(UIcounter)
-		let total = Double(task.goalTime)
-		elapsedTimeLabel.textColor = UIColor(red: (128 + (128 / (CGFloat(total)))) / 255.0,
-		                                     green: (240 - (240 / (CGFloat(total)))) / 255.0,
-		                                     blue: (128 - (128 / (CGFloat(total)))) / 255.0,
-		                                     alpha: 1.0)
+		elapsedTimeLabel.textColor=UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
+		                                   green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
+		                                   blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0, alpha: 1.0)
+		
 	}
 
 }
