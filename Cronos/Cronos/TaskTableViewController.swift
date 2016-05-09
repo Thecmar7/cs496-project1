@@ -102,11 +102,17 @@ class TaskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TimerTableViewCell
         let task = tasks[indexPath.row]
         
+        print(task)
+        
         cell.task = task
-        if (task.isRunning.boolValue) { cell.startButton.setTitle("stop", forState: .Normal); cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal) }
         cell.taskName.text = task.name
         cell.timeActual.text = formatTime(Int(task.elapsedTime))
         cell.task.delegate = cell
+        if (task.isRunning.boolValue) {
+            cell.startUITimer()
+            cell.startButton.setTitle("stop", forState: .Normal)
+            cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        }
 
         return cell
     }
