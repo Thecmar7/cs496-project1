@@ -61,4 +61,8 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
         startButton.setTitle("start", forState: .Normal)
         startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
     }
+    
+    func goalReached() {
+        timeActual.text = formatTime(Int(task.goalTime))
+    }
 }

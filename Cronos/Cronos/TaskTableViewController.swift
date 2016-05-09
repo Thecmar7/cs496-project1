@@ -34,7 +34,6 @@ class TaskTableViewController: UITableViewController {
     // when view appears load tasks and reload table data
     override func viewWillAppear(animated: Bool) {
         loadTasks()
-        
         self.tableView.reloadData()
     }
     
@@ -110,6 +109,10 @@ class TaskTableViewController: UITableViewController {
             cell.startUITimer()
             cell.startButton.setTitle("stop", forState: .Normal)
             cell.startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        } else {
+            cell.startButton.setTitle("start", forState: .Normal)
+            cell.startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
+            cell.stopUITimer()
         }
 
         return cell
