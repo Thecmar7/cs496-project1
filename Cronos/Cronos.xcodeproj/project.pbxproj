@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4318BE241CDD45CA0073098C /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318BE231CDD45CA0073098C /* Task+CoreDataProperties.swift */; };
 		436E01181CC8104100D44117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01171CC8104100D44117 /* AppDelegate.swift */; };
 		436E011D1CC8104100D44117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E011B1CC8104100D44117 /* Main.storyboard */; };
 		436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */; };
@@ -20,6 +19,7 @@
 		43F7D4E21CCB192300B73CDF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4E01CCB192300B73CDF /* Task.swift */; };
 		43F7D4E41CCC2DB900B73CDF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4E31CCC2DB900B73CDF /* Util.swift */; };
 		43F7D4ED1CCD5BA000B73CDF /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4EC1CCD5BA000B73CDF /* AddTaskViewController.swift */; };
+		86BABBD91CF4CC9300405EEA /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4318BE231CDD45CA0073098C /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		436E01141CC8104100D44117 /* Cronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E01171CC8104100D44117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		436E011C1CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		43F7D4E01CCB192300B73CDF /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		43F7D4E31CCC2DB900B73CDF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		43F7D4EC1CCD5BA000B73CDF /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "Cronos/Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +73,7 @@
 		436E010B1CC8104100D44117 = {
 			isa = PBXGroup;
 			children = (
+				86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */,
 				436E01161CC8104100D44117 /* Cronos */,
 				436E012E1CC8104100D44117 /* CronosTests */,
 				436E01151CC8104100D44117 /* Products */,
@@ -114,7 +115,6 @@
 			children = (
 				43F7D4E01CCB192300B73CDF /* Task.swift */,
 				436E013A1CC814C800D44117 /* TimerTableViewCell.swift */,
-				4318BE231CDD45CA0073098C /* Task+CoreDataProperties.swift */,
 				436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */,
 			);
 			name = Model;
@@ -247,7 +247,7 @@
 				43F7D4E41CCC2DB900B73CDF /* Util.swift in Sources */,
 				436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */,
 				436E01421CC81DE800D44117 /* GoalDetailViewController.swift in Sources */,
-				4318BE241CDD45CA0073098C /* Task+CoreDataProperties.swift in Sources */,
+				86BABBD91CF4CC9300405EEA /* Task+CoreDataProperties.swift in Sources */,
 				436E01181CC8104100D44117 /* AppDelegate.swift in Sources */,
 				436E01401CC818BB00D44117 /* TaskTableViewController.swift in Sources */,
 				436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */,

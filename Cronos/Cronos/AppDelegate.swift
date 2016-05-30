@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for task in tasks {
                 if (task.name == taskName) {
                     task.elapsedTime = Int(task.goalTime)
-                    task.remainingTime = Int(0)
+                   // task.remainingTime = Int(0)
                     task.stopTimer()
                     task.delegate?.stopUITimer()
                     task.delegate?.goalReached()

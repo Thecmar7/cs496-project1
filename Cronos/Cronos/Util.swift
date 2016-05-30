@@ -65,9 +65,7 @@ func addTask(name: String, goalTime: Double) {
     newTask.setValue(name, forKey: "name")
     newTask.setValue(NSDate(), forKey: "createdDate")
     newTask.setValue(goalTime, forKey: "goalTime")
-    newTask.setValue(goalTime, forKey: "remainingTime")
-    newTask.setValue(NSDate(timeIntervalSinceNow: 3600*12), forKey: "goalDate")
-    
+	
     save()
     loadTasks()
 }
