@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  Cronos
 //
-//  Created by Samuel Lichlyter on 5/6/16.
+//  Created by Cramer Smith on 5/24/16.
 //  Copyright © 2016 Samuel Lichlyter. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,11 +16,9 @@ extension Task {
 
     @NSManaged var createdDate: NSDate!
     @NSManaged var elapsedTime: NSNumber!
-    @NSManaged var goalDate: NSDate!
+    @NSManaged var goalTime: NSNumber!
     @NSManaged var isRunning: NSNumber!
     @NSManaged var name: String!
-    @NSManaged var remainingTime: NSNumber!
     @NSManaged var startDate: NSDate!
-    @NSManaged var goalTime: NSNumber!
 
 }
