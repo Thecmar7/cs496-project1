@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskTableViewController: UITableViewController {
+class TaskTableViewController: UITableViewController, ModalDissmissDelegate {
     
     var selectedTask: Task!
     var rightBarButton: UIBarButtonItem!
@@ -35,6 +35,10 @@ class TaskTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         loadTasks()
         self.tableView.reloadData()
+    }
+    
+    func updateVC() {
+        viewWillAppear(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -163,6 +167,9 @@ class TaskTableViewController: UITableViewController {
         if (segue.identifier == "goalDetailSegue") {
             let goalVC = segue.destinationViewController as! GoalDetailViewController
             goalVC.task = selectedTask
+        } else if (segue.identifier == "addTaskSegue") {
+            let addVC = segue.destinationViewController as! AddTaskViewController
+            addVC.delegate = self
         }
     }
 

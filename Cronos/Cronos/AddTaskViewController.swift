@@ -13,6 +13,7 @@ class AddTaskViewController: UIViewController {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var estimateDatePicker: UIDatePicker!
     
+    var delegate: ModalDissmissDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class AddTaskViewController: UIViewController {
     @IBAction func doneButtonAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true) { 
             addTask(self.nameTextField.text!, goalTime: self.estimateDatePicker.countDownDuration)
+            self.delegate?.updateVC()
         }
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoalDetailViewController: UIViewController, TaskDelegate {
+class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDelegate {
 	// The task
     var task: Task!
 	
@@ -29,7 +29,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	**************************************************************************/
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	}
+    }
 	
 	/***************************************************************************
 	*	viewWillAppear
@@ -65,6 +65,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		// TODO: set appropriate color for elapsed time
 		
 	}
+    
+    func updateVC() {
+        viewWillAppear(true)
+    }
 	
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -82,10 +86,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
+    
 	// MARK: Actions
-	
-
-	
 	
 	/***************************************************************************
 	 *	startTimer
@@ -118,8 +120,6 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		                                                 repeats: true)
 		NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
 	}
-	
-	
 	
 	/***************************************************************************
 	*	stopUITimer
@@ -167,5 +167,14 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		               blue:  (CGFloat(b) / 255.0),
 		               alpha: 1.0)
 	}
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "edit segue") {
+            let editVC = segue.destinationViewController as! EditTaskViewController
+            editVC.task = self.task
+            editVC.delegate = self
+        }
+    }
 	
 }
