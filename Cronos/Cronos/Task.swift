@@ -70,17 +70,17 @@ class Task: NSManagedObject {
 	
 	//MARK: Data Functions
 	/*************************************************************************
-	*	getReaminingTime
-	*		gets the remaining time
-	*************************************************************************/
+	 *	getReaminingTime
+	 *		gets the remaining time
+	 *************************************************************************/
 	func getRemainingTime() -> Double {
 		return (Double(goalTime!) - Double(elapsedTime!)) + (startDate?.timeIntervalSinceNow)!
 	}
 	
 	/*************************************************************************
-	*	setGoalTime
-	*		sets a new goal time and updates relative values
-	*************************************************************************/
+	 *	setGoalTime
+	 *		sets a new goal time and updates relative values
+	 *************************************************************************/
 	func setNewGoalTime(newTime: Double) {
 		self.goalTime = newTime
 		self.goalDate = NSDate(timeIntervalSinceNow: Double(self.getRemainingTime()))
@@ -93,17 +93,21 @@ class Task: NSManagedObject {
 	}
 	
 	/*************************************************************************
-	*	getViewTime
-	*		gets the time that the view should display
-	*************************************************************************/
+	 *	getViewTime
+	 *		gets the time that the view should display
+	 *************************************************************************/
 	func getViewTime() -> Double {
-		return abs(self.startDate.timeIntervalSinceNow) + Double(self.elapsedTime)
+		if (self.isRunning.boolValue) {
+			return abs(self.startDate.timeIntervalSinceNow) + Double(self.elapsedTime)
+		} else {
+			return Double(self.elapsedTime)
+		}
 	}
 	
 	/*************************************************************************
-	*	checkIfIsRunning
-	*		check if the timer should or still is running
-	*************************************************************************/
+	 *	checkIfIsRunning
+	 *		check if the timer should or still is running
+	 *************************************************************************/
 	func checkIfIsRunning() -> Bool {
 		if (self.isRunning.boolValue && getRemainingTime() > Double(self.goalTime)) {
 			self.isRunning = false
@@ -111,12 +115,20 @@ class Task: NSManagedObject {
 		return self.isRunning.boolValue
 	}
 	
-	//MARK: Notification Functions
-	
 	/*************************************************************************
 	*	setPushNotificationAlert
 	*		creates a push notification to be called at the final day
 	*************************************************************************/
+	func checkIfGoalReached() -> Bool {
+		return (goalDate?.timeIntervalSinceNow < 0)
+	}
+	
+	//MARK: Notification Functions
+	
+	/*************************************************************************
+	 *	setPushNotificationAlert
+	 *		creates a push notification to be called at the final day
+	 *************************************************************************/
 	func setPushNotificationAlert() {
 		notification.alertBody = "You reached your \(self.name) goal!"	// text that will be displayed in the notification
 		notification.alertAction = "Yay!"								// text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
@@ -134,5 +146,6 @@ class Task: NSManagedObject {
 	func cancelNotification() {
 		UIApplication.sharedApplication().cancelLocalNotification(notification)
 	}
+	
 	
 }
