@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoalDetailViewController: UIViewController, TaskDelegate {
+class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDelegate {
 	// The task
     var task: Task!
 	
@@ -29,7 +29,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	**************************************************************************/
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	}
+    }
 	
 	/***************************************************************************
 	*	viewWillAppear
@@ -65,6 +65,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		elapsedTimeLabel.text = formatTime(Int(task.getViewTime()))
 		
 	}
+    
+    func updateVC() {
+        viewWillAppear(true)
+    }
 	
 	
     override func viewWillDisappear(animated: Bool) {
@@ -83,10 +87,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
+    
 	// MARK: Actions
-	
-
-	
 	
 	/***************************************************************************
 	 *	startTimer
@@ -120,8 +122,6 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
 	}
 	
-	
-	
 	/***************************************************************************
 	*	stopUITimer
 	*		update the UI every time the task updates
@@ -153,4 +153,30 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		elapsedTimeLabel.text = formatTime(Int(task.getViewTime()))
 		elapsedTimeLabel.textColor = RGBColor(0.0, g: 0.0, b: 0.0)
 	}
+	
+	
+	/**************************************************************************
+	*	RGBColor
+	*		a function to make the changing of color a bit simpler
+	**************************************************************************/
+	func RGBColor(r:Double, g:Double, b:Double) -> UIColor {
+		/* return UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
+		green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
+		blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
+		alpha: 1.0) */
+		return UIColor(red:	  (CGFloat(r) / 255.0),
+		               green: (CGFloat(g) / 255.0),
+		               blue:  (CGFloat(b) / 255.0),
+		               alpha: 1.0)
+	}
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "edit segue") {
+            let editVC = segue.destinationViewController as! EditTaskViewController
+            editVC.task = self.task
+            editVC.delegate = self
+        }
+    }
+	
 }

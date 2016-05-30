@@ -13,6 +13,7 @@ class AddTaskViewController: UIViewController {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var estimateDatePicker: UIDatePicker!
     
+    var delegate: ModalDissmissDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

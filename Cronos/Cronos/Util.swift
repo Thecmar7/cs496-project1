@@ -41,13 +41,17 @@ protocol TaskDelegate: class {
     func goalReached()
 }
 
+protocol ModalDissmissDelegate: class {
+    func updateVC()
+}
+
 //MARK: - CoreData Functions
 
 // Load all tasks
 func loadTasks() {
     
     let fetchRequest = NSFetchRequest(entityName: "Task")
-    fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
+    fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "elapsedTime", ascending: true)]
     
     do {
         let results = try managedContext.executeFetchRequest(fetchRequest)
