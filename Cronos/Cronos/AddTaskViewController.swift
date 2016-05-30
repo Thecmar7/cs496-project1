@@ -9,7 +9,7 @@
 import UIKit
 
 class AddTaskViewController: UIViewController {
-
+	
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var estimateDatePicker: UIDatePicker!
     
@@ -29,16 +29,45 @@ class AddTaskViewController: UIViewController {
     @IBAction func cancelButtonAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+	
     @IBAction func doneButtonAction(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true) { 
-            addTask(self.nameTextField.text!, goalTime: self.estimateDatePicker.countDownDuration)
-            self.delegate?.updateVC()
-        }
+		//var name = self.nameTextField.text;
+		if (self.nameTextField!.text!.isEmpty) {
+			let alertController = UIAlertController(title: "Name?", message: "Please input a name for your new task:", preferredStyle: .Alert)
+			
+			let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
+				if let field = alertController.textFields![0] as? UITextField {
+			
+					// store your data
+					self.nameTextField.text = field.text!;
+				} else {
+					// user did not fill field
+				}
+			}
+
+			let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+
+			alertController.addTextFieldWithConfigurationHandler { (textField) in
+				textField.placeholder = "Task name"
+			}
+
+			alertController.addAction(confirmAction)
+			alertController.addAction(cancelAction)
+
+			self.presentViewController(alertController, animated: true, completion: nil)
+			
+			
+		} else {
+			dismissViewControllerAnimated(true) {
+				addTask(self.nameTextField.text!, goalTime: self.estimateDatePicker.countDownDuration)
+			}
+		}
+
     }
     
-    
 
+
+		
     /*
     // MARK: - Navigation
 
