@@ -16,7 +16,6 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
     
     var task: Task!
     var UItimer = NSTimer()
-    var counter = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,39 +28,66 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
         // Configure the view for the selected state
     }
 
-    @IBAction func startButton(sender: UIButton) {        
-        if (task.isRunning.boolValue) {
-            task.stopTimer()
-            startButton.setTitle("start", forState: .Normal)
-            startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
-            stopUITimer()
-        } else {
-            task.startTimer()
-            counter = Int(task.elapsedTime)
-            startUITimer()
-            startButton.setTitle("stop", forState: .Normal)
-            startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-        }
+	/***************************************************************************
+	*	startTimer
+	*		This starts and stops the timer
+	**************************************************************************/
+    @IBAction func startButton(sender: UIButton) {
+		print(startButton.titleLabel!.text!)
+		if (startButton.titleLabel!.text! == "Start") {
+			//start updating the UI as often as the timer updates
+			startUITimer()
+			task.startTimer()
+			
+			// change label
+			startButton.setTitle("Stop", forState: .Normal)
+			startButton.setTitleColor(RGBColor(200.0, g: 0.0, b: 0.0), forState: .Normal)
+		} else {
+			// stops timer
+			stopUITimer()
+		}
     }
     
-    func startUITimer() {
-        counter = Int(task.elapsedTime)
-        UItimer.invalidate()
-        UItimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
-    }
+	/***************************************************************************
+	*	startUITimer
+	*		update the UI every time the task updates
+	**************************************************************************/
+	func startUITimer() {
+		UItimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+		                                                 target: self,
+		                                                 selector: #selector(updateUI),
+		                                                 userInfo: nil,
+		                                                 repeats: true)
+		NSRunLoop.mainRunLoop().addTimer(UItimer, forMode: NSDefaultRunLoopMode)
+	}
+	
+	/**************************************************************************
+	*	updateUI
+	*		Changes the label of the timer
+	**************************************************************************/
+	func updateUI() {
+		timeActual.text = formatTime(Int(task.getViewTime()))
+		timeActual.textColor = RGBColor(0.0, g: 0.0, b: 0.0)
+	}
     
-    func updateUI() {
-        counter += 1
-        timeActual.text = formatTime(counter)
-    }
-    
-    func stopUITimer() {
-        UItimer.invalidate()
-        startButton.setTitle("start", forState: .Normal)
-        startButton.setTitleColor(UIColor(red: 115/255, green: 204/255, blue: 0, alpha: 1.0), forState: .Normal)
-    }
-    
+	/***************************************************************************
+	*	stopUITimer
+	*		update the UI every time the task updates
+	**************************************************************************/
+	func stopUITimer() {
+		UItimer.invalidate()
+		if (task.checkIfIsRunning()) {
+			task.stopTimer()
+		}
+		startButton.setTitle("Start", forState: .Normal)
+		startButton.setTitleColor(RGBColor(0.0, g: 200.0, b: 0.0), forState: .Normal)
+	}
+	
+	/***************************************************************************
+	*	goalReached
+	*		Sets elapsed time label to the goal time
+	*		Delegate calls this
+	**************************************************************************/
     func goalReached() {
         timeActual.text = formatTime(Int(task.goalTime))
     }

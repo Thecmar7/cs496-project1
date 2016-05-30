@@ -62,9 +62,10 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 		// set title to task name
 		self.title = task.name
 		
-		// TODO: set appropriate color for elapsed time
+		elapsedTimeLabel.text = formatTime(Int(task.getViewTime()))
 		
 	}
+	
 	
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -92,7 +93,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	 *		This starts and stops the timer
 	 **************************************************************************/
 	@IBAction func startTimer(sender: UIButton) {
-		if (task.checkIfIsRunning() == false) {
+		if (startAndStopButton.titleLabel!.text! == "Start") {
 			//start updating the UI as often as the timer updates
 			startUITimer()
 			task.startTimer()
@@ -131,6 +132,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 			task.stopTimer()
 		}
 		startAndStopButton.setTitle("Start", forState: .Normal)
+		startAndStopButton.backgroundColor = RGBColor(0.0, g: 200.0, b: 0.0)
 	}
 	
 	/***************************************************************************
@@ -144,28 +146,11 @@ class GoalDetailViewController: UIViewController, TaskDelegate {
 	
 	
 	/**************************************************************************
-	*	updateUI
-	*		Changes the label of the timer
-	**************************************************************************/
+	 *	updateUI
+	 *		Changes the label of the timer
+	 **************************************************************************/
 	func updateUI() {
 		elapsedTimeLabel.text = formatTime(Int(task.getViewTime()))
 		elapsedTimeLabel.textColor = RGBColor(0.0, g: 0.0, b: 0.0)
 	}
-	
-	
-	/**************************************************************************
-	*	RGBColor
-	*		a function to make the changing of color a bit simpler
-	**************************************************************************/
-	func RGBColor(r:Double, g:Double, b:Double) -> UIColor {
-		/* return UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
-		green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
-		blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
-		alpha: 1.0) */
-		return UIColor(red:	  (CGFloat(r) / 255.0),
-		               green: (CGFloat(g) / 255.0),
-		               blue:  (CGFloat(b) / 255.0),
-		               alpha: 1.0)
-	}
-	
 }
