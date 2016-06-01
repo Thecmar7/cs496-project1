@@ -33,8 +33,8 @@ class Task: NSManagedObject {
 		setPushNotificationAlert()
 		
 		// print values for error checking
-		//print("START")
-		//print(self)
+		print("START")
+		print(self)
 	}
 	
 	/*************************************************************************
@@ -45,11 +45,17 @@ class Task: NSManagedObject {
 		self.isRunning = false
 		self.cancelNotification()
 		delegate?.stopUITimer()
+		print("ElapsedTime: \(elapsedTime)")
+		
+	
 		elapsedTime = NSNumber(double: Double(elapsedTime) + Double(abs(startDate.timeIntervalSinceNow)))
+		if (Int(elapsedTime) > Int(goalTime)) {
+			elapsedTime = goalTime
+		}
 		save()
 		
-		//print("STOP")
-		//print(self)
+		print("STOP")
+		print(self)
 	}
 	
 	/*************************************************************************
@@ -58,13 +64,14 @@ class Task: NSManagedObject {
 	*************************************************************************/
 	func resetTimer() {
 		elapsedTime = 0.0
+		startDate = NSDate()
 		save()
 		
 		// cancel local notification
 		self.cancelNotification()
 		
-		//print("RESET")
-		//print(self)
+		print("RESET")
+		print(self)
 	}
 	
 	
@@ -89,7 +96,7 @@ class Task: NSManagedObject {
 		
 		save()
 		
-		//print(self)
+		print(self)
 	}
 	
 	/*************************************************************************
