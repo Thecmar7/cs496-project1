@@ -62,6 +62,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 		// set title to task name
 		self.title = task.name
 		
+		
+		
 		elapsedTimeLabel.text = formatTime(Int(task.getViewTime()))
 		
 	}
@@ -102,6 +104,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 			
 			// change label
 			startAndStopButton.setTitle("Stop", forState: .Normal)
+			startAndStopButton.backgroundColor = RGBColor(200.0, g: 0.0, b: 0.0)
 		} else {
 			// stops timer
 			stopUITimer()
@@ -160,10 +163,6 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 	*		a function to make the changing of color a bit simpler
 	**************************************************************************/
 	func RGBColor(r:Double, g:Double, b:Double) -> UIColor {
-		/* return UIColor(red: (0 + (256 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
-		green: (240 - (240 / ((CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime)))/2) / 255.0,
-		blue: (128 - (128 / (CGFloat(task.goalTime))) * (CGFloat(UIcounter) + CGFloat(task.elapsedTime))) / 255.0,
-		alpha: 1.0) */
 		return UIColor(red:	  (CGFloat(r) / 255.0),
 		               green: (CGFloat(g) / 255.0),
 		               blue:  (CGFloat(b) / 255.0),

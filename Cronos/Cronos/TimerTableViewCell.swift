@@ -33,7 +33,6 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
 	*		This starts and stops the timer
 	**************************************************************************/
     @IBAction func startButton(sender: UIButton) {
-		print(startButton.titleLabel!.text!)
 		if (startButton.titleLabel!.text! == "Start") {
 			//start updating the UI as often as the timer updates
 			startUITimer()
