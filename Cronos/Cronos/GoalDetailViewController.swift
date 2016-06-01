@@ -49,7 +49,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 		// delegate stuff I don't understand -Cramer
 		task.delegate = self
 		
-		// Do any additional setup after loading the view.
+		// Set button text and color
 		if (task.isRunning.boolValue) {
 			startAndStopButton.setTitle("Stop", forState: .Normal)
 			startAndStopButton.backgroundColor = UIColor.redColor()

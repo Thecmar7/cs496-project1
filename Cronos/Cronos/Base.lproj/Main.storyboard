@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eak-NP-sOm" id="egP-EC-Urr">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Din-rE-y57">
@@ -145,16 +145,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Task" id="pt8-EP-DUI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BvY-Ei-1y4">
-                            <connections>
-                                <action selector="cancelButtonAction:" destination="Vx2-4X-hs2" id="OBS-68-Va7"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Nh1-m0-WJQ">
-                            <connections>
-                                <action selector="doneButtonAction:" destination="Vx2-4X-hs2" id="2FR-Zd-PXG"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BvY-Ei-1y4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Nh1-m0-WJQ"/>
                     </navigationItem>
                     <connections>
                         <outlet property="estimateDatePicker" destination="pdn-dN-vb6" id="tUP-NZ-Al9"/>
@@ -165,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="940" y="1118"/>
         </scene>
-        <!--Edit-->
+        <!--Task-->
         <scene sceneID="cac-Y6-9yF">
             <objects>
                 <viewController id="Qoo-5m-0sn" customClass="GoalDetailViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
@@ -228,10 +220,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Edit" id="iUf-47-23j">
+                    <navigationItem key="navigationItem" title="Task" id="iUf-47-23j">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Z4Q-Mk-XJ0">
                             <connections>
-                                <action selector="doneButtonPressed:" destination="GD7-hW-XhD" id="PsD-vp-9za"/>
                                 <segue destination="GD7-hW-XhD" kind="presentation" identifier="edit segue" id="ydR-t1-vNR"/>
                             </connections>
                         </barButtonItem>
@@ -262,10 +253,10 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la7-Qn-Ar5">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="mQ6-EH-aQA">
+                                    <navigationItem title="Edit Task" id="mQ6-EH-aQA">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ufa-nA-Mm0">
                                             <connections>
-                                                <action selector="cancelButtonPressed:" destination="GD7-hW-XhD" id="HnI-hJ-NgY"/>
+                                                <action selector="cancelButtonPressed:" destination="GD7-hW-XhD" id="YFA-jc-QbW"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Gwj-Za-JHw">
@@ -276,7 +267,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGd-rc-3xc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oGd-rc-3xc">
                                 <rect key="frame" x="20" y="78" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -313,16 +304,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit" id="CPS-Yl-XKO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gyX-MO-cI4">
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="GD7-hW-XhD" id="hdH-tR-23N"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lCi-ZX-B85">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="GD7-hW-XhD" id="MSV-vQ-zEX"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gyX-MO-cI4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lCi-ZX-B85"/>
                     </navigationItem>
                     <connections>
                         <outlet property="goalDatePicker" destination="6Vt-yG-qE4" id="5es-1r-WRT"/>

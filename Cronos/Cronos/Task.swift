@@ -44,8 +44,9 @@ class Task: NSManagedObject {
 	func stopTimer() {
 		self.isRunning = false
 		self.cancelNotification()
-		delegate?.stopUITimer()
-		elapsedTime = NSNumber(double: Double(elapsedTime) + Double(abs(startDate.timeIntervalSinceNow)))
+		self.delegate?.stopUITimer()
+        print("Elapsed Time before change: \(elapsedTime)")
+		self.elapsedTime = NSNumber(double: Double(elapsedTime) + Double(abs(startDate.timeIntervalSinceNow)))
 		save()
 		
 		//print("STOP")

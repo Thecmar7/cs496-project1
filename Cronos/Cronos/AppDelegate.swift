@@ -37,19 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
-//        for task in tasks {
-//            if (task.isRunning.boolValue && task.goalDate.timeIntervalSinceNow >= 0) {
-//                task.isRunning = false
-//                task.elapsedTime = task.goalTime
-//                task.counter = Int(task.elapsedTime)
-//            } else if (task.isRunning.boolValue && task.goalDate.timeIntervalSinceNow < 0) {
-//                task.remainingTime = abs(task.goalDate.timeIntervalSinceNow)
-//                task.elapsedTime = Double(task.goalTime) - Double(task.remainingTime)
-//                task.counter = Int(task.elapsedTime)
-//            }
-//        }
-		
     }
 
     func applicationWillTerminate(application: UIApplication) {

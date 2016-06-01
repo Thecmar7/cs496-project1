@@ -29,7 +29,7 @@ class EditTaskViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //self.navBar.topItem?.title = "Edit \(self.task.name)"
-        self.nameTextField.placeholder = self.task.name
+        self.nameTextField.text = self.task.name
         self.goalDatePicker.countDownDuration = Double(self.task.goalTime)
     }
     
