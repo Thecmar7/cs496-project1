@@ -30,11 +30,12 @@ class Task: NSManagedObject {
 		save() // MAYBE?
 		
 		// set a push notification
+        cancelNotification()
 		setPushNotificationAlert()
 		
 		// print values for error checking
-		print("START")
-		print(self)
+//		print("START")
+//		print(self)
 	}
 	
 	/*************************************************************************
@@ -68,8 +69,8 @@ class Task: NSManagedObject {
 		// cancel local notification
 		self.cancelNotification()
 		
-		print("RESET")
-		print(self)
+//		print("RESET")
+//		print(self)
 	}
 	
 	
@@ -94,7 +95,7 @@ class Task: NSManagedObject {
 		
 		save()
 		
-		print(self)
+//		print(self)
 	}
 	
 	/*************************************************************************

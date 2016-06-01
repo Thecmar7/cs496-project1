@@ -43,8 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //TODO: reload task data / check if task ended
         for task in tasks {
             if (task.isRunning.boolValue && task.checkIfGoalReached()) {
-                print("finished while we were out")
-                // was running while we were out
+                // finished running while we were out
                 task.isRunning = false
                 task.elapsedTime = Double(task.elapsedTime) + Double(task.goalTime)
                 if (Double(task.elapsedTime) > Double(task.goalTime)) {
@@ -74,19 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
         let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
         alertController.addAction(actionAction)
-        window?.rootViewController?.presentViewController(alertController, animated: true, completion: {
-            // Stop timer
-            let taskName = notification.userInfo!["title"] as? String
-            for task in tasks {
-                if (task.name == taskName) {
-                    task.elapsedTime = Int(task.goalTime)
-                   // task.remainingTime = Int(0)
-                    task.stopTimer()
-                    task.delegate?.stopUITimer()
-                    task.delegate?.goalReached()
-                }
-            } 
-        })
+        window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Core Data stack

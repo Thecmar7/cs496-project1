@@ -33,6 +33,15 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
 	*		This starts and stops the timer
 	**************************************************************************/
     @IBAction func startButton(sender: UIButton) {
+        
+        if (Double(task.elapsedTime) >= Double(task.goalTime)) {
+            let newGoalTimeAlert = UIAlertController(title: "Oops!", message: "You've already reached your goal! To start this task, please select a higher goal", preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil);
+            newGoalTimeAlert.addAction(okayAction)
+            super.window?.rootViewController?.presentViewController(newGoalTimeAlert, animated: true, completion: nil)
+            return
+        }
+        
 		if (startButton.titleLabel!.text! == "Start") {
 			//start updating the UI as often as the timer updates
 			startUITimer()

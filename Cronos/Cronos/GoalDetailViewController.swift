@@ -97,6 +97,15 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 	 *		This starts and stops the timer
 	 **************************************************************************/
 	@IBAction func startTimer(sender: UIButton) {
+        
+        if (Double(task.elapsedTime) >= Double(task.goalTime)) {
+            let newGoalTimeAlert = UIAlertController(title: "Oops!", message: "You've already reached your goal! To start this task, please select a higher goal", preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil);
+            newGoalTimeAlert.addAction(okayAction)
+            presentViewController(newGoalTimeAlert, animated: true, completion: nil)
+            return
+        }
+        
 		if (startAndStopButton.titleLabel!.text! == "Start") {
 			//start updating the UI as often as the timer updates
 			startUITimer()
