@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
+        
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -37,6 +39,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        //TODO: reload task data / check if task ended
+        for task in tasks {
+            if (task.isRunning.boolValue && task.checkIfGoalReached()) {
+                print("finished while we were out")
+                // was running while we were out
+                task.isRunning = false
+                task.elapsedTime = Double(task.elapsedTime) + Double(task.goalTime)
+                if (Double(task.elapsedTime) > Double(task.goalTime)) {
+                    task.elapsedTime = task.goalTime
+                }
+                task.delegate?.stopUITimer()
+                task.delegate?.goalReached()
+                save()
+            }
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -46,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        // Called when local notification fires in-app
+        // Called when notificaiton is selected outside this app
         
         // Show alert
         let title = notification.alertTitle

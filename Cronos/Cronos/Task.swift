@@ -14,7 +14,7 @@ class Task: NSManagedObject {
 	
 	// Insert code here to add functionality to your managed object subclass
 	
-	var notification = UILocalNotification()
+    var notification: UILocalNotification?
 	var delegate: TaskDelegate?
 	var goalDate: NSDate?
 	
@@ -44,13 +44,16 @@ class Task: NSManagedObject {
 	func stopTimer() {
 		self.isRunning = false
 		self.cancelNotification()
-		self.delegate?.stopUITimer()
-        print("Elapsed Time before change: \(elapsedTime)")
-		self.elapsedTime = NSNumber(double: Double(elapsedTime) + Double(abs(startDate.timeIntervalSinceNow)))
+        self.delegate?.stopUITimer()
+		
+        self.elapsedTime = NSNumber(double: Double(elapsedTime) + Double(abs(startDate.timeIntervalSinceNow)))
+		if (Int(elapsedTime) > Int(goalTime)) {
+			elapsedTime = goalTime
+		}
 		save()
 		
-		print("STOP")
-		print(self)
+		//print("STOP")
+		//print(self)
 	}
 	
 	/*************************************************************************
@@ -132,13 +135,14 @@ class Task: NSManagedObject {
 	 *		creates a push notification to be called at the final day
 	 *************************************************************************/
 	func setPushNotificationAlert() {
-		notification.alertBody = "You reached your \(self.name) goal!"	// text that will be displayed in the notification
-		notification.alertAction = "Yay!"								// text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-		notification.fireDate = self.goalDate							// todo item due date (when notification will be fired)
-		notification.soundName = UILocalNotificationDefaultSoundName	// play default sound
-		notification.userInfo = ["title": self.name!]					// assign a unique identifier to the notification so that we can retrieve it later
+        self.notification = UILocalNotification()
+		self.notification!.alertBody = "You reached your \(self.name) goal!"
+		self.notification!.alertAction = "Yay!"						        
+		self.notification!.fireDate = self.goalDate							
+		self.notification!.soundName = UILocalNotificationDefaultSoundName	
+		self.notification!.userInfo = ["title": self.name!]
 		
-		UIApplication.sharedApplication().scheduleLocalNotification(notification)
+		UIApplication.sharedApplication().scheduleLocalNotification(self.notification!)
 	}
 	
 	/*************************************************************************
@@ -146,7 +150,9 @@ class Task: NSManagedObject {
 	*		cancels the notification for this task
 	*************************************************************************/
 	func cancelNotification() {
-		UIApplication.sharedApplication().cancelLocalNotification(notification)
+        if (self.notification != nil) {
+            UIApplication.sharedApplication().cancelLocalNotification(self.notification!)
+        }
 	}
 	
 	
