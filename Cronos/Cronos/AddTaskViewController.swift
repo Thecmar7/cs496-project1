@@ -36,16 +36,17 @@ class AddTaskViewController: UIViewController {
 			let alertController = UIAlertController(title: "Name?", message: "Please input a name for your new task:", preferredStyle: .Alert)
 			
 			let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
-				if let field = alertController.textFields![0] as? UITextField {
+				if let field = alertController.textFields?[0] {
 			
 					// store your data
-					self.nameTextField.text = field.text!;
+					self.nameTextField.text = field.text!
 				} else {
 					// user did not fill field
+                    self.dismissViewControllerAnimated(true, completion: nil)
 				}
 			}
 
-			let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 
 			alertController.addTextFieldWithConfigurationHandler { (textField) in
 				textField.placeholder = "Task name"
@@ -60,6 +61,7 @@ class AddTaskViewController: UIViewController {
 		} else {
 			dismissViewControllerAnimated(true) {
 				addTask(self.nameTextField.text!, goalTime: self.estimateDatePicker.countDownDuration)
+                self.delegate?.updateVC()
 			}
 		}
 

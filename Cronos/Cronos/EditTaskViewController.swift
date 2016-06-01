@@ -53,7 +53,7 @@ class EditTaskViewController: UIViewController {
             if (self.nameTextField.text != "" && self.nameTextField.text != nil) {
                 self.task.name = self.nameTextField.text
             }
-            self.task.goalTime = self.goalDatePicker.countDownDuration
+            self.task.setNewGoalTime(self.goalDatePicker.countDownDuration)
             save()
             self.delegate?.updateVC()
         }

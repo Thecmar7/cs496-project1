@@ -51,7 +51,7 @@ protocol ModalDissmissDelegate: class {
 func loadTasks() {
     
     let fetchRequest = NSFetchRequest(entityName: "Task")
-    fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "elapsedTime", ascending: true)]
+    fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "createdDate", ascending: true)]
     
     do {
         let results = try managedContext.executeFetchRequest(fetchRequest)
