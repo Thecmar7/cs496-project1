@@ -181,7 +181,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "edit segue") {
-            let editVC = segue.destinationViewController as! EditTaskViewController
+            let root = segue.destinationViewController as! UINavigationController
+            let editVC = root.topViewController as! EditTaskViewController
             editVC.task = self.task
             editVC.delegate = self
         }

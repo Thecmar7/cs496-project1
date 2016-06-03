@@ -168,7 +168,8 @@ class TaskTableViewController: UITableViewController, ModalDissmissDelegate {
             let goalVC = segue.destinationViewController as! GoalDetailViewController
             goalVC.task = selectedTask
         } else if (segue.identifier == "addTaskSegue") {
-            let addVC = segue.destinationViewController as! AddTaskViewController
+            let root = segue.destinationViewController as! UINavigationController
+            let addVC = root.topViewController as! AddTaskViewController
             addVC.delegate = self
         }
     }

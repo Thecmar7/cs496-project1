@@ -91,7 +91,10 @@ class Task: NSManagedObject {
 		self.goalTime = newTime
 		self.goalDate = NSDate(timeIntervalSinceNow: Double(self.getRemainingTime()))
 		self.cancelNotification()
-		self.setPushNotificationAlert()
+        
+        if (self.isRunning.boolValue) {
+            self.setPushNotificationAlert()
+        }
 		
 		save()
 		
