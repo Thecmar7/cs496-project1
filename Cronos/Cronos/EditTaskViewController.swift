@@ -35,7 +35,7 @@ class EditTaskViewController: UIViewController {
     
     @IBAction func resetButtonPressed(sender: UIButton) {
         let resetCheckAlert = UIAlertController(title: "Are you sure?", message: "This will reset all progress you've made on this task since you created it.", preferredStyle: .ActionSheet)
-        let sureAction = UIAlertAction(title: "I'm 100% sure I want to get rid of all progress", style: .Destructive) { (alert) in
+        let sureAction = UIAlertAction(title: "I'm 100% sure I want to get rid of all progress", style: .Destructive) { (_) in
             self.task.resetTimer()
         }
         let unsureAction = UIAlertAction(title: "I don't want to do this", style: .Default, handler: nil)

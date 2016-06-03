@@ -51,7 +51,7 @@
 		43F7D4E01CCB192300B73CDF /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		43F7D4E31CCC2DB900B73CDF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		43F7D4EC1CCD5BA000B73CDF /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
-		86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "Cronos/Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,6 @@
 		436E010B1CC8104100D44117 = {
 			isa = PBXGroup;
 			children = (
-				86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */,
 				436E01161CC8104100D44117 /* Cronos */,
 				436E012E1CC8104100D44117 /* CronosTests */,
 				436E01151CC8104100D44117 /* Products */,
@@ -117,6 +116,7 @@
 			children = (
 				43F7D4E01CCB192300B73CDF /* Task.swift */,
 				436E013A1CC814C800D44117 /* TimerTableViewCell.swift */,
+				86BABBD81CF4CC9300405EEA /* Task+CoreDataProperties.swift */,
 				436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */,
 			);
 			name = Model;

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        //TODO: reload task data / check if task ended
+        // reload task data / check if task ended
         for task in tasks {
             if (task.isRunning.boolValue && task.checkIfGoalReached()) {
                 // finished running while we were out
@@ -66,14 +66,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when local notification fires in-app
         // Called when notificaiton is selected outside this app
         
-        // Show alert
-        let title = notification.alertTitle
-        let body = notification.alertBody
-        let action = notification.alertAction
-        let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
-        let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
-        alertController.addAction(actionAction)
-        window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+        let dict = notification.userInfo!
+        let name = dict["title"] as! String
+        
+        if (name == "resetTasks") {
+            //TODO: reset tasks
+            print("reset tasks")
+        } else {
+            // task alert
+            let title = notification.alertTitle
+            let body = notification.alertBody
+            let action = notification.alertAction
+            let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
+            let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
+            alertController.addAction(actionAction)
+            window?.rootViewController?.presentViewController(alertController, animated: true, completion: { (_) in
+                for task in tasks {
+                    if (task.name == name) {
+                        task.stopTimer()
+                        task.delegate?.stopUITimer()
+                        task.delegate?.goalReached()
+                        break
+                    }
+                }
+            })
+        }
     }
 
     // MARK: - Core Data stack
