@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // reload task data / check if task ended
+        loadTasks()
         for task in tasks {
             if (task.isRunning.boolValue && task.checkIfGoalReached()) {
                 // finished running while we were out

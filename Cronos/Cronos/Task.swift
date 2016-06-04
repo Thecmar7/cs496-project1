@@ -125,18 +125,22 @@ class Task: NSManagedObject {
 	}
 	
 	/*************************************************************************
-	*	setPushNotificationAlert
-	*		creates a push notification to be called at the final day
+	*	checkIfGoalReached
+	*       sends true if now is past goal date
 	*************************************************************************/
 	func checkIfGoalReached() -> Bool {
-		return (goalDate?.timeIntervalSinceNow < 0)
+        if (goalDate?.timeIntervalSinceNow < 0) {
+            return true
+        } else {
+            return false
+        }
 	}
 	
 	//MARK: Notification Functions
 	
 	/*************************************************************************
 	 *	setPushNotificationAlert
-	 *		creates a push notification to be called at the final day
+	 *		creates a push notification to be called when timer finishes
 	 *************************************************************************/
 	func setPushNotificationAlert() {
         self.notification = UILocalNotification()
