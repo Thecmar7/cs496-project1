@@ -10,7 +10,7 @@
 		436E01181CC8104100D44117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E01171CC8104100D44117 /* AppDelegate.swift */; };
 		436E011D1CC8104100D44117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E011B1CC8104100D44117 /* Main.storyboard */; };
 		436E01201CC8104100D44117 /* Cronos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */; };
-		436E01221CC8104100D44117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E01211CC8104100D44117 /* Assets.xcassets */; };
+		436E01221CC8104100D44117 /* gradient.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E01211CC8104100D44117 /* gradient.xcassets */; };
 		436E01301CC8104100D44117 /* CronosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E012F1CC8104100D44117 /* CronosTests.swift */; };
 		436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E013A1CC814C800D44117 /* TimerTableViewCell.swift */; };
 		436E013E1CC8173F00D44117 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 436E013C1CC8173F00D44117 /* Launch Screen.storyboard */; };
@@ -38,7 +38,7 @@
 		436E01171CC8104100D44117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		436E011C1CC8104100D44117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		436E011F1CC8104100D44117 /* Cronos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cronos.xcdatamodel; sourceTree = "<group>"; };
-		436E01211CC8104100D44117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		436E01211CC8104100D44117 /* gradient.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = gradient.xcassets; sourceTree = "<group>"; };
 		436E01261CC8104100D44117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		436E012B1CC8104100D44117 /* CronosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CronosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E012F1CC8104100D44117 /* CronosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CronosTests.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 				43F7D4E51CCC32DF00B73CDF /* Model */,
 				43F7D4E71CCC32FF00B73CDF /* View */,
 				43F7D4E61CCC32F200B73CDF /* Controller */,
-				436E01211CC8104100D44117 /* Assets.xcassets */,
+				436E01211CC8104100D44117 /* gradient.xcassets */,
 				436E01261CC8104100D44117 /* Info.plist */,
 			);
 			path = Cronos;
@@ -227,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				436E013E1CC8173F00D44117 /* Launch Screen.storyboard in Resources */,
-				436E01221CC8104100D44117 /* Assets.xcassets in Resources */,
+				436E01221CC8104100D44117 /* gradient.xcassets in Resources */,
 				436E011D1CC8104100D44117 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
