@@ -130,9 +130,9 @@ class Task: NSManagedObject {
 	*************************************************************************/
 	func checkIfGoalReached() -> Bool {
         if (goalDate?.timeIntervalSinceNow < 0) {
-            return true
-        } else {
             return false
+        } else {
+            return true
         }
 	}
 	
