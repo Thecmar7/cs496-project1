@@ -64,11 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for task in tasks {
             if (task.isRunning.boolValue && task.checkIfGoalReached()) {
                 // finished running while we were out
-                task.isRunning = false
                 task.elapsedTime = Double(task.elapsedTime) + Double(task.goalTime)
                 if (Double(task.elapsedTime) > Double(task.goalTime)) {
                     task.elapsedTime = task.goalTime
                 }
+                task.stopTimer()
                 task.delegate?.stopUITimer()
                 task.delegate?.goalReached()
                 save()

@@ -129,10 +129,10 @@ class Task: NSManagedObject {
 	*       sends true if now is past goal date
 	*************************************************************************/
 	func checkIfGoalReached() -> Bool {
-        if (goalDate?.timeIntervalSinceNow < 0) {
-            return false
-        } else {
+        if (self.getRemainingTime() < 0) {
             return true
+        } else {
+            return false
         }
 	}
 	
