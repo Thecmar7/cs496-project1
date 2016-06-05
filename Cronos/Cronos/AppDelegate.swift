@@ -13,14 +13,35 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var resetTasksNotification: UILocalNotification?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
         
+        // set reset tasks notification
+        if (self.resetTasksNotification == nil) {
+            // get fire date
+            let calendar = NSCalendar.currentCalendar()
+            var fireDate = NSDate()
+            let components = NSDateComponents()
+            components.day = 1
+            fireDate = calendar.dateBySettingHour(17, minute: 0, second: 0, ofDate: fireDate, options: [])!
+            fireDate = calendar.dateByAddingComponents(components, toDate: fireDate, options: [])!
+            
+            print(fireDate)
+            
+            self.resetTasksNotification = UILocalNotification()
+            self.resetTasksNotification?.fireDate = fireDate
+            self.resetTasksNotification?.userInfo = ["title" : "resetTasks"]
+            self.resetTasksNotification?.alertBody = nil
+            self.resetTasksNotification?.alertTitle = nil
+            UIApplication.sharedApplication().scheduleLocalNotification(self.resetTasksNotification!)
+        }
+        
 		return true
 	}
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -69,8 +90,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let name = dict["title"] as! String
         
         if (name == "resetTasks") {
-            //TODO: reset tasks
-            print("reset tasks")
+            // reset tasks
+            print("resetting tasks")
+            loadTasks()
+            for task in tasks {
+                task.resetTimer()
+                task.delegate?.stopUITimer()
+            }
         } else {
             // task alert
             let title = notification.alertTitle
