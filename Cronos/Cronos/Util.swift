@@ -276,6 +276,7 @@ extension UIViewController: StyleDelegate {
 		self.navigationController?.navigationBar.tintColor = accent
 		self.tabBarController?.tabBar.barTintColor = orange
 		self.tabBarController?.tabBar.tintColor = accent
+		self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 	}
 	
 }

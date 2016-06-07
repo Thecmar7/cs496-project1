@@ -14,6 +14,7 @@ class PersonalStatsTableViewController: UITableViewController {
     var names = [String]()
 
     override func viewDidLoad() {
+		UISetup()
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
