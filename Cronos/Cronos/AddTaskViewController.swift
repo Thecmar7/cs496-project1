@@ -16,6 +16,9 @@ class AddTaskViewController: UIViewController {
     var delegate: ModalDissmissDelegate?
     
     override func viewDidLoad() {
+		// style stuff
+		navbarColoring()
+		
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

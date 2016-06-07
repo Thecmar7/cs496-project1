@@ -45,6 +45,10 @@ protocol ModalDissmissDelegate: class {
     func updateVC()
 }
 
+protocol StyleDelegate: class {
+	func navbarColoring()
+}
+
 //MARK: - CoreData Functions
 
 // Load all tasks
@@ -113,13 +117,31 @@ func deleteAllTasks() {
 }
 
 /**************************************************************************
+*		|	|	|--|--|
+*		|	|	   |
+*		\---\_	|__|__|
+**************************************************************************/
+
+
+/**************************************************************************
 *	RGBColor
 *		a function to make the changing of color a bit simpler
 **************************************************************************/
 func RGBColor(r:Double, g:Double, b:Double) -> UIColor {
 	return UIColor(red:	  (CGFloat(r) / 255.0),
-	               green: (CGFloat(g) / 255.0),
-	               blue:  (CGFloat(b) / 255.0),
-	               alpha: 1.0)
+				   green: (CGFloat(g) / 255.0),
+				   blue:  (CGFloat(b) / 255.0),
+				   alpha: 1.0)
 }
 
+extension UIViewController: StyleDelegate {
+	/**************************************************************************
+	*	Set up the navbars
+	**************************************************************************/
+	func navbarColoring() {
+		self.navigationController?.navigationBar.barTintColor = RGBColor(100, g: 4, b: 4)
+	
+		
+	}
+	
+}
