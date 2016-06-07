@@ -23,5 +23,6 @@ extension Task {
     @NSManaged var isRunning: NSNumber!
     @NSManaged var name: String!
     @NSManaged var startDate: NSDate!
+    @NSManaged var onCloud: NSNumber!
 
 }
