@@ -32,6 +32,7 @@ class Task: NSManagedObject {
 		// set a push notification
         cancelNotification()
 		setPushNotificationAlert()
+		checkAttemptDate()
 	}
 	
 	/*************************************************************************
@@ -120,12 +121,10 @@ class Task: NSManagedObject {
 	*************************************************************************/
 	func checkIfGoalReached() -> Bool {
         if (goalDate?.timeIntervalSinceNow < 0) {
+            return false
+        } else {
 			completeToday = true
-            return false
-        } else {
             return true
-        } else {
-            return false
         }
 	}
 	
@@ -136,13 +135,16 @@ class Task: NSManagedObject {
 	*		completed
 	*************************************************************************/
 	func checkAttemptDate() -> (attempted:Bool, completed:Bool) {
-		if (attemptDate != nil || !areDatesSameDay(attemptDate, dateTwo: NSDate())) {
+		if (attemptDate != nil && !areDatesSameDay(attemptDate, dateTwo: NSDate())) {
 			attemptedToday = false
 			completeToday = false
-		} else if (areDatesSameDay(attemptDate, dateTwo: NSDate())) {
+		} else {
 			attemptedToday = true
+			if (completeToday == nil) {
+				completeToday = false
+			}
 		}
-		print("AttemptedToday: \(attemptedToday) CompletedToday: \(completeToday)")
+		print("AttemptedToday: \(attemptedToday.boolValue) CompletedToday: \(completeToday.boolValue)")
 		return(attemptedToday.boolValue, completeToday.boolValue)
 	}
 	

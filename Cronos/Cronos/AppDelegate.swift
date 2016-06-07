@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         // Called when local notification fires in-app
         // Called when notificaiton is selected outside this app
-        
+		
         let dict = notification.userInfo!
         let name = dict["title"] as! String
         
