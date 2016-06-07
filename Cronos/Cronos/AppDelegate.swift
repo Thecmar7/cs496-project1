@@ -15,36 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var resetTasksNotification: UILocalNotification?
 
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// styling of application
-		self.window?.tintColor = RGBColor(248, g: 89, b: 93)
-		//self.window?.rootViewController?.navigationController?.navigationBar.barTintColor = UIColor.redColor()
-		//print(self.window?.rootViewController?.navigationController?)
-		//self.window?.rootViewController?.navigationController?.navigationBar.tintColor = UIColor.redColor()
-		print()
-		//RGBColor(254, g: 202, b: 71)
-		
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // styling of application
+        self.window?.tintColor = UIColor.orangeColor()
+		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
         
-        // set reset tasks notification
-        if (self.resetTasksNotification == nil) {
-            // get fire date
-            let calendar = NSCalendar.currentCalendar()
-            var fireDate = NSDate()
-            let components = NSDateComponents()
-            components.day = 1
-            fireDate = calendar.dateBySettingHour(17, minute: 0, second: 0, ofDate: fireDate, options: [])!
-            fireDate = calendar.dateByAddingComponents(components, toDate: fireDate, options: [])!
-            
-            print(fireDate)
-            
-            self.resetTasksNotification = UILocalNotification()
-            self.resetTasksNotification?.fireDate = fireDate
-            self.resetTasksNotification?.userInfo = ["title" : "resetTasks"]
-            self.resetTasksNotification?.alertBody = nil
-            self.resetTasksNotification?.alertTitle = nil
-            UIApplication.sharedApplication().scheduleLocalNotification(self.resetTasksNotification!)
-        }
+        // styling of application
+        self.window?.tintColor = RGBColor(248, g: 89, b: 93)
+        //self.window?.rootViewController?.navigationController?.navigationBar.barTintColor = UIColor.redColor()
+        //print(self.window?.rootViewController?.navigationController?)
+        //self.window?.rootViewController?.navigationController?.navigationBar.tintColor = UIColor.redColor()
+        //RGBColor(254, g: 202, b: 71)
         
 		return true
 	}
@@ -96,34 +78,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dict = notification.userInfo!
         let name = dict["title"] as! String
         
-        if (name == "resetTasks") {
-            // reset tasks
-            print("resetting tasks")
-            loadTasks()
+//        print("resetting tasks")
+//        loadTasks()
+//        for task in tasks {
+//            task.resetTimer()
+//            task.delegate?.stopUITimer()
+//            task.checkAttemptDate()
+//        }
+        // show task alert
+        let title = notification.alertTitle
+        let body = notification.alertBody
+        let action = notification.alertAction
+        let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
+        let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
+        alertController.addAction(actionAction)
+        window?.rootViewController?.presentViewController(alertController, animated: true, completion: { (_) in
             for task in tasks {
-                task.resetTimer()
-                task.delegate?.stopUITimer()
-				task.checkAttemptDate()
-            }
-        } else {
-            // task alert
-            let title = notification.alertTitle
-            let body = notification.alertBody
-            let action = notification.alertAction
-            let alertController = UIAlertController(title: title, message: body, preferredStyle: .Alert)
-            let actionAction = UIAlertAction(title: action, style: .Cancel, handler: nil)
-            alertController.addAction(actionAction)
-            window?.rootViewController?.presentViewController(alertController, animated: true, completion: { (_) in
-                for task in tasks {
-                    if (task.name == name) {
-                        task.stopTimer()
-                        task.delegate?.stopUITimer()
-                        task.delegate?.goalReached()
-                        break
-                    }
+                if (task.name == name) {
+                    task.stopTimer()
+                    task.delegate?.stopUITimer()
+                    task.delegate?.goalReached()
+                    break
                 }
-            })
-        }
+            }
+        })
     }
 
     // MARK: - Core Data stack

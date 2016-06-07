@@ -49,6 +49,10 @@ protocol StyleDelegate: class {
 	func navbarColoring()
 }
 
+protocol NetworkDelegate: class {
+    func updateViewWithData(data: NSData)
+}
+
 //MARK: - CoreData Functions
 
 // Load all tasks
@@ -76,6 +80,13 @@ func addTask(name: String, goalTime: Double) {
 	
     save()
     loadTasks()
+    
+    // save to cloud
+    for task in tasks {
+        if (task.name == name) {
+            postNewTask(task)
+        }
+    }
 }
 
 func updateTask(task: NSManagedObject, value: AnyObject, key: String) {
@@ -114,6 +125,105 @@ func deleteAllTasks() {
         }
         deleteTask(atIndex: 0)
     }
+}
+
+// MARK: - Network Functions
+
+func postUpdatedStats() {
+//    let uuid = NSUUID().UUIDString
+//    let url = "http://localhost:8888?id=7"
+//    let data = "DATA"
+}
+
+func postNewTask(task: Task) {
+    let name = task.name.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+//    let uuid = NSUUID().UUIDString
+    let url = "hhttp://cronos-1329.appspot.com/cronosServlet?op=new&id=1&name=\(name!)"
+    post(nil, url: url) { (succeeded, msg) in
+        if (succeeded) {
+            print("Success: \(msg)")
+        } else {
+            print("Failed: \(msg)")
+        }
+    }
+}
+
+func getStats() {
+    let url = "http://cronos-1329.appspot.com/cronosServlet?op=stats"
+    getNetworkRequest(url)
+}
+
+func post(params: NSDictionary?, url: String, postCompleted: (succeeded: Bool, msg: String) -> ()) {
+    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    let session = NSURLSession.sharedSession()
+    request.HTTPMethod = "POST"
+    
+    if (params != nil) {
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params!, options: [])
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+            postCompleted(succeeded: false, msg: "Error")
+            return
+        }
+    }
+    
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        var strData = NSString()
+        if (data == nil) {
+            strData = NSString(string: "DATA")
+        } else {
+            strData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
+                if let parseJSON = json {
+                    if let success = parseJSON["success"] as? Bool {
+                        print("Success: \(success)")
+                        postCompleted(succeeded: success, msg: "Posted")
+                    }
+                    return
+                } else {
+                    postCompleted(succeeded: false, msg: "Error")
+                }
+            } catch let error as NSError {
+                print("Unresolved error \(error), \(error.userInfo)")
+                print(strData)
+                postCompleted(succeeded: false, msg: "Error")
+            }
+        }
+    }
+    task.resume()
+}
+
+func getNetworkRequest(url: String) {
+    let session = NSURLSession.sharedSession()
+    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.HTTPMethod = "GET"
+    request.HTTPBody = nil
+    
+    let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        if let httpResponse = response as? NSHTTPURLResponse {
+            let statusCode = httpResponse.statusCode
+            if (statusCode == 200) {
+                print("Success")
+                do {
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                        print(json)
+                    }
+                } catch let error as NSError {
+                    print("Unresolved error \(error), \(error.userInfo)")
+                }
+            } else {
+                print("Failure")
+            }
+        }
+    }
+    task.resume()
 }
 
 /**************************************************************************

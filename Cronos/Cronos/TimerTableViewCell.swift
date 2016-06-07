@@ -75,7 +75,7 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
 	**************************************************************************/
 	func updateUI() {
 		timeActual.text = formatTime(Int(task.getViewTime()))
-		timeActual.textColor = RGBColor(0.0, g: 0.0, b: 0.0)
+		//timeActual.textColor = RGBColor(0.0, g: 0.0, b: 0.0)
 	}
     
 	/***************************************************************************
