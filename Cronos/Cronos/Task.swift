@@ -124,6 +124,8 @@ class Task: NSManagedObject {
             return false
         } else {
             return true
+        } else {
+            return false
         }
 	}
 	
