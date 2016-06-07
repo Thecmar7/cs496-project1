@@ -26,7 +26,13 @@ class PersonalStatsTableViewController: UITableViewController {
         getStats()
     }
     
+    @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
+        getStats()
+    }
+    
     func getStats() {
+        stats.removeAll()
+        names.removeAll()
         for task in tasks {
             let originalName = task.name
             let name = originalName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
