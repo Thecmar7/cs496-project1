@@ -32,10 +32,7 @@ class Task: NSManagedObject {
 		// set a push notification
         cancelNotification()
 		setPushNotificationAlert()
-		
-		// print values for error checking
-//		print("START")
-//		print(self)
+		checkAttemptDate()
 	}
 	
 	/*************************************************************************
@@ -52,9 +49,6 @@ class Task: NSManagedObject {
 			elapsedTime = goalTime
 		}
 		save()
-		
-		//print("STOP")
-		//print(self)
 	}
 	
 	/*************************************************************************
@@ -68,9 +62,6 @@ class Task: NSManagedObject {
 		
 		// cancel local notification
 		self.cancelNotification()
-		
-//		print("RESET")
-//		print(self)
 	}
 	
 	
@@ -98,7 +89,7 @@ class Task: NSManagedObject {
 		
 		save()
 		
-//		print(self)
+
 	}
 	
 	/*************************************************************************
@@ -129,11 +120,44 @@ class Task: NSManagedObject {
 	*       sends true if now is past goal date
 	*************************************************************************/
 	func checkIfGoalReached() -> Bool {
-        if (self.getRemainingTime() < 0) {
-            return true
-        } else {
+        if (goalDate?.timeIntervalSinceNow < 0) {
             return false
+        } else {
+			completeToday = true
+            return true
         }
+	}
+	
+	//MARK:Attempted Date Functions
+	/*************************************************************************
+	*	checkAttemptDate -> (bool, bool)
+	*		returns if the task as been attempted and if the app has been
+	*		completed
+	*************************************************************************/
+	func checkAttemptDate() -> (attempted:Bool, completed:Bool) {
+		if (attemptDate != nil && !areDatesSameDay(attemptDate, dateTwo: NSDate())) {
+			attemptedToday = false
+			completeToday = false
+		} else {
+			attemptedToday = true
+			if (completeToday == nil) {
+				completeToday = false
+			}
+		}
+		print("AttemptedToday: \(attemptedToday.boolValue) CompletedToday: \(completeToday.boolValue)")
+		return(attemptedToday.boolValue, completeToday.boolValue)
+	}
+	
+	/*************************************************************************
+	*	areDatesSameDay -> bool
+	*		takes in two dates and returns a if the dates are the same day
+	*************************************************************************/
+	func areDatesSameDay(dateOne:NSDate,dateTwo:NSDate) -> Bool {
+		let calender = NSCalendar.currentCalendar()
+		let flags: NSCalendarUnit = [.Day, .Month, .Year]
+		let compOne: NSDateComponents = calender.components(flags, fromDate: dateOne)
+		let compTwo: NSDateComponents = calender.components(flags, fromDate: dateTwo);
+		return (compOne.day == compTwo.day && compOne.month == compTwo.month && compOne.year == compTwo.year);
 	}
 	
 	//MARK: Notification Functions
