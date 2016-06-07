@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     task.elapsedTime = task.goalTime
                 }
                 task.stopTimer()
+                task.updateTask()
                 task.delegate?.stopUITimer()
                 task.delegate?.goalReached()
                 save()
@@ -96,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for task in tasks {
                 if (task.name == name) {
                     task.stopTimer()
+                    task.updateTask()
                     task.delegate?.stopUITimer()
                     task.delegate?.goalReached()
                     break

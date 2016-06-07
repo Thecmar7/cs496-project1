@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatsViewController: UIViewController {
+class StatsViewController: UIViewController, TaskDelegate {
 
     @IBOutlet var attemptedLabel: UILabel!
     @IBOutlet var completedLabel: UILabel!
@@ -45,6 +45,9 @@ class StatsViewController: UIViewController {
             }
         }
     }
+    
+    func stopUITimer() {}
+    func goalReached() {}
 
     /*
     // MARK: - Navigation

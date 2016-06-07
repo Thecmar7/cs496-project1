@@ -142,7 +142,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 		UItimer.invalidate()
 		if (task.checkIfIsRunning()) {
 			task.stopTimer()
-		}
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		startAndStopButton.setTitle("Start", forState: .Normal)
 		startAndStopButton.backgroundColor = RGBColor(0.0, g: 200.0, b: 0.0)
 	}

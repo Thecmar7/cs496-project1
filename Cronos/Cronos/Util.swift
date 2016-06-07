@@ -16,6 +16,8 @@ let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 let managedContext = appDelegate.managedObjectContext
 let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedContext)
 
+let uuid = "666"
+
 // MARK: - Time Functions
 
 // changes the seconds to hour, minute, seconds
@@ -129,16 +131,9 @@ func deleteAllTasks() {
 
 // MARK: - Network Functions
 
-func postUpdatedStats() {
-//    let uuid = NSUUID().UUIDString
-//    let url = "http://localhost:8888?id=7"
-//    let data = "DATA"
-}
-
 func postNewTask(task: Task) {
     let name = task.name.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-//    let uuid = NSUUID().UUIDString
-    let url = "hhttp://cronos-1329.appspot.com/cronosServlet?op=new&id=1&name=\(name!)"
+    let url = "http://cronos-1329.appspot.com/cronosServlet?op=new&id=\(uuid)&name=\(name!)"
     post(nil, url: url) { (succeeded, msg) in
         if (succeeded) {
             print("Success: \(msg)")
