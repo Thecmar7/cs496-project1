@@ -311,7 +311,7 @@
             </objects>
             <point key="canvasLocation" x="950" y="373"/>
         </scene>
-        <!--Personal Stats Table View Controller-->
+        <!--Personal Statistics-->
         <scene sceneID="JJ7-dZ-nHW">
             <objects>
                 <tableViewController id="hz6-yX-QhY" customClass="PersonalStatsTableViewController" customModule="Cronos" customModuleProvider="target" sceneMemberID="viewController">
@@ -324,7 +324,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jmc-zG-25O" id="W22-kF-NSS">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgD-JI-ghM">
@@ -389,7 +389,13 @@
                             <outlet property="delegate" destination="hz6-yX-QhY" id="2m1-Qc-zaE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0As-5J-eGm"/>
+                    <navigationItem key="navigationItem" title="Personal Statistics" id="0As-5J-eGm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zxD-Bl-GvP">
+                            <connections>
+                                <action selector="refreshButtonPressed:" destination="hz6-yX-QhY" id="9Cl-Z6-OBa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gy3-s5-hYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
