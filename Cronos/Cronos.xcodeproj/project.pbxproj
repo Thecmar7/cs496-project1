@@ -22,7 +22,7 @@
 		43F7D4E41CCC2DB900B73CDF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4E31CCC2DB900B73CDF /* Util.swift */; };
 		43F7D4ED1CCD5BA000B73CDF /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4EC1CCD5BA000B73CDF /* AddTaskViewController.swift */; };
 		860B0D391D0751290024AF37 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B0D381D0751290024AF37 /* Reachability.swift */; };
-		86340BE41D06406100C780F5 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86340BE31D06406100C780F5 /* Task+CoreDataProperties.swift */; };
+		86779C911D0760C20015AEFC /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86779C901D0760C20015AEFC /* Task+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,7 @@
 		43F7D4E31CCC2DB900B73CDF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		43F7D4EC1CCD5BA000B73CDF /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		860B0D381D0751290024AF37 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		86340BE31D06406100C780F5 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		86779C901D0760C20015AEFC /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,7 @@
 				43F7D4E01CCB192300B73CDF /* Task.swift */,
 				436E013A1CC814C800D44117 /* TimerTableViewCell.swift */,
 				860B0D381D0751290024AF37 /* Reachability.swift */,
-				86340BE31D06406100C780F5 /* Task+CoreDataProperties.swift */,
+				86779C901D0760C20015AEFC /* Task+CoreDataProperties.swift */,
 				436E011E1CC8104100D44117 /* Cronos.xcdatamodeld */,
 			);
 			name = Model;
@@ -261,8 +261,8 @@
 				43D80DC71CFCF5B000B9CB80 /* EditTaskViewController.swift in Sources */,
 				860B0D391D0751290024AF37 /* Reachability.swift in Sources */,
 				436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */,
-				86340BE41D06406100C780F5 /* Task+CoreDataProperties.swift in Sources */,
 				43EBD3851D07540C0097743D /* StatsViewController.swift in Sources */,
+				86779C911D0760C20015AEFC /* Task+CoreDataProperties.swift in Sources */,
 				43F7D4ED1CCD5BA000B73CDF /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
