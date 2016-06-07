@@ -148,11 +148,6 @@ func postNewTask(task: Task) {
     }
 }
 
-func getStats() {
-    let url = "http://cronos-1329.appspot.com/cronosServlet?op=stats"
-    getNetworkRequest(url)
-}
-
 func post(params: NSDictionary?, url: String, postCompleted: (succeeded: Bool, msg: String) -> ()) {
     let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     let session = NSURLSession.sharedSession()
@@ -198,7 +193,7 @@ func post(params: NSDictionary?, url: String, postCompleted: (succeeded: Bool, m
     task.resume()
 }
 
-func getNetworkRequest(url: String) {
+func get(url: String, getCompleted: (succeeded: Bool, msg: Dictionary<String, Int>) ->()) {
     let session = NSURLSession.sharedSession()
     let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     
@@ -213,7 +208,7 @@ func getNetworkRequest(url: String) {
                 print("Success")
                 do {
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                        print(json)
+                        getCompleted(succeeded: true, msg: json as! Dictionary<String, Int>)
                     }
                 } catch let error as NSError {
                     print("Unresolved error \(error), \(error.userInfo)")
