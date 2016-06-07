@@ -112,6 +112,37 @@ func deleteAllTasks() {
     }
 }
 
+// MARK: - Network Function
+
+func postUpdatedStats() {
+    let url = NSURL(string: "http://localhost/")
+    let session = NSURLSession.sharedSession()
+    let request = NSMutableURLRequest(URL: url!)
+    let bodyData = "DATA"
+    request.HTTPMethod = "POST"
+    request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding)
+    let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        print(response)
+        if let httpResponse = response as? NSHTTPURLResponse {
+            let statusCode = httpResponse.statusCode
+            if (statusCode == 200) {
+                print("Success")
+            } else {
+                print("Something else happened")
+            }
+        }
+    }
+    task.resume()
+}
+
+func postNewStats() {
+    
+}
+
+func getStats() {
+    
+}
+
 /**************************************************************************
 *	RGBColor
 *		a function to make the changing of color a bit simpler

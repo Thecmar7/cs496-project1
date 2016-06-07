@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var resetTasksNotification: UILocalNotification?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.window?.tintColor = UIColor.orangeColor()
 		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
         
@@ -98,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 task.delegate?.stopUITimer()
             }
         } else {
-            // task alert
+            // show task alert
             let title = notification.alertTitle
             let body = notification.alertBody
             let action = notification.alertAction
