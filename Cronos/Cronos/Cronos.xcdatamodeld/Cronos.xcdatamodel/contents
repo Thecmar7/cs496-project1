@@ -9,9 +9,10 @@
         <attribute name="goalTime" attributeType="Double" defaultValueString="3600" syncable="YES"/>
         <attribute name="isRunning" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="task" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="onCloud" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" defaultDateTimeInterval="486345360" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

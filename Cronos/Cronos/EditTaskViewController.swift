@@ -18,6 +18,7 @@ class EditTaskViewController: UIViewController {
     @IBOutlet var navBar: UINavigationBar!
     
     override func viewDidLoad() {
+		UISetup()
         super.viewDidLoad()
     }
 

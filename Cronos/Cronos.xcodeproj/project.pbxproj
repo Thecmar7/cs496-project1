@@ -262,6 +262,7 @@
 				436E01181CC8104100D44117 /* AppDelegate.swift in Sources */,
 				436E01401CC818BB00D44117 /* TaskTableViewController.swift in Sources */,
 				43D80DC71CFCF5B000B9CB80 /* EditTaskViewController.swift in Sources */,
+				860B0D391D0751290024AF37 /* Reachability.swift in Sources */,
 				436E013B1CC814C800D44117 /* TimerTableViewCell.swift in Sources */,
 				43EBD3891D075E820097743D /* PersonalStatsTableViewCell.swift in Sources */,
 				43EBD3851D07540C0097743D /* StatsViewController.swift in Sources */,

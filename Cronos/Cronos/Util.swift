@@ -48,7 +48,7 @@ protocol ModalDissmissDelegate: class {
 }
 
 protocol StyleDelegate: class {
-	func navbarColoring()
+	func UISetup()
 }
 
 protocol NetworkDelegate: class {
@@ -80,15 +80,24 @@ func addTask(name: String, goalTime: Double) {
     newTask.setValue(NSDate(), forKey: "createdDate")
     newTask.setValue(goalTime, forKey: "goalTime")
 	
+	
     save()
-    loadTasks()
+	loadTasks()
+	
+	// checks if can on cloud
+	if (reachabilityQuickCheck()) {
+		// save to cloud
+		for task in tasks {
+			if (task.name == name || task.onCloud == 0) {
+				postNewTask(task)
+				task.onCloud = 1
+			}
+		}
+	} else {
+		newTask.setValue(0, forKey: "onCloud")
+	}
+	save()
     
-    // save to cloud
-    for task in tasks {
-        if (task.name == name) {
-            postNewTask(task)
-        }
-    }
 }
 
 func updateTask(task: NSManagedObject, value: AnyObject, key: String) {
@@ -143,83 +152,105 @@ func postNewTask(task: Task) {
     }
 }
 
+
+/****************************************************************************
+ * post
+ *
+ *
+ ****************************************************************************/
 func post(params: NSDictionary?, url: String, postCompleted: (succeeded: Bool, msg: String) -> ()) {
-    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-    let session = NSURLSession.sharedSession()
-    request.HTTPMethod = "POST"
-    
-    if (params != nil) {
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params!, options: [])
-        } catch let error as NSError {
-            print("Unresolved error \(error), \(error.userInfo)")
-            postCompleted(succeeded: false, msg: "Error")
-            return
-        }
-    }
-    
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-    
-    let task = session.dataTaskWithRequest(request) { (data, response, error) in
-        var strData = NSString()
-        if (data == nil) {
-            strData = NSString(string: "DATA")
-        } else {
-            strData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
-                if let parseJSON = json {
-                    if let success = parseJSON["success"] as? Bool {
-                        print("Success: \(success)")
-                        postCompleted(succeeded: success, msg: "Posted")
-                    }
-                    return
-                } else {
-                    postCompleted(succeeded: false, msg: "Error")
-                }
-            } catch let error as NSError {
-                print("Unresolved error \(error), \(error.userInfo)")
-                print(strData)
-                postCompleted(succeeded: false, msg: "Error")
-            }
-        }
-    }
-    task.resume()
+	if (reachabilityQuickCheck()) {
+		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+		let session = NSURLSession.sharedSession()
+		request.HTTPMethod = "POST"
+		
+		if (params != nil) {
+			do {
+				request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params!, options: [])
+			} catch let error as NSError {
+				print("Unresolved error \(error), \(error.userInfo)")
+				postCompleted(succeeded: false, msg: "Error")
+				return
+			}
+		}
+		
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		
+		let task = session.dataTaskWithRequest(request) { (data, response, error) in
+			var strData = NSString()
+			if (data == nil) {
+				strData = NSString(string: "DATA")
+			} else {
+				strData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+				do {
+					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
+					if let parseJSON = json {
+						if let success = parseJSON["success"] as? Bool {
+							print("Success: \(success)")
+							postCompleted(succeeded: success, msg: "Posted")
+						}
+						return
+					} else {
+						postCompleted(succeeded: false, msg: "Error")
+					}
+				} catch let error as NSError {
+					print("Unresolved error \(error), \(error.userInfo)")
+					print(strData)
+					postCompleted(succeeded: false, msg: "Error")
+				}
+			}
+		}
+		task.resume()
+	}
 }
 
 func get(url: String, getCompleted: (succeeded: Bool, msg: Dictionary<String, Int>) ->()) {
-    let session = NSURLSession.sharedSession()
-    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-    
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.HTTPMethod = "GET"
-    request.HTTPBody = nil
-    
-    let task = session.dataTaskWithRequest(request) { (data, response, error) in
-        if let httpResponse = response as? NSHTTPURLResponse {
-            let statusCode = httpResponse.statusCode
-            if (statusCode == 200) {
-                print("Success")
-                do {
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                        getCompleted(succeeded: true, msg: json as! Dictionary<String, Int>)
-                    }
-                } catch let error as NSError {
-                    print("Unresolved error \(error), \(error.userInfo)")
-                }
-            } else {
-                print("Failure")
-            }
-        }
-    }
-    task.resume()
+	if (reachabilityQuickCheck()) {
+		let session = NSURLSession.sharedSession()
+		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+		
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.HTTPMethod = "GET"
+		request.HTTPBody = nil
+		
+		let task = session.dataTaskWithRequest(request) { (data, response, error) in
+			if let httpResponse = response as? NSHTTPURLResponse {
+				let statusCode = httpResponse.statusCode
+				if (statusCode == 200) {
+					print("Success")
+					do {
+						if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+							getCompleted(succeeded: true, msg: json as! Dictionary<String, Int>)
+						}
+					} catch let error as NSError {
+						print("Unresolved error \(error), \(error.userInfo)")
+					}
+				} else {
+					print("Failure")
+				}
+			}
+		}
+		task.resume()
+	}
 }
 
 /**************************************************************************
-*		|	|	|--|--|
-*		|	|	   |
-*		\---\_	|__|__|
+ * reachabilityQuickCheck -> bool
+ *	Returns whether the phone has a connection to the internet or not
+ **************************************************************************/
+func reachabilityQuickCheck() -> Bool {
+	let Reachability: Reach = Reach()
+	let status = "\(Reachability.connectionStatus())"
+	print(status)
+	return (status.hasPrefix("Online"))
+}
+
+/**************************************************************************
+********|   |***|--|--|****************************************************
+********|   |***   |   ****************************************************
+********|   |***   |   ****************************************************
+********\---\_**|__|__|****************************************************
 **************************************************************************/
 
 
@@ -238,10 +269,13 @@ extension UIViewController: StyleDelegate {
 	/**************************************************************************
 	*	Set up the navbars
 	**************************************************************************/
-	func navbarColoring() {
-		self.navigationController?.navigationBar.barTintColor = RGBColor(100, g: 4, b: 4)
-	
-		
+	func UISetup() {
+		let orange = RGBColor(254, g: 202, b: 71)
+		let accent = RGBColor(255, g: 117, b: 26)
+		self.navigationController?.navigationBar.barTintColor = orange
+		self.navigationController?.navigationBar.tintColor = accent
+		self.tabBarController?.tabBar.barTintColor = orange
+		self.tabBarController?.tabBar.tintColor = accent
 	}
 	
 }

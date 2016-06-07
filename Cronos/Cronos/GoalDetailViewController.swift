@@ -28,6 +28,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 	*		initial set up of the view
 	**************************************************************************/
 	override func viewDidLoad() {
+		UISetup()
+		startAndStopButton.layer.cornerRadius = 20
 		super.viewDidLoad()
     }
 	
@@ -113,7 +115,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 			
 			// change label
 			startAndStopButton.setTitle("Stop", forState: .Normal)
-			startAndStopButton.backgroundColor = RGBColor(200.0, g: 0.0, b: 0.0)
+			startAndStopButton.backgroundColor = UIColor.redColor()
 		} else {
 			// stops timer
 			stopUITimer()
@@ -144,7 +146,7 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 			task.stopTimer()
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		startAndStopButton.setTitle("Start", forState: .Normal)
-		startAndStopButton.backgroundColor = RGBColor(0.0, g: 200.0, b: 0.0)
+		startAndStopButton.backgroundColor = UIColor.greenColor()
 	}
 	
 	/***************************************************************************

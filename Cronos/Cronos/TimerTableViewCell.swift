@@ -47,12 +47,15 @@ class TimerTableViewCell: UITableViewCell, TaskDelegate {
 			startUITimer()
 			task.startTimer()
 			
+			timeActual.textColor = UIColor.blackColor()
+			
 			// change label
 			startButton.setTitle("Stop", forState: .Normal)
 			startButton.setTitleColor(RGBColor(200.0, g: 0.0, b: 0.0), forState: .Normal)
 		} else {
 			// stops timer
 			stopUITimer()
+			timeActual.textColor = UIColor.grayColor()
 		}
     }
     
