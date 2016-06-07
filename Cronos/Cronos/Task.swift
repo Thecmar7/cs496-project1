@@ -123,6 +123,8 @@ class Task: NSManagedObject {
         if (goalDate?.timeIntervalSinceNow < 0) {
             return false
         } else {
+            completedNum = Double(completedNum) + 1
+            save()
             updateTask()
             print("Completed: \(self.completedNum), Attempted: \(attemptedNum)")
             return true
@@ -130,8 +132,6 @@ class Task: NSManagedObject {
 	}
     
     func updateTask() {
-        completedNum = Double(completedNum) + 1
-        save()
         let dict = Dictionary(dictionaryLiteral: ("name", self.name!), ("id", uuid), ("completed", self.completedNum), ("attempted", self.attemptedNum))
         post(dict, url: "http://cronos-1329.appspot.com/cronosServlet?op=update&id=\(uuid)&multiple=false", postCompleted: { (succeeded, msg) in
            if (succeeded) {
@@ -153,6 +153,8 @@ class Task: NSManagedObject {
 		if (attemptDate == nil || !areDatesSameDay(attemptDate, dateTwo: NSDate())) {
 			attemptedNum = Double(attemptedNum) + 1
             attemptDate = NSDate()
+            save()
+            updateTask()
 		}
 		print("Attempted: \(attemptedNum) CompletedToday: \(completedNum)")
 		return(Double(attemptedNum), Double(completedNum))
