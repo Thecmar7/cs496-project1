@@ -14,6 +14,7 @@ class StatsViewController: UIViewController {
     @IBOutlet var completedLabel: UILabel!
     
     override func viewDidLoad() {
+		UISetup()
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

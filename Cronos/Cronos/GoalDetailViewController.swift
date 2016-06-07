@@ -28,6 +28,8 @@ class GoalDetailViewController: UIViewController, TaskDelegate, ModalDissmissDel
 	*		initial set up of the view
 	**************************************************************************/
 	override func viewDidLoad() {
+		UISetup()
+		startAndStopButton.layer.cornerRadius = 20
 		super.viewDidLoad()
     }
 	

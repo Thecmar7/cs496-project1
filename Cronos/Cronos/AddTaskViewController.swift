@@ -17,7 +17,7 @@ class AddTaskViewController: UIViewController {
     
     override func viewDidLoad() {
 		// style stuff
-		navbarColoring()
+		UISetup()
 		
         super.viewDidLoad()
 

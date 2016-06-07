@@ -17,16 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // styling of application
-        self.window?.tintColor = UIColor.orangeColor()
+        
 		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         // types are UIUserNotificationType properties
-        
-        // styling of application
-        self.window?.tintColor = RGBColor(248, g: 89, b: 93)
-        //self.window?.rootViewController?.navigationController?.navigationBar.barTintColor = UIColor.redColor()
-        //print(self.window?.rootViewController?.navigationController?)
-        //self.window?.rootViewController?.navigationController?.navigationBar.tintColor = UIColor.redColor()
-        //RGBColor(254, g: 202, b: 71)
         
 		return true
 	}

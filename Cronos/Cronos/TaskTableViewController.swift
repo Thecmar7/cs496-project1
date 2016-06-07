@@ -17,6 +17,8 @@ class TaskTableViewController: UITableViewController, ModalDissmissDelegate {
     let DEBUG = true
     
     override func viewDidLoad() {
+		UISetup()
+		
         super.viewDidLoad()
         
         // Shows edit button

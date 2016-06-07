@@ -46,7 +46,7 @@ protocol ModalDissmissDelegate: class {
 }
 
 protocol StyleDelegate: class {
-	func navbarColoring()
+	func UISetup()
 }
 
 protocol NetworkDelegate: class {
@@ -245,8 +245,8 @@ func get(url: String, getCompleted: (succeeded: Bool, msg: Dictionary<String, In
  *	Returns whether the phone has a connection to the internet or not
  **************************************************************************/
 func reachabilityQuickCheck() -> Bool {
-	var Reachability: Reach = Reach()
-	var status = "\(Reachability.connectionStatus())"
+	let Reachability: Reach = Reach()
+	let status = "\(Reachability.connectionStatus())"
 	print(status)
 	return (status.hasPrefix("Online"))
 }
@@ -274,9 +274,13 @@ extension UIViewController: StyleDelegate {
 	/**************************************************************************
 	*	Set up the navbars
 	**************************************************************************/
-	func navbarColoring() {
-		self.navigationController?.navigationBar.barTintColor = RGBColor(100, g: 4, b: 4)
-	
+	func UISetup() {
+		let orange = RGBColor(254, g: 202, b: 71)
+		let accent = RGBColor(255, g: 117, b: 26)
+		self.navigationController?.navigationBar.barTintColor = orange
+		self.navigationController?.navigationBar.tintColor = accent
+		self.tabBarController?.tabBar.barTintColor = orange
+		self.tabBarController?.tabBar.tintColor = accent
 	}
 	
 }
