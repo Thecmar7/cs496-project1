@@ -88,13 +88,13 @@ func addTask(name: String, goalTime: Double) {
 		for task in tasks {
 			if (task.name == name || task.onCloud == 0) {
 				postNewTask(task)
+				task.onCloud = 1
 			}
 		}
 	} else {
 		newTask.setValue(0, forKey: "onCloud")
-		save()
 	}
-	
+	save()
     
 }
 
