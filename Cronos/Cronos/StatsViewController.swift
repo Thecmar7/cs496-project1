@@ -18,6 +18,8 @@ class StatsViewController: UIViewController, TaskDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        getStats()
     }
 
     override func didReceiveMemoryWarning() {
